@@ -16,7 +16,7 @@ Incremental ASP Solver with Rich Per-Step Statistics
 """
 
 from __future__ import annotations
-import argparse, csv, json, os, time
+import argparse, csv, os, time
 from pathlib import Path
 from typing import List, Dict, Any, Set
 
@@ -68,7 +68,7 @@ def build_control(models: int, threads: int) -> Control:
     return ctl
 
 
-def herbrand_size(ctl: Control) -> int:
+def all_constants_size(ctl: Control) -> int:
     """遍历 symbolic_atoms 统计常量个数（数值 / 字符串 / 0 元函数符号）。"""
     consts: Set[clingo.Symbol] = set()
 
@@ -85,6 +85,25 @@ def herbrand_size(ctl: Control) -> int:
     for a in ctl.symbolic_atoms:
         rec(a.symbol)
     return len(consts)
+
+
+def herbrand_size(ctl: clingo.Control) -> int:
+    universe: Set[clingo.Symbol] = set()
+
+    def collect_term(term: clingo.Symbol):
+        universe.add(term)
+        if term.type is clingo.SymbolType.Function:
+            for sub in term.arguments:
+                collect_term(sub)
+
+    for atom in ctl.symbolic_atoms:
+        sym = atom.symbol
+        if sym.arguments:
+            for arg in sym.arguments:
+                collect_term(arg)
+        else:
+            universe.add(sym)
+    return len(universe)
 
 
 def _rss() -> int | None:
@@ -141,7 +160,8 @@ def solve_incremental(domain: Path, idx: int,
         "cpu_ground": [],
         "wall_solve": [],
         "cpu_solve": [],
-        "herbrand": [],
+        "consts_size": [],
+        "herbrand_size": [],
         "rules": [],
         "atoms": [],
         "rel_facts": [],
@@ -176,6 +196,8 @@ def solve_incremental(domain: Path, idx: int,
         ctl.ground(parts)
         ctl.assign_external(Function("query", [Number(step)]), True)
         mem_g = _rss()
+        consts_size = all_constants_size(ctl)
+        hbsize = herbrand_size(ctl)
 
         g_wall1 = time.perf_counter()
         g_cpu1 = time.process_time()
@@ -187,7 +209,6 @@ def solve_incremental(domain: Path, idx: int,
         stats_lp = ctl.statistics["problem"]["lp"]
         rules = int(stats_lp.get("rules", 0))
         atoms = int(stats_lp.get("atoms", 0))
-        hbsize = herbrand_size(ctl)
 
         rel_facts = sum(1 for a in ctl.symbolic_atoms
                         if "related" in a.symbol.name and a.is_fact)
@@ -212,7 +233,8 @@ def solve_incremental(domain: Path, idx: int,
             "cpu_solve": round(s_cpu1 - s_cpu0, 6),
             "rules": rules,
             "atoms": atoms,
-            "herbrand": hbsize,
+            "consts_size": consts_size,
+            "herbrand_size": hbsize,
             "rel_facts": rel_facts,
             "rel_nonfacts": rel_nfacts,
             "rel_total": rel_facts + rel_nfacts,
@@ -228,11 +250,12 @@ def solve_incremental(domain: Path, idx: int,
             print(f"[step {step:3d}] "
                   f"G {g_wall1-g_wall0:0.3f}s | "
                   f"S {s_wall1-s_wall0:0.3f}s | "
+                  f"C {consts_size} | "
                   f"H {hbsize} | "
                   f"rules {rules:6d} atoms {atoms:7d} | "
                   f"rel {rel_facts}/{rel_nfacts} | "
                   f"G size {aspif_size}B |"
-                  f"mem {_mb(mem_g):.2f}/{_mb(mem_g):.2f} MB")
+                  f"mem {_mb(mem_g):.2f}/{_mb(mem_s):.2f} MB")
 
         step += 1
     #########################################################################
