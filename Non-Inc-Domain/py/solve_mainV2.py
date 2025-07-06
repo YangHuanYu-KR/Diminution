@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-# solve_main.py  ── Herbrand / ground-solve 资源 / related 计数  → 支持批模式
+# solve_main.py  ── Herbrand / ground-solve 资源 / related 计数 (改为了谓词中含 “related” 的计数)  → 支持批模式
 # clingo 5.8.0，Python 3.8+
 
 from __future__ import annotations
 import argparse, csv, time
-import io
 import os
 from pathlib import Path
 from typing import Set
 import clingo
-import tempfile
 from clingo import Control, MessageCode
 from clingo.control import BackendType
 
@@ -91,12 +89,14 @@ def solve_one(domain: Path, idx: int, args) -> dict:
     
     size_bytes = os.path.getsize(aspif_path)
 
-
-                
-    n_facts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
-                  if a.is_fact)
-    n_nonfacts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
-                     if not a.is_fact)
+    # n_facts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
+    #               if a.is_fact)
+    # n_nonfacts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
+    #                  if not a.is_fact)
+    
+    n_facts = sum(1 for a in ctl.symbolic_atoms if "related" in a.symbol.name and a.is_fact)
+    n_nonfacts = sum(1 for a in ctl.symbolic_atoms if "related" in a.symbol.name and not a.is_fact)
+    
     t1 = time.perf_counter()
     m1 = _rss()
 
@@ -162,17 +162,17 @@ def _mb(b):
 
 def _print_summary(s: dict):
     print(f"\n===== SUMMARY (idx {s['index']}) =====")
-    print(f"Herbrand size           : {s['herbrand']}")
-    print(f"Grounded rules/atoms    : {s['rules']:,} / {s['atoms']:,}")
-    print(f"ground_file_size_bytes  : {s["ground_file_size_bytes"]} B")
-    print(f"Time  ground | solve    : {s['t_ground']}s | {s['t_solve']}s")
+    print(f"Herbrand size             : {s['herbrand']}")
+    print(f"Grounded rules/atoms      : {s['rules']:,} / {s['atoms']:,}")
+    print(f"ground_file_size_bytes    : {s["ground_file_size_bytes"]} B")
+    print(f"Time  ground | solve      : {s['t_ground']}s | {s['t_solve']}s")
     if s['mem_start_mb'] is not None:
-        print(f"Mem  start → ground     : {s['mem_start_mb']:8.2f} → "
+        print(f"Mem  start → ground       : {s['mem_start_mb']:8.2f} → "
               f"{s['mem_ground_mb']:8.2f} MB")
-        print(f"Mem  ground → solve     : {s['mem_ground_mb']:8.2f} → "
+        print(f"Mem  ground → solve       : {s['mem_ground_mb']:8.2f} → "
               f"{s['mem_solve_mb']:8.2f} MB")
-    print(f"Models enumerated       : {s['models']}")
-    print(f"related/2  facts|rules  : {s['rel_facts']} | {s['rel_nonfacts']}")
+    print(f"Models enumerated         : {s['models']}")
+    print(f"related_aux  facts|rules  : {s['rel_facts']} | {s['rel_nonfacts']}")
 
 
 def _write_csv(path: Path, new_rows: list[dict]):
