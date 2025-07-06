@@ -1,0 +1,2 @@
+index,herbrand,rules,atoms,t_ground,t_solve,mem_start_mb,mem_ground_mb,mem_solve_mb,models,rel_facts,rel_nonfacts,rel_total
+1,1000,20023,12009,0.035,0.063,23.61,31.53,52.8,9,0,0,0
