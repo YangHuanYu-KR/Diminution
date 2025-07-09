@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# solve_main.py  ── Herbrand / ground-solve 资源 / related 计数 (改为了谓词中含 “related” 的计数)  → 支持批模式
+# solve_clingo.py  ── Herbrand / ground-solve 资源 / related 计数 (改为了谓词中含 “related” 的计数)  → 支持批模式
 # clingo 5.8.0，Python 3.8+
 
 from __future__ import annotations
@@ -34,7 +34,7 @@ def parse_args() -> argparse.Namespace:
                    help="load solve_related.lp instead of solve.lp")
     p.add_argument("--csv",
                    action="store_true",
-                   help="append/overwrite stats in <domain>/result.csv")
+                   help="append/overwrite stats in <domain>/result_clingo.csv")
     return p.parse_args()
 
 
@@ -79,7 +79,7 @@ def solve_one(domain: Path, idx: int, args) -> dict:
 
     
     temp_dir   = Path("temp")
-    aspif_path = temp_dir / "tmp_gc_.aspif"
+    aspif_path = temp_dir / "tmp_gc_gringo.aspif"
     ctl.register_backend(BackendType.Aspif, str(aspif_path), replace=False)
     
     # --- ground ------------------------------------------------------------
@@ -118,9 +118,9 @@ def solve_one(domain: Path, idx: int, args) -> dict:
         "t_ground": round(t1 - t0, 3),
         "t_solve": round(s1 - s0, 3),
         "ground_file_size_bytes": size_bytes,
-        "mem_start_mb": _mb(m0),
-        "mem_ground_mb": _mb(m1),
-        "mem_solve_mb": _mb(m2),
+        "mem_start_bytes": m0,
+        "mem_ground_bytes": m1,
+        "mem_solve_bytes": m2,
         "models": len(models),
         "rel_facts": n_facts,
         "rel_nonfacts": n_nonfacts,
@@ -148,7 +148,7 @@ def run(args: argparse.Namespace):
         if args.verbose: _print_summary(stats)
 
     if args.csv:
-        _write_csv(domain_path / "result.csv", rows)
+        _write_csv(domain_path / "result_clingo.csv", rows)
 
 
 # ──────────────────── helpers ───────────────────────────────────────────────

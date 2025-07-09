@@ -16,6 +16,8 @@ python py/GW_domain_generate.py -b 10 -W 50 -H 50 -b 3
 python py/GW_domain_generate.py -i 5 --start 2 2 --goal 25 25 --ensure-reachability False
 """
 from __future__ import annotations
+import json
+import random
 import argparse, random
 from collections import deque
 from itertools import chain
@@ -66,7 +68,7 @@ def bfs_reachable(w: int, h: int, boxes: List[Box], s: Coord,
 def generate_one(cfg, rng: random.Random) -> Tuple[List[Box], Coord, Coord]:
     """返回 (boxes, start, goal)；若失败抛 RuntimeError"""
     W, H = cfg.width, cfg.height
-    for _attempt in range(1000):
+    for _ in range(1000):
         boxes: List[Box] = []
         # 1) 随机放置障碍
         for _ in range(cfg.boxes):
@@ -80,8 +82,8 @@ def generate_one(cfg, rng: random.Random) -> Tuple[List[Box], Coord, Coord]:
                     boxes.append(box)
                     break
             else:
-                break  # 50 次都放不下 ⇒ 整体重来
-        else:  # 成功放完
+                break
+        else:
             # 2) 起点终点
             sx, sy = cfg.start if cfg.start else (rng.randint(1, W),
                                                   rng.randint(1, H))
@@ -138,25 +140,47 @@ def next_index(domain: Path) -> int:
     return (max(idxs) + 1) if idxs else 1
 
 
-def write_files(dir_: Path, boxes: List[Box], start: Coord, goal: Coord,
-                W: int, H: int):
+def write_files(dir_: Path, boxes: List[Box], start: Coord, goal: Coord, cfg,
+                idx: int):
+    """写入 instance.lp / goal.lp 以及 params.json"""
     dir_.mkdir(parents=True, exist_ok=True)
     inst = dir_ / "instance.lp"
     goal_lp = dir_ / "goal.lp"
+    params_json = dir_ / "params.json"
 
+    # 1) ASP instance file
     with inst.open("w", encoding="utf-8") as f:
         f.write("#program base.\n\n")
-        f.write(f"m({W}).\n")
-        f.write(f"n({H}).\n\n")
+        f.write(f"m({cfg.width}).\n")
+        f.write(f"n({cfg.height}).\n\n")
         for (x1, y1, x2, y2) in boxes:
             f.write(f"obstacle_box({x1},{y1}, {x2},{y2}).\n")
         f.write("\n")
         f.write(f"init(at({start[0]},{start[1]})).\n")
         f.write(f"goal(at({goal[0]},{goal[1]})).\n")
 
+    # 2) goal checking fragment
     with goal_lp.open("w", encoding="utf-8") as g:
         g.write("#program step(t).\n")
         g.write("goal_met(t):- h(at(X,Y), t), goal(at(X,Y)).\n")
+
+    # 3) Generation metadata
+    meta = {
+        "index": idx,
+        "domain": cfg.domain,
+        "width": cfg.width,
+        "height": cfg.height,
+        "boxes": cfg.boxes,
+        "min_size": cfg.min_size,
+        "max_size": cfg.max_size,
+        "actual_boxes": boxes,  # list of (x1,y1,x2,y2)
+        "start": start,
+        "goal": goal,
+        "ensure_reachability": cfg.ensure_reachability,
+        "seed": cfg.seed,
+    }
+    with params_json.open("w", encoding="utf-8") as meta_f:
+        json.dump(meta, meta_f, indent=2, ensure_ascii=False)
 
 
 # ─────────────────────────────── main ─────────────────────────────────────
@@ -177,10 +201,8 @@ def main():
         boxes, start, goal = generate_one(cfg, rng)
 
         idx = start_idx + k
-        write_files(domain / str(idx), boxes, start, goal, cfg.width,
-                    cfg.height)
+        write_files(domain / str(idx), boxes, start, goal, cfg, idx)
         print(f"[ok] wrote {domain}/{idx}/instance.lp")
-
     print("All instances saved under:", domain.resolve())
 
 

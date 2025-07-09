@@ -1,2 +1,0 @@
-index,herbrand,rules,atoms,t_ground,t_solve,ground_file_size_bytes,mem_start_mb,mem_ground_mb,mem_solve_mb,models,rel_facts,rel_nonfacts,rel_total
--1,30,2585,1801,0.007,0.001,47670,23.63,24.45,24.67,1,29,0,29
