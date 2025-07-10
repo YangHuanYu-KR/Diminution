@@ -32,7 +32,6 @@ CellsSet = set[Coord]
 
 
 def cells_of_box(box: Box) -> List[Coord]:
-    """枚举矩形内所有格子（含边界）"""
     x1, y1, x2, y2 = box
     return [(x, y) for x in range(x1, x2 + 1) for y in range(y1, y2 + 1)]
 
@@ -66,7 +65,6 @@ def bfs_reachable(w: int, h: int, boxes: List[Box], s: Coord,
 
 # ────────────────────────────── 单实例生成 ─────────────────────────────────
 def generate_one(cfg, rng: random.Random) -> Tuple[List[Box], Coord, Coord]:
-    """返回 (boxes, start, goal)；若失败抛 RuntimeError"""
     W, H = cfg.width, cfg.height
     for _ in range(1000):
         boxes: List[Box] = []
@@ -142,27 +140,20 @@ def next_index(domain: Path) -> int:
 
 def write_files(dir_: Path, boxes: List[Box], start: Coord, goal: Coord, cfg,
                 idx: int):
-    """写入 instance.lp / goal.lp 以及 params.json"""
+    """写入 instance.lp 以及 params.json"""
     dir_.mkdir(parents=True, exist_ok=True)
     inst = dir_ / "instance.lp"
-    goal_lp = dir_ / "goal.lp"
     params_json = dir_ / "params.json"
 
     # 1) ASP instance file
     with inst.open("w", encoding="utf-8") as f:
-        f.write("#program base.\n\n")
-        f.write(f"m({cfg.width}).\n")
-        f.write(f"n({cfg.height}).\n\n")
+        f.write(f"m(1..{cfg.width}).\n")
+        f.write(f"n(1..{cfg.height}).\n\n")
         for (x1, y1, x2, y2) in boxes:
             f.write(f"obstacle_box({x1},{y1}, {x2},{y2}).\n")
         f.write("\n")
         f.write(f"init(at({start[0]},{start[1]})).\n")
         f.write(f"goal(at({goal[0]},{goal[1]})).\n")
-
-    # 2) goal checking fragment
-    with goal_lp.open("w", encoding="utf-8") as g:
-        g.write("#program step(t).\n")
-        g.write("goal_met(t):- h(at(X,Y), t), goal(at(X,Y)).\n")
 
     # 3) Generation metadata
     meta = {
@@ -173,7 +164,7 @@ def write_files(dir_: Path, boxes: List[Box], start: Coord, goal: Coord, cfg,
         "boxes": cfg.boxes,
         "min_size": cfg.min_size,
         "max_size": cfg.max_size,
-        "actual_boxes": boxes,  # list of (x1,y1,x2,y2)
+        "actual_boxes": boxes,
         "start": start,
         "goal": goal,
         "ensure_reachability": cfg.ensure_reachability,
@@ -202,7 +193,7 @@ def main():
 
         idx = start_idx + k
         write_files(domain / str(idx), boxes, start, goal, cfg, idx)
-        print(f"[ok] wrote {domain}/{idx}/instance.lp")
+        print(f"wrote {domain}/{idx}/instance.lp")
     print("All instances saved under:", domain.resolve())
 
 

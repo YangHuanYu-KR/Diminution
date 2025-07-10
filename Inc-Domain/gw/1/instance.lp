@@ -1,11 +1,9 @@
-#program base.
+m(1..30).
+n(1..30).
 
-m(50).
-n(50).
+obstacle_box(4,7, 11,13).
+obstacle_box(28,2, 30,4).
+obstacle_box(19,22, 26,26).
 
-obstacle_box(32,4, 36,6).
-obstacle_box(21,41, 24,45).
-obstacle_box(7,34, 8,36).
-
-init(at(4,44)).
-goal(at(48,1)).
+init(at(20,15)).
+goal(at(17,1)).

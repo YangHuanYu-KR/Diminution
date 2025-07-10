@@ -204,7 +204,7 @@ def solve_one(domain: Path, idx: int,
                           stdout=subprocess.PIPE,
                           stderr=subprocess.STDOUT,
                           text=True)
-    if proc.returncode not in (0, 10, 20, 30):
+    if proc.returncode != 0:
         raise RuntimeError(
             f"DLV2 exited with {proc.returncode}:\n{proc.stdout}")
 
