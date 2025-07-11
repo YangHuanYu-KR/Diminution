@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
-# solve_clingo.py  ── Herbrand / ground-solve 资源 / related 计数 (改为了谓词中含 “related” 的计数)  → 支持批模式
+# -*- coding: utf-8 -*-
+# solve_clingo.py  ── ground-solve 资源 / related 计数 (改为了谓词中含 “related” 的计数)  → 支持批模式
 # clingo 5.8.0，Python 3.8+
 
 from __future__ import annotations
 import argparse, csv, time
-import os
+import os,sys
 from pathlib import Path
-from typing import Set
-import clingo
-from clingo import Control, MessageCode
+
+from clingo import Control
 from clingo.control import BackendType
 
-try:
-    import psutil
-    _PROC = psutil.Process()
-except ImportError:
-    _PROC = None
+def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+    current = Path(__file__).resolve()
+    for parent in current.parents:
+        if parent.name == target_dirname:
+            return parent
+    raise RuntimeError(f"未在路径中找到名为 {target_dirname} 的父目录。请确认你的文件是否在该项目结构下。")
 
+BASE_DIR = find_base_dir()
+sys.path.append(str(BASE_DIR))
+
+from deps.utils import _mb, _rss,  logger, all_constants_size
 
 # ─────────────────────── CLI ────────────────────────────────────────────────
 def parse_args() -> argparse.Namespace:
@@ -49,37 +54,16 @@ def build_control(models: int, threads: int) -> Control:
     ctl.enable_cleanup = False
     return ctl
 
-
-# ───────────────────── Herbrand ─────────────────────────────────────────────
-def herbrand_size(ctl: Control) -> int:
-    consts: Set[clingo.Symbol] = set()
-
-    def rec(sym: clingo.Symbol):
-        if sym.type in (clingo.SymbolType.Number, clingo.SymbolType.String):
-            consts.add(sym)
-        elif sym.type is clingo.SymbolType.Function:
-            if not sym.arguments:
-                consts.add(sym)
-            else:
-                for a in sym.arguments:
-                    rec(a)
-
-    for a in ctl.symbolic_atoms:
-        rec(a.symbol)
-    return len(consts)
-
-
 # ───────────────────── 单个实例求解 ──────────────────────────────────────────
 def solve_one(domain: Path, idx: int, args) -> dict:
+    domain = BASE_DIR / "Non-Inc-Domain" / args.domain
     base_lp = domain / "solve_related.lp" if args.related else domain / "solve.lp"
     inst_lp = domain / str(idx) / "instance.lp"
     ctl = build_control(args.models, args.threads)
     ctl.load(str(base_lp))
     ctl.load(str(inst_lp))
 
-    
-    temp_dir   = Path("temp")
-    aspif_path = temp_dir / "tmp_gc_gringo.aspif"
+    aspif_path = BASE_DIR / "Non-Inc-Domain" / "temp" / f"temp_gc_gringo.aspif"
     ctl.register_backend(BackendType.Aspif, str(aspif_path), replace=False)
     
     # --- ground ------------------------------------------------------------
@@ -88,11 +72,6 @@ def solve_one(domain: Path, idx: int, args) -> dict:
     ctl.ground([("base", [])])
     
     size_bytes = os.path.getsize(aspif_path)
-
-    # n_facts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
-    #               if a.is_fact)
-    # n_nonfacts = sum(1 for a in ctl.symbolic_atoms.by_signature("related", 2)
-    #                  if not a.is_fact)
     
     n_facts = sum(1 for a in ctl.symbolic_atoms if "related" in a.symbol.name and a.is_fact)
     n_nonfacts = sum(1 for a in ctl.symbolic_atoms if "related" in a.symbol.name and not a.is_fact)
@@ -112,7 +91,7 @@ def solve_one(domain: Path, idx: int, args) -> dict:
     sign_idx = -idx if args.related else idx
     return {
         "index": sign_idx,
-        "herbrand": herbrand_size(ctl),
+        "consts_size": all_constants_size(ctl),
         "rules": int(lp.get("rules", 0)),
         "atoms": int(lp.get("atoms", 0)),
         "t_ground": round(t1 - t0, 3),
@@ -130,12 +109,12 @@ def solve_one(domain: Path, idx: int, args) -> dict:
 
 # ─────────────────────── main runner ────────────────────────────────────────
 def run(args: argparse.Namespace):
-    domain_path = Path(args.domain)
+    domain_path = BASE_DIR / "Non-Inc-Domain" / args.domain
     rows: list[dict] = []
 
     if args.index == -1:
-        args.verbose = False  # 强制关闭 verbose
-        args.csv = True  # 强制写 CSV
+        args.verbose = False  
+        args.csv = True  
         indices = sorted(
             int(p.name) for p in domain_path.iterdir()
             if p.is_dir() and p.name.isdigit())
@@ -152,25 +131,18 @@ def run(args: argparse.Namespace):
 
 
 # ──────────────────── helpers ───────────────────────────────────────────────
-def _rss():
-    return _PROC.memory_info().rss if _PROC else None
-
-
-def _mb(b):
-    return None if b is None else round(b / 2**20, 2)
-
 
 def _print_summary(s: dict):
     print(f"\n===== SUMMARY (idx {s['index']}) =====")
-    print(f"Herbrand size             : {s['herbrand']}")
+    print(f"constants size            : {s['consts_size']}")
     print(f"Grounded rules/atoms      : {s['rules']:,} / {s['atoms']:,}")
     print(f"ground_file_size_bytes    : {s["ground_file_size_bytes"]} B")
     print(f"Time  ground | solve      : {s['t_ground']}s | {s['t_solve']}s")
-    if s['mem_start_mb'] is not None:
-        print(f"Mem  start → ground       : {s['mem_start_mb']:8.2f} → "
-              f"{s['mem_ground_mb']:8.2f} MB")
-        print(f"Mem  ground → solve       : {s['mem_ground_mb']:8.2f} → "
-              f"{s['mem_solve_mb']:8.2f} MB")
+    if s['mem_start_bytes'] is not None:
+        print(f"Mem  start → ground       : {_mb(s['mem_start_bytes']):8.2f} → "
+              f"{_mb(s['mem_ground_bytes']):8.2f} MB")
+        print(f"Mem  ground → solve       : {_mb(s['mem_ground_bytes']):8.2f} → "
+              f"{_mb(s['mem_solve_bytes']):8.2f} MB")
     print(f"Models enumerated         : {s['models']}")
     print(f"related_aux  facts|rules  : {s['rel_facts']} | {s['rel_nonfacts']}")
 
@@ -190,11 +162,6 @@ def _write_csv(path: Path, new_rows: list[dict]):
         wr = csv.DictWriter(f, fieldnames=header)
         wr.writeheader()
         wr.writerows(keep.values())
-
-
-def logger(code: MessageCode, msg: str):
-    if code is MessageCode.RuntimeError:
-        print(f"[clingo:{code.name}] {msg}")
 
 
 # ────────────────────── entry ───────────────────────────────────────────────

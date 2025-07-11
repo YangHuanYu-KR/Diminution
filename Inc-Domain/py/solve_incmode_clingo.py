@@ -16,19 +16,26 @@ Incremental ASP Solver with Rich Per-Step Statistics
 """
 
 from __future__ import annotations
-import argparse, csv, os, time
+import argparse, sys, os, time
 from pathlib import Path
-from typing import List, Dict, Any, Set
+from typing import List, Dict, Any
 
-import clingo
-from clingo import Control, Function, Number, MessageCode
+from clingo import Control, Function, Number
 from clingo.control import BackendType
 
-try:
-    import psutil
-    _PROC = psutil.Process()
-except ImportError:
-    _PROC = None
+
+def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+    current = Path(__file__).resolve()
+    for parent in current.parents:
+        if parent.name == target_dirname:
+            return parent
+    raise RuntimeError(f"未在路径中找到名为 {target_dirname} 的父目录。请确认你的文件是否在该项目结构下。")
+
+
+BASE_DIR = find_base_dir()
+sys.path.append(str(BASE_DIR))
+
+from deps.utils import _write_csv, _mb, _rss, all_constants_size, logger
 
 
 # ─────────────────────────── CLI ────────────────────────────────────────────
@@ -68,57 +75,6 @@ def build_control(models: int, threads: int) -> Control:
     return ctl
 
 
-def all_constants_size(ctl: Control) -> int:
-    """遍历 symbolic_atoms 统计常量个数（数值 / 字符串 / 0 元函数符号）。"""
-    consts: Set[clingo.Symbol] = set()
-
-    def rec(sym: clingo.Symbol):
-        if sym.type in (clingo.SymbolType.Number, clingo.SymbolType.String):
-            consts.add(sym)
-        elif sym.type is clingo.SymbolType.Function:
-            if not sym.arguments:
-                consts.add(sym)
-            else:
-                for a in sym.arguments:
-                    rec(a)
-
-    for a in ctl.symbolic_atoms:
-        rec(a.symbol)
-    return len(consts)
-
-
-def herbrand_size(ctl: clingo.Control) -> int:
-    universe: Set[clingo.Symbol] = set()
-
-    def collect_term(term: clingo.Symbol):
-        universe.add(term)
-        if term.type is clingo.SymbolType.Function:
-            for sub in term.arguments:
-                collect_term(sub)
-
-    for atom in ctl.symbolic_atoms:
-        sym = atom.symbol
-        if sym.arguments:
-            for arg in sym.arguments:
-                collect_term(arg)
-        else:
-            universe.add(sym)
-    return len(universe)
-
-
-def _rss() -> int | None:
-    return _PROC.memory_info().rss if _PROC else None
-
-
-def _mb(b: int | None) -> float | None:
-    return None if b is None else round(b / 2**20, 2)
-
-
-def logger(code: MessageCode, msg: str):
-    if code is MessageCode.RuntimeError:
-        print(f"[clingo:{code.name}] {msg}")
-
-
 # ─────────────────────── 单实例求解 ────────────────────────────────────────
 def solve_incremental(domain: Path, idx: int,
                       args: argparse.Namespace) -> Dict[str, Any]:
@@ -144,7 +100,7 @@ def solve_incremental(domain: Path, idx: int,
     istop = istop_c.name if istop_c is not None else "SAT"
 
     # === prepare aspif file (compute the size of grounded program) =========
-    aspif_path = Path("./temp") / "step.aspif"
+    aspif_path = BASE_DIR / "Inc-Domain" / "temp" / "temp_gc_gringo.aspif"
     ctl.register_backend(BackendType.Aspif, str(aspif_path), replace=False)
 
     # === statistic container ===============================================
@@ -157,7 +113,6 @@ def solve_incremental(domain: Path, idx: int,
         "wall_solve": [],
         "cpu_solve": [],
         "consts_size": [],
-        "herbrand_size": [],
         "rules": [],
         "atoms": [],
         "rel_facts": [],
@@ -197,7 +152,6 @@ def solve_incremental(domain: Path, idx: int,
         ctl.assign_external(Function("query", [Number(step)]), True)
         mem_g = _rss()
         consts_size = all_constants_size(ctl)
-        hbsize = herbrand_size(ctl)
 
         g_wall1 = time.perf_counter()
         g_cpu1 = time.process_time()
@@ -234,7 +188,6 @@ def solve_incremental(domain: Path, idx: int,
             "rules": rules,
             "atoms": atoms,
             "consts_size": consts_size,
-            "herbrand_size": hbsize,
             "rel_facts": rel_facts,
             "rel_nonfacts": rel_nfacts,
             "rel_total": rel_facts + rel_nfacts,
@@ -251,7 +204,6 @@ def solve_incremental(domain: Path, idx: int,
                   f"G {g_wall1-g_wall0:0.3f}s | "
                   f"S {s_wall1-s_wall0:0.3f}s | "
                   f"C {consts_size} | "
-                  f"H {hbsize} | "
                   f"rules {rules:6d} atoms {atoms:7d} | "
                   f"rel {rel_facts}/{rel_nfacts} | "
                   f"G size {aspif_size}B |"
@@ -289,7 +241,7 @@ def solve_incremental(domain: Path, idx: int,
 
 # ───────────────────── 批处理 & CSV ────────────────────────────────────────
 def run(args: argparse.Namespace):
-    domain = Path(args.domain)
+    domain = BASE_DIR / "Inc-Domain" / args.domain
     if not domain.exists():
         raise FileNotFoundError(domain)
 
@@ -304,24 +256,6 @@ def run(args: argparse.Namespace):
 
     if args.csv:
         _write_csv(domain / "result_clingo.csv", rows)
-
-
-def _write_csv(path: Path, new_rows: List[Dict[str, Any]]):
-    header = list(new_rows[0].keys())
-    old: List[Dict[str, Any]] = []
-    if path.exists():
-        with path.open("r", newline="", encoding="utf-8") as f:
-            rdr = csv.DictReader(f)
-            header = rdr.fieldnames or header
-            old = list(rdr)
-    keep = {int(r["index"]): r for r in old}
-    for r in new_rows:
-        keep[int(r["index"])] = r
-    with path.open("w", newline="", encoding="utf-8") as f:
-        wr = csv.DictWriter(f, fieldnames=header)
-        wr.writeheader()
-        wr.writerows(keep.values())
-    print(f"CSV updated → {path}")
 
 
 # ─────────────────────────── entry ─────────────────────────────────────────

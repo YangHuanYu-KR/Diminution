@@ -1,2 +1,5 @@
 *.lp text eol=lf
 *.py text eol=lf
+*.csv text eol=lf
+*.aspif text eol=lf
+* text=auto eol=lf
