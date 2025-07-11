@@ -1,0 +1,2 @@
+index,t_solve_python,mem_start_bytes,mem_solve_bytes,ground_file_bytes,rules,t_solve,t_ground,t_parse,atoms,variables,sccs
+1,0.009,23732224,23887872,5738,290,0s,0.001s,0.001s,112,84,1

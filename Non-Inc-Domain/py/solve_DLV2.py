@@ -177,7 +177,7 @@ def solve_one(domain: Path, idx: int,
 
 
 def run(args: argparse.Namespace):
-    domain_path = Path(args.domain)
+    domain_path = BASE_DIR / "Non-Inc-Domain" / args.domain
     rows: List[Dict[str, object]] = []
 
     indices = (sorted(

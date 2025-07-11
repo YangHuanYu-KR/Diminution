@@ -1,0 +1,2 @@
+index,consts_size,rules,atoms,t_ground,t_solve,ground_file_size_bytes,mem_start_bytes,mem_ground_bytes,mem_solve_bytes,models,rel_facts,rel_nonfacts,rel_total
+1,11,290,110,0.003,0.002,4355,24940544,25411584,26152960,1,0,0,0
