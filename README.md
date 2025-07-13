@@ -102,7 +102,7 @@ solve_DLV2.py        # DLV2 非增量求解脚本
 
 
 
-## 📦 实例生成脚本
+## 📦 实例生成脚本（virtual home 的实例已经生成好了，直接使用即可）
 
 ### `Non-Inc-Domain/py/gen_hc_instance.py`
 
@@ -198,5 +198,3 @@ DLV2 的增量求解脚本。
 - 输出的 CSV 统计结果可用于绘图分析性能瓶颈。
 
 ---
-
-如有问题，请联系项目维护者或提交 Issue。

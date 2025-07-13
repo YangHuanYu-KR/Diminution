@@ -8,6 +8,7 @@ import sys
 import subprocess
 from pathlib import Path
 from typing import Dict, List, Any
+import re
 
 
 def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
@@ -41,7 +42,7 @@ def parse_args() -> argparse.Namespace:
                    help="load solve_related.lp instead of solve.lp")
     p.add_argument('--max-steps',
                    type=int,
-                   default=100,
+                   default=30,
                    help='max incremental steps')
     p.add_argument('--dlv2-path', default='deps/dlv-2.1.2-win64.exe')
     p.add_argument('--csv',
@@ -52,21 +53,37 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
-def remove_directives(txt: str) -> str:
-    patterns = {
-        "#include <incmode>.",
-        "#program step(t).",
-        "#program check(t).",
-    }
-    filtered_lines = [
-        line for line in txt.splitlines() if line.strip() not in patterns
-    ]
-    return "\n".join(filtered_lines)
+def remove_directives(txt: str, imax: int = 30) -> str:
+    _DIRECTIVES = ("#include", "#program", "#const")
+    _RE_IMAX = re.compile(r"\bimax\b")
+    _RE_T = re.compile(r"\bt\b")
+    out_lines: List[str] = []
+
+    for line in txt.splitlines():
+        if line.lstrip().startswith(_DIRECTIVES):
+            continue
+
+        line = _RE_IMAX.sub(str(imax), line)
+        line = _RE_T.sub("T", line)
+        out_lines.append(line)
+
+    return "\n".join(out_lines)
 
 
 def instantiate_query(text: str, x: int) -> str:
-    replaced = re.sub(r'\bquery\s*\(\s*t\s*\),', '', text)
-    return re.sub(r'\bgoal_met\s*\(\s*t\s*\)', f'goal_met({x})', replaced)
+    TASK = "Task"
+    """
+    - 移除  query(t),               (允许空白)
+    - 把   goal_met(t)        → goal_met(x)
+    - 把   goal(Task, t)      → goal(Task, x)      其中 Task 为固定变量
+    """
+    text = re.sub(r'\bquery\s*\(\s*t\s*\),\s*', '', text)
+    text = re.sub(r'\bgoal_met\s*\(\s*t\s*\)', fr'goal_met({x})', text)
+    task_pat = re.escape(TASK)
+    text = re.sub(rf'\bgoal\s*\(\s*{task_pat}\s*,\s*t\s*\)',
+                  fr'goal({TASK}, {x})', text)
+
+    return text
 
 
 def incremental_dlv2(domain: Path, idx: int,
@@ -76,7 +93,12 @@ def incremental_dlv2(domain: Path, idx: int,
     base_lp = domain / solver_dir / 'solve_base.lp'
     step_lp = domain / solver_dir / 'solve_step_dlv.lp'
     check_lp = domain / solver_dir / 'solve_check.lp'
-    inst_lp = domain / str(idx) / 'instance.lp'
+
+    if args.domain != 'vh':
+        inst_lp = domain / str(idx) / 'instance.lp'
+    else:
+        inst_base_lp = domain / str(idx) / 'instance_base.lp'
+        inst_step_lp = domain / str(idx) / 'instance_step.lp'
 
     step_stats: List[Dict[str, Any]] = []
     stats_lists = {
@@ -88,15 +110,26 @@ def incremental_dlv2(domain: Path, idx: int,
         'ground_file_bytes': []
     }
 
-    print("由于 DLV 自身设计, 当前 step 的状态为 UNSAT 时无 rules 和 atoms 的统计信息 !!!")
     for t in range(args.max_steps + 1):
-        base_text = remove_directives((base_lp.read_text()) + "\n" +
-                                      inst_lp.read_text())
-        check_part = instantiate_query(remove_directives(check_lp.read_text()),
-                                       t)
-        prog = check_part + "\n" + base_text if t == 0 else remove_directives(
-            step_lp.read_text(
-            )) + f"\ntime(1..{t})." + "\n" + base_text + "\n" + check_part
+
+        t = 3
+
+        base_part = remove_directives(
+            (base_lp.read_text()) + "\n" + inst_lp.read_text(),
+            imax=args.max_steps) if args.domain != 'vh' else remove_directives(
+                (base_lp.read_text()) + "\n" + inst_base_lp.read_text(),
+                imax=args.max_steps)
+
+        step_part = remove_directives(
+            step_lp.read_text()) if args.domain != 'vh' else remove_directives(
+                inst_step_lp.read_text().replace('.', ', time(T).')
+            ) + "\n" + remove_directives(step_lp.read_text())
+
+        check_part = remove_directives(
+            instantiate_query(check_lp.read_text(), t))
+
+        prog = check_part + "\n" + base_part if t == 0 else step_part + f"\ntime(1..{t})." + "\n" + base_part + "\n" + check_part
+
         dlv2_exec = BASE_DIR / args.dlv2_path
         m0 = _rss()
         proc = subprocess.run(
@@ -105,13 +138,18 @@ def incremental_dlv2(domain: Path, idx: int,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True)
+        m1 = _rss()
         if proc.returncode != 0:
             raise RuntimeError(
                 f"DLV2 exited with {proc.returncode}:\n{proc.stdout}")
-        m1 = _rss()
 
-        stats = parse_dlv2_stats(proc.stdout)
+        print(proc.stdout)
+        print("-----------------------")
+        stats, incoherent = parse_dlv2_stats(proc.stdout)
+
         sign_idx = -idx if args.related else idx
+
+        break
 
         idlv_proc = subprocess.run([str(dlv2_exec), "--mode=idlv"],
                                    input=prog,
@@ -135,7 +173,7 @@ def incremental_dlv2(domain: Path, idx: int,
 
         if args.verbose:
             print(
-                f"[step {t:4d}] "
+                f"[step {t}] "
                 f"G {stats.get('t_ground')} |"
                 f"S {stats.get('t_solve')} |"
                 f"C {int(stats.get('variables', 0)):2d} | "
@@ -144,8 +182,9 @@ def incremental_dlv2(domain: Path, idx: int,
                 f"rel {int(stats.get('rel_facts', 0)):d}/{int(stats.get('rel_nonfacts', 0)):d} | "
                 f"G size {file_size_bytes}B |"
                 f"mem {(_mb(m0) or 0):.2f}/{(_mb(m1) or 0):.2f} MB")
-        if int(stats.get('rules', '0')) != 0:
+        if not incoherent:
             break
+
     summary = {
         "index": (-idx if args.related else idx),
         "steps": t,
@@ -166,7 +205,6 @@ def run(args: argparse.Namespace):
         int(p.name) for p in domain.iterdir()
         if p.is_dir() and p.name.isdigit())
                if args.index == -1 else [args.index])
-
     rows = []
     for idx in indices:
         rows.append(incremental_dlv2(domain, idx, args))

@@ -3,4 +3,4 @@
 *.csv text eol=lf
 *.aspif text eol=lf
 *.md text eol=lf
-* text=auto eol=lf
+*.json eol=lf

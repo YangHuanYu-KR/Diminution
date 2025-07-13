@@ -86,7 +86,17 @@ def solve_incremental(domain: Path, idx: int,
     check_lp = domain / solver / "solve_check.lp"
     step_lp = domain / solver / "solve_step.lp"
     inst_lp = domain / str(idx) / "instance.lp"
-    for path in (base_lp, check_lp, step_lp, inst_lp):
+
+    instance_base_lp = domain / str(idx) / "instance_base.lp"
+    instance_step_lp = domain / str(idx) / "instance_step.lp"
+
+    path_list = [
+        base_lp, check_lp, step_lp, inst_lp
+    ] if args.domain != 'vh' else [
+        base_lp, check_lp, step_lp, instance_base_lp, instance_step_lp
+    ]
+
+    for path in path_list:
         if path.exists():
             ctl.load(str(path))
 
@@ -208,8 +218,8 @@ def solve_incremental(domain: Path, idx: int,
                   f"rel {rel_facts}/{rel_nfacts} | "
                   f"G size {aspif_size}B |"
                   f"mem {_mb(mem_g):.2f}/{_mb(mem_s):.2f} MB")
-
         step += 1
+
     #########################################################################
 
     wall1 = time.perf_counter()

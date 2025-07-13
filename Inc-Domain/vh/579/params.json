@@ -1,0 +1,7 @@
+{
+  "llm_model": "Meta-Llama-3.1-8B-Instruct",
+  "scene_graph": "TrimmedTestScene2_graph",
+  "result_folder": "results_intentions_march-13-18",
+  "instance_folder": "file227_1",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\Meta-Llama-3.1-8B-Instruct\\TrimmedTestScene2_graph\\results_intentions_march-13-18\\file227_1"
+}

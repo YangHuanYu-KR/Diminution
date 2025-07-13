@@ -1,4 +1,5 @@
 from __future__ import annotations
+from ast import Tuple
 import csv
 import re
 from pathlib import Path
@@ -42,6 +43,7 @@ _RENAME = {
 }
 
 _STATS_KEY_RE = re.compile(r"^\s*([^:]+?)\s*:\s*(.+?)\s*$")
+_INCOHERENT_RE = re.compile(r'^\s*INCOHERENT\s*$', re.IGNORECASE)
 
 
 def _extract_int(value: str) -> int:
@@ -81,11 +83,15 @@ def _write_csv(path: Path, new_rows: List[Dict[str, Any]]):
     print(f"CSV updated → {path}")
 
 
-def parse_dlv2_stats(text: str) -> Dict[str, str]:
+def parse_dlv2_stats(text: str) -> Tuple[Dict[str, str], bool]:
+    incoherent: bool = False
     stats: Dict[str, str] = {}
     for line in text.splitlines():
         line = line.rstrip()
         if not line or line.startswith("---"):
+            continue
+        if _INCOHERENT_RE.match(line):
+            incoherent = True
             continue
         m = _STATS_KEY_RE.match(line)
         if not m:
@@ -102,7 +108,7 @@ def parse_dlv2_stats(text: str) -> Dict[str, str]:
     for old, new in _RENAME.items():
         if old in stats:
             stats[new] = stats.pop(old)
-    return stats
+    return stats, incoherent
 
 
 def all_constants_size(ctl: Control) -> int:
