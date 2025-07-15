@@ -24,7 +24,7 @@ from clingo import Control, Function, Number
 from clingo.control import BackendType
 
 
-def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+def find_base_dir(target_dirname: str = "Diminution") -> Path:
     current = Path(__file__).resolve()
     for parent in current.parents:
         if parent.name == target_dirname:
@@ -34,6 +34,8 @@ def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
 
 BASE_DIR = find_base_dir()
 sys.path.append(str(BASE_DIR))
+
+print(sys.path)
 
 from deps.utils import _write_csv, _mb, _rss, all_constants_size, logger
 

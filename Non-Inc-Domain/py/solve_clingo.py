@@ -11,7 +11,7 @@ from pathlib import Path
 from clingo import Control
 from clingo.control import BackendType
 
-def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+def find_base_dir(target_dirname: str = "Diminution") -> Path:
     current = Path(__file__).resolve()
     for parent in current.parents:
         if parent.name == target_dirname:
@@ -136,7 +136,7 @@ def _print_summary(s: dict):
     print(f"\n===== SUMMARY (idx {s['index']}) =====")
     print(f"constants size            : {s['consts_size']}")
     print(f"Grounded rules/atoms      : {s['rules']:,} / {s['atoms']:,}")
-    print(f"ground_file_size_bytes    : {s["ground_file_size_bytes"]} B")
+    print(f"ground_file_size_bytes    : {s['ground_file_size_bytes']} B")
     print(f"Time  ground | solve      : {s['t_ground']}s | {s['t_solve']}s")
     if s['mem_start_bytes'] is not None:
         print(f"Mem  start → ground       : {_mb(s['mem_start_bytes']):8.2f} → "
