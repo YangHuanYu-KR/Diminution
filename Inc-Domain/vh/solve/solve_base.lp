@@ -141,18 +141,3 @@ action_of(C, cut(O)) :- is(C, character), C != O, id(O), has_property(O, cuttabl
 action_of(C, eat(O)) :- is(C, character), C != O, id(O), has_property(O, eatable).
 action_of(C, sleep) :- is(C, character).
 action_of(C, wakeup) :- is(C, character).
-
-% action(find(O)) :- id(O), not is(O, character).
-% action(walk(O)) :- id(O), not is(O, character).
-% action(standup).
-% action(open(O)) :- id(O), has_property(O, can_open), not is(O, character).
-% action(close(O)) :- id(O), has_property(O, can_open), not is(O, character).
-% action(switchon(O)) :- id(O), has_property(O, has_switch), not is(O, character).
-% action(grab(O)) :- id(O), has_property(O, grabbable), not is(O, character).
-% action(plugin(O)) :- id(O), has_property(O, has_plug), not is(O, character).
-% action(turnto(O)) :- id(O), not is(O, character).
-% action(putback(O1, O2)) :- id(O1), id(O2), has_property(O1, grabbable), has_property(O2, surfaces), O1 != O2.
-% action(putin(O1, O2)) :- id(O1), id(O2), has_property(O1, grabbable), has_property(O2, containers), O1 != O2.
-% action(puton(O)) :- id(O), has_property(O, clothes).
-% action(putoff(O)) :- id(O), has_property(O, clothes).
-% action(drop(O)) :- id(O), has_property(O, grabbable).

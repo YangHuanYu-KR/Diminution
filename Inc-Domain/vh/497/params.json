@@ -1,7 +1,0 @@
-{
-  "llm_model": "gpt-4o",
-  "scene_graph": "TrimmedTestScene6_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_turk_robot",
-  "instance_folder": "split78_2",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene6_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split78_2"
-}

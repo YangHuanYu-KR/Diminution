@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# python solve_incmode_DLV2.py --domain vh --index=200 --verbose --related
+# python solve_incmode_DLV2.py --domain gw --index=1 --verbose
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
@@ -22,7 +23,8 @@ def find_base_dir(target_dirname: str = "Diminution") -> Path:
 BASE_DIR = find_base_dir()
 sys.path.append(str(BASE_DIR))
 
-from deps.utils import upsert_and_sort_csv, _mb, _rss, parse_dlv2_stats
+from deps.utils import _write_csv, _mb, _rss, parse_dlv2_stats
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
@@ -89,16 +91,17 @@ def instantiate_query(text: str, x: int) -> str:
 def incremental_dlv2(domain: Path, idx: int,
                      args: argparse.Namespace) -> Dict[str, Any]:
     sign_idx = -idx if args.related else idx
+
     solver_dir = 'solve_related' if args.related else 'solve'
     base_lp = domain / solver_dir / 'solve_base.lp'
     step_lp = domain / solver_dir / 'solve_step_dlv.lp'
     check_lp = domain / solver_dir / 'solve_check.lp'
 
     if args.domain != 'vh':
-        inst_lp = domain/ "Instances" / str(idx) / 'instance.lp'
+        inst_lp = domain / str(idx) / 'instance.lp'
     else:
-        inst_base_lp = domain/ "Instances" / str(idx) / 'instance_base.lp'
-        inst_step_lp = domain/ "Instances" / str(idx) / 'instance_step.lp'
+        inst_base_lp = domain / str(idx) / 'instance_base.lp'
+        inst_step_lp = domain / str(idx) / 'instance_step.lp'
 
     step_stats: List[Dict[str, Any]] = []
     stats_lists = {
@@ -126,6 +129,7 @@ def incremental_dlv2(domain: Path, idx: int,
             instantiate_query(check_lp.read_text(), t))
 
         prog = check_part + "\n" + base_part if t == 0 else step_part + f"\ntime(1..{t})." + "\n" + base_part + "\n" + check_part
+        
 
         dlv2_exec = BASE_DIR / args.dlv2_path
 
@@ -163,7 +167,6 @@ def incremental_dlv2(domain: Path, idx: int,
             step_stats.append(stats)
             for k in stats_lists:
                 stats_lists[k].append(stats[k])
-            print(f"[step {t:3d}]  超时 (> {args.time_limit}s)，跳过后续步骤")
             break
 
         idlv_proc = subprocess.run([str(dlv2_exec), "--mode=idlv"],
@@ -199,7 +202,7 @@ def incremental_dlv2(domain: Path, idx: int,
 
     summary = {
         "index": (-idx if args.related else idx),
-        "steps": t,
+        "steps": t + 1,
         "rules": stats.get('rules', '0'),
         'atoms': stats.get('atoms', '0'),
         'variables': stats.get('variables', '0'),
@@ -212,24 +215,17 @@ def incremental_dlv2(domain: Path, idx: int,
 
 def run(args: argparse.Namespace):
     domain = BASE_DIR / "Inc-Domain" / args.domain
-    instances  = domain / "Instances"
-    if not instances.exists():
-        raise FileNotFoundError(instances)
 
-    if args.index == -1:
-        args.csv = True  
-        indices = sorted(
-            int(p.name) for p in instances.iterdir()
-            if p.is_dir() and p.name.isdigit())
-    else:
-        indices = [args.index]
-    
-    csv_path = domain / "result_DLV2.csv"
+    indices = (sorted(
+        int(p.name) for p in domain.iterdir()
+        if p.is_dir() and p.name.isdigit())
+               if args.index == -1 else [args.index])
+    rows = []
     for idx in indices:
-        print(f"Now solving the {idx} instance in {domain}")
-        row = incremental_dlv2(domain, idx, args)
-        if args.csv:
-            upsert_and_sort_csv(row, csv_path)
+        rows.append(incremental_dlv2(domain, idx, args))
+
+    if args.csv:
+        _write_csv(domain / "result_DLV2.csv", rows)
 
 
 if __name__ == "__main__":

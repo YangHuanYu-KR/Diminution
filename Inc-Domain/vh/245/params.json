@@ -1,7 +1,0 @@
-{
-  "llm_model": "gpt-3.5-turbo-1106",
-  "scene_graph": "TrimmedTestScene6_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_upwork_july",
-  "instance_folder": "split11_10",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene6_graph\\results_text_rebuttal_specialparsed_programs_upwork_july\\split11_10"
-}

@@ -1,7 +1,0 @@
-#program step(t).
-
-goal(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), t) :- subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C)), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), walk(O1_1), 1), goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), find(O2_1), 2), goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), find(O2_1), 2), T1), T1 <= T2, time(T1), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), wash(O3_1), 3), goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), wash(O3_1), 3), T2), T2 <= t, time(T2).
-
-goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), walk(O), 1).
-goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), find(O), 2), t) :- goal(C, find(O), t), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), find(O), 2).
-goal(subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), wash(O), 3), t) :- goal(C, wash(O), t), subtask(scrubbing_living_room_tile_floor_is_once_week_activity_for_me(C), wash(O), 3).

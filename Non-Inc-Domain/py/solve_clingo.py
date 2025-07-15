@@ -40,6 +40,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--csv",
                    action="store_true",
                    help="append/overwrite stats in <domain>/result_clingo.csv")
+    p.add_argument('--time_limit', type=int, default=300)
     return p.parse_args()
 
 

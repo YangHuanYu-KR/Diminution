@@ -1,5 +1,5 @@
 % choose an action
-{occurs(C, A, T):action_of(C, A), related_action(A)}=1 :- is(C, character), time(T).
+{occurs(C, A, T):action_of(C, A)}=1 :- is(C, character), time(T).
 :- occurs(C, A1, T), occurs(C, A2, T), A1 != A2, is(C, character), time(T).
 
 % actions

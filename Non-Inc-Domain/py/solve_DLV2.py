@@ -62,6 +62,7 @@ def parse_args() -> argparse.Namespace:
     # p.add_argument("--dlv2-path",
     #                default="deps/dlv-2.1.2-arm64",
     #                help="absolute path to dlv2 binary")
+    p.add_argument('--time_limit', type=int, default=300)
     return p.parse_args()
 
 

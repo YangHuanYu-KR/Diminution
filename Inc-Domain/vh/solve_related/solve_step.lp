@@ -1,9 +1,8 @@
 #program step(t).
-
 time(T) :- num(T), T==t.
 
 % choose an action
-1{occurs(C, A, t):action_of(C, A), related_action(A)}1 :- is(C, character).
+1{occurs(C, A, t):action_of(C, A)}1 :- is(C, character).
 
 % actions
 % find

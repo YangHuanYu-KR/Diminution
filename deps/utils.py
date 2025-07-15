@@ -7,11 +7,9 @@ from typing import Dict, List, Optional, Any, Set
 import clingo
 from clingo import Control, MessageCode
 
-try:
-    import psutil
-    _PROC = psutil.Process()
-except ImportError:
-    _PROC = None
+import psutil
+_PROC = psutil.Process()
+
 
 _RULE_KEYS = {
     "Constraints",
@@ -63,24 +61,32 @@ def _rss() -> Optional[int]:
 
 def _mb(b: int | None):
     return None if b is None else round(b / 2**20, 2)
+    
+    
+def upsert_and_sort_csv(row: dict, csv_path: Path) -> None:
+    """
+    把 `row` 写入 csv_path：
+      • 若 index 已存在 → 覆盖原行
+      • 写完后按 abs(index) 从小到大排序
+    """
+    existing: list[dict] = []
+    if csv_path.exists():
+        with csv_path.open("r", newline="") as f:
+            reader = csv.DictReader(f)
+            existing = list(reader)
 
+    table: dict[int, dict] = {int(r["index"]): r for r in existing}
+    table[int(row["index"])] = row                  
+    sorted_rows = sorted(
+        table.values(),
+        key=lambda r: (abs(int(r["index"])), int(r["index"]))
+    )
 
-def _write_csv(path: Path, new_rows: List[Dict[str, Any]]):
-    header = list(new_rows[0].keys())
-    old: List[Dict[str, Any]] = []
-    if path.exists():
-        with path.open("r", newline="", encoding="utf-8") as f:
-            rdr = csv.DictReader(f)
-            header = rdr.fieldnames or header
-            old = list(rdr)
-    keep = {int(r["index"]): r for r in old}
-    for r in new_rows:
-        keep[int(r["index"])] = r
-    with path.open("w", newline="", encoding="utf-8") as f:
-        wr = csv.DictWriter(f, fieldnames=header)
-        wr.writeheader()
-        wr.writerows(keep.values())
-    print(f"CSV updated → {path}")
+    with csv_path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=row.keys())
+        writer.writeheader()
+        writer.writerows(sorted_rows)
+    print(f"CSV updated → {csv_path}")
 
 
 def parse_dlv2_stats(text: str) -> Tuple[Dict[str, str], bool]:

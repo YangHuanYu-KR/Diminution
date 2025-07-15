@@ -1,7 +1,0 @@
-{
-  "llm_model": "gpt-3.5-turbo-1106",
-  "scene_graph": "TrimmedTestScene2_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_turk_third",
-  "instance_folder": "split75_3",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_turk_third\\split75_3"
-}

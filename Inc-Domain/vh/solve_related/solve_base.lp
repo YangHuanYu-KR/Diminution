@@ -154,17 +154,17 @@ action_of(C, eat(O)) :- is(C, character), C != O, related_id(O), has_property(O,
 action_of(C, sleep) :- is(C, character), related(C).
 action_of(C, wakeup) :- is(C, character), related(C).
 
-related_action(find(O)) :- related_id(O), not is(O, character).
-related_action(walk(O)) :- related_id(O), not is(O, character).
-related_action(standup).
-related_action(open(O)) :- related_id(O), has_property(O, can_open), not is(O, character).
-related_action(close(O)) :- related_id(O), has_property(O, can_open), not is(O, character).
-related_action(switchon(O)) :- related_id(O), has_property(O, has_switch), not is(O, character).
-related_action(grab(O)) :- related_id(O), has_property(O, grabbable), not is(O, character).
-related_action(plugin(O)) :- related_id(O), has_property(O, has_plug), not is(O, character).
-related_action(turnto(O)) :- related_id(O), not is(O, character).
-related_action(putback(O1, O2)) :- related_id(O1), related_id(O2), has_property(O1, grabbable), has_property(O2, surfaces), O1 != O2.
-related_action(putin(O1, O2)) :- related_id(O1), related_id(O2), has_property(O1, grabbable), has_property(O2, containers), O1 != O2.
-related_action(puton(O)) :- related_id(O), has_property(O, clothes).
-related_action(putoff(O)) :- related_id(O), has_property(O, clothes).
-related_action(drop(O)) :- related_id(O), has_property(O, grabbable).
+% related_action(find(O)) :- related_id(O), not is(O, character).
+% related_action(walk(O)) :- related_id(O), not is(O, character).
+% related_action(standup).
+% related_action(open(O)) :- related_id(O), has_property(O, can_open), not is(O, character).
+% related_action(close(O)) :- related_id(O), has_property(O, can_open), not is(O, character).
+% related_action(switchon(O)) :- related_id(O), has_property(O, has_switch), not is(O, character).
+% related_action(grab(O)) :- related_id(O), has_property(O, grabbable), not is(O, character).
+% related_action(plugin(O)) :- related_id(O), has_property(O, has_plug), not is(O, character).
+% related_action(turnto(O)) :- related_id(O), not is(O, character).
+% related_action(putback(O1, O2)) :- related_id(O1), related_id(O2), has_property(O1, grabbable), has_property(O2, surfaces), O1 != O2.
+% related_action(putin(O1, O2)) :- related_id(O1), related_id(O2), has_property(O1, grabbable), has_property(O2, containers), O1 != O2.
+% related_action(puton(O)) :- related_id(O), has_property(O, clothes).
+% related_action(putoff(O)) :- related_id(O), has_property(O, clothes).
+% related_action(drop(O)) :- related_id(O), has_property(O, grabbable).

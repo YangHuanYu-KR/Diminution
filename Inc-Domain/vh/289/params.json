@@ -1,7 +1,0 @@
-{
-  "llm_model": "gpt-4o",
-  "scene_graph": "TrimmedTestScene1_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_upwork_july",
-  "instance_folder": "split19_4",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene1_graph\\results_text_rebuttal_specialparsed_programs_upwork_july\\split19_4"
-}
