@@ -1,0 +1,7 @@
+{
+  "llm_model": "gpt-4o",
+  "scene_graph": "TrimmedTestScene2_graph",
+  "result_folder": "results_text_rebuttal_specialparsed_programs_upworknturk_second",
+  "instance_folder": "split154_2",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_upworknturk_second\\split154_2"
+}

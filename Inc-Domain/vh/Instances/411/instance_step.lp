@@ -1,0 +1,7 @@
+#program step(t).
+
+goal(wipe_down_counter(C), t) :- subtask(wipe_down_counter(C)), subtask(wipe_down_counter(C), walk(O1_1), 1), goal(subtask(wipe_down_counter(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(wipe_down_counter(C), grab(O2_1), 2), goal(subtask(wipe_down_counter(C), grab(O2_1), 2), T1), T1 <= T2, time(T1), subtask(wipe_down_counter(C), touch(O3_1), 3), goal(subtask(wipe_down_counter(C), touch(O3_1), 3), T2), T2 <= t, time(T2).
+
+goal(subtask(wipe_down_counter(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(wipe_down_counter(C), walk(O), 1).
+goal(subtask(wipe_down_counter(C), grab(O), 2), t) :- goal(C, grab(O), t), subtask(wipe_down_counter(C), grab(O), 2).
+goal(subtask(wipe_down_counter(C), touch(O), 3), t) :- goal(C, touch(O), t), subtask(wipe_down_counter(C), touch(O), 3).
