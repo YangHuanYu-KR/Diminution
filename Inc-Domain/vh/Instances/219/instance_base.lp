@@ -4,27 +4,27 @@ state(1, clean).
 
 % id-2
 is(2, floor).
-state(2, clean).
+state(2, dirty).
 
 % id-3
 is(3, floor).
-state(3, dirty).
+state(3, clean).
 
 % id-4
 is(4, floor).
-state(4, dirty).
+state(4, clean).
 
 % id-5
 is(5, floor).
-state(5, clean).
+state(5, dirty).
 
 % id-6
 is(6, floor).
-state(6, dirty).
+state(6, clean).
 
 % id-7
 is(7, floor).
-state(7, clean).
+state(7, dirty).
 
 % id-8
 is(8, floor).
@@ -48,7 +48,7 @@ state(12, clean).
 
 % id-13
 is(13, wall).
-state(13, dirty).
+state(13, clean).
 
 % id-14
 is(14, wall).
@@ -60,15 +60,15 @@ state(15, clean).
 
 % id-16
 is(16, ceiling).
-state(16, clean).
+state(16, dirty).
 
 % id-17
 is(17, ceiling).
-state(17, clean).
+state(17, dirty).
 
 % id-18
 is(18, ceiling).
-state(18, clean).
+state(18, dirty).
 
 % id-19
 is(19, ceiling).
@@ -80,7 +80,7 @@ state(20, dirty).
 
 % id-21
 is(21, mat).
-state(21, dirty).
+state(21, clean).
 
 % id-22
 is(22, curtain).
@@ -118,12 +118,12 @@ state(28, clean).
 
 % id-29
 is(29, faucet).
-state(29, off).
+state(29, on).
 state(29, clean).
 
 % id-30
 is(30, bathtub).
-state(30, dirty).
+state(30, clean).
 
 % id-31
 is(31, towel_rack).
@@ -143,18 +143,19 @@ state(34, clean).
 
 % id-35
 is(35, shower).
-state(35, dirty).
+state(35, off).
+state(35, clean).
 
 % id-36
 is(36, bathroom_cabinet).
 state(36, closed).
-state(36, dirty).
+state(36, clean).
 
 % id-37
 is(37, toilet).
 state(37, closed).
 state(37, off).
-state(37, clean).
+state(37, dirty).
 
 % id-38
 is(38, shelf).
@@ -172,6 +173,7 @@ state(40, clean).
 
 % id-61
 is(61, window).
+state(61, closed).
 state(61, clean).
 
 % id-62
@@ -186,11 +188,11 @@ state(64, clean).
 
 % id-65
 is(65, floor).
-state(65, dirty).
+state(65, clean).
 
 % id-66
 is(66, floor).
-state(66, clean).
+state(66, dirty).
 
 % id-67
 is(67, floor).
@@ -206,15 +208,15 @@ state(69, clean).
 
 % id-70
 is(70, floor).
-state(70, clean).
+state(70, dirty).
 
 % id-71
 is(71, floor).
-state(71, clean).
+state(71, dirty).
 
 % id-72
 is(72, floor).
-state(72, clean).
+state(72, dirty).
 
 % id-73
 is(73, floor).
@@ -230,7 +232,7 @@ state(75, clean).
 
 % id-76
 is(76, wall).
-state(76, dirty).
+state(76, clean).
 
 % id-77
 is(77, wall).
@@ -242,7 +244,7 @@ state(78, clean).
 
 % id-79
 is(79, wall).
-state(79, dirty).
+state(79, clean).
 
 % id-80
 is(80, wall).
@@ -262,7 +264,7 @@ state(83, clean).
 
 % id-84
 is(84, window).
-state(84, clean).
+state(84, dirty).
 
 % id-85
 is(85, ceiling).
@@ -294,7 +296,7 @@ state(91, dirty).
 
 % id-92
 is(92, ceiling).
-state(92, dirty).
+state(92, clean).
 
 % id-93
 is(93, ceiling).
@@ -321,7 +323,7 @@ state(97, clean).
 
 % id-98
 is(98, nightstand).
-state(98, open).
+state(98, closed).
 state(98, clean).
 
 % id-99
@@ -330,7 +332,7 @@ state(99, clean).
 
 % id-100
 is(100, dresser).
-state(100, closed).
+state(100, open).
 state(100, clean).
 
 % id-101
@@ -358,7 +360,7 @@ state(105, clean).
 
 % id-107
 is(107, mat).
-state(107, dirty).
+state(107, clean).
 
 % id-108
 is(108, drawing).
@@ -384,7 +386,7 @@ state(112, clean).
 
 % id-113
 is(113, pillow).
-state(113, clean).
+state(113, dirty).
 
 % id-114
 is(114, pillow).
@@ -479,7 +481,7 @@ state(165, clean).
 
 % id-166
 is(166, floor).
-state(166, clean).
+state(166, dirty).
 
 % id-167
 is(167, floor).
@@ -487,35 +489,35 @@ state(167, clean).
 
 % id-168
 is(168, floor).
-state(168, dirty).
+state(168, clean).
 
 % id-169
 is(169, floor).
-state(169, clean).
+state(169, dirty).
 
 % id-170
 is(170, floor).
-state(170, clean).
+state(170, dirty).
 
 % id-171
 is(171, wall).
-state(171, dirty).
+state(171, clean).
 
 % id-172
 is(172, wall).
-state(172, dirty).
+state(172, clean).
 
 % id-173
 is(173, wall).
-state(173, clean).
+state(173, dirty).
 
 % id-174
 is(174, wall).
-state(174, dirty).
+state(174, clean).
 
 % id-175
 is(175, wall).
-state(175, clean).
+state(175, dirty).
 
 % id-176
 is(176, wall).
@@ -527,15 +529,15 @@ state(177, dirty).
 
 % id-178
 is(178, ceiling).
-state(178, clean).
+state(178, dirty).
 
 % id-179
 is(179, ceiling).
-state(179, clean).
+state(179, dirty).
 
 % id-180
 is(180, ceiling).
-state(180, clean).
+state(180, dirty).
 
 % id-181
 is(181, ceiling).
@@ -588,22 +590,22 @@ state(191, clean).
 
 % id-192
 is(192, kitchen_counter).
-state(192, open).
+state(192, closed).
 state(192, clean).
 
 % id-193
 is(193, sink).
-state(193, dirty).
+state(193, clean).
 
 % id-194
 is(194, faucet).
-state(194, on).
+state(194, off).
 state(194, clean).
 
 % id-195
 is(195, bookshelf).
 state(195, closed).
-state(195, dirty).
+state(195, clean).
 
 % id-196
 is(196, mat).
@@ -640,14 +642,14 @@ state(202, clean).
 % id-204
 is(204, wall_clock).
 state(204, plugged_in).
-state(204, on).
+state(204, off).
 state(204, clean).
 
 % id-205
 is(205, phone).
+state(205, plugged_in).
 state(205, off).
 state(205, clean).
-state(205, plugged_out).
 
 % id-219
 is(219, photoframe).
@@ -663,26 +665,25 @@ state(228, clean).
 
 % id-229
 is(229, oven).
+state(229, open).
 state(229, plugged_in).
-state(229, closed).
 state(229, off).
 state(229, clean).
 
 % id-230
 is(230, tray).
-state(230, dirty).
+state(230, clean).
 
 % id-231
 is(231, toaster).
 state(231, plugged_in).
 state(231, off).
-state(231, clean).
+state(231, dirty).
 
 % id-234
 is(234, freezer).
+state(234, open).
 state(234, plugged_in).
-state(234, closed).
-state(234, on).
 state(234, clean).
 
 % id-235
@@ -693,7 +694,7 @@ state(235, clean).
 is(236, coffe_maker).
 state(236, plugged_in).
 state(236, closed).
-state(236, on).
+state(236, off).
 state(236, clean).
 
 % id-238
@@ -709,15 +710,15 @@ state(246, clean).
 
 % id-247
 is(247, floor).
-state(247, dirty).
+state(247, clean).
 
 % id-248
 is(248, floor).
-state(248, clean).
+state(248, dirty).
 
 % id-249
 is(249, floor).
-state(249, dirty).
+state(249, clean).
 
 % id-250
 is(250, floor).
@@ -737,7 +738,7 @@ state(253, dirty).
 
 % id-254
 is(254, floor).
-state(254, clean).
+state(254, dirty).
 
 % id-255
 is(255, floor).
@@ -745,7 +746,7 @@ state(255, clean).
 
 % id-256
 is(256, wall).
-state(256, clean).
+state(256, dirty).
 
 % id-257
 is(257, wall).
@@ -773,27 +774,27 @@ state(262, dirty).
 
 % id-263
 is(263, wall).
-state(263, dirty).
+state(263, clean).
 
 % id-264
 is(264, ceiling).
-state(264, dirty).
+state(264, clean).
 
 % id-265
 is(265, ceiling).
-state(265, dirty).
+state(265, clean).
 
 % id-266
 is(266, ceiling).
-state(266, dirty).
+state(266, clean).
 
 % id-267
 is(267, ceiling).
-state(267, dirty).
+state(267, clean).
 
 % id-268
 is(268, ceiling).
-state(268, clean).
+state(268, dirty).
 
 % id-269
 is(269, ceiling).
@@ -805,11 +806,11 @@ state(270, dirty).
 
 % id-271
 is(271, ceiling).
-state(271, clean).
+state(271, dirty).
 
 % id-272
 is(272, ceiling).
-state(272, dirty).
+state(272, clean).
 
 % id-273
 is(273, doorjamb).
@@ -856,7 +857,7 @@ state(281, clean).
 
 % id-282
 is(282, desk).
-state(282, clean).
+state(282, dirty).
 
 % id-283
 is(283, chair).
@@ -865,7 +866,7 @@ state(283, clean).
 % id-284
 is(284, dresser).
 state(284, closed).
-state(284, dirty).
+state(284, clean).
 
 % id-285
 is(285, hanger).
@@ -931,7 +932,7 @@ state(310, dirty).
 % id-311
 is(311, curtain).
 state(311, closed).
-state(311, clean).
+state(311, dirty).
 
 % id-312
 is(312, curtain).
@@ -941,11 +942,11 @@ state(312, clean).
 % id-313
 is(313, curtain).
 state(313, closed).
-state(313, dirty).
+state(313, clean).
 
 % id-314
 is(314, toy).
-state(314, clean).
+state(314, dirty).
 
 % id-315
 is(315, television).
@@ -965,12 +966,12 @@ state(317, clean).
 
 % id-318
 is(318, mouse).
-state(318, plugged_in).
+state(318, plugged_out).
 state(318, clean).
 
 % id-319
 is(319, mousepad).
-state(319, dirty).
+state(319, clean).
 
 % id-320
 is(320, cpuscreen).
@@ -988,284 +989,243 @@ state(322, plugged_in).
 state(322, clean).
 
 % id-1000
-is(1000, novel).
-state(1000, closed).
+is(1000, laptop).
+state(1000, plugged_in).
+state(1000, off).
 state(1000, clean).
 
 % id-2000
-is(2000, dvd_player).
-state(2000, closed).
-state(2000, plugged_out).
+is(2000, soap).
 state(2000, clean).
 
 % id-2001
-is(2001, bills).
-state(2001, clean).
+is(2001, dishrack).
+state(2001, dirty).
 
 % id-2002
-is(2002, headset).
-state(2002, clean).
+is(2002, food_food).
+state(2002, dirty).
 
 % id-2003
-is(2003, dry_pasta).
+is(2003, dough).
 state(2003, clean).
 
 % id-2004
-is(2004, napkin).
+is(2004, glue).
 state(2004, clean).
 
 % id-2005
-is(2005, cup).
+is(2005, scrabble).
 state(2005, clean).
 
 % id-2006
-is(2006, hairbrush).
+is(2006, oven_mitts).
 state(2006, clean).
 
 % id-2007
-is(2007, controller).
+is(2007, phone).
 state(2007, plugged_in).
 state(2007, clean).
 
 % id-2008
-is(2008, food_jam).
+is(2008, stereo).
 state(2008, open).
+state(2008, plugged_in).
 state(2008, clean).
 
 % id-2009
-is(2009, hairdryer).
-state(2009, plugged_out).
+is(2009, detergent).
 state(2009, clean).
 
 % id-2010
-is(2010, food_onion).
+is(2010, check).
 state(2010, clean).
 
 % id-2011
-is(2011, console).
-state(2011, closed).
+is(2011, vacuum_cleaner).
 state(2011, plugged_out).
 state(2011, clean).
 
 % id-2012
-is(2012, food_carrot).
+is(2012, food_food).
 state(2012, dirty).
 
 % id-2013
-is(2013, cd).
-state(2013, dirty).
+is(2013, dvd_player).
+state(2013, plugged_in).
+state(2013, closed).
+state(2013, on).
+state(2013, clean).
 
 % id-2014
-is(2014, food_food).
-state(2014, dirty).
+is(2014, napkin).
+state(2014, clean).
 
 % id-2015
-is(2015, oil).
+is(2015, food_food).
 state(2015, clean).
 
 % id-2016
-is(2016, pajamas).
-state(2016, clean).
+is(2016, spoon).
+state(2016, dirty).
 
 % id-2017
-is(2017, pot).
-state(2017, closed).
+is(2017, dog).
 state(2017, clean).
 
 % id-2018
-is(2018, candle).
-state(2018, off).
+is(2018, deck_of_cards).
 state(2018, clean).
 
 % id-2019
-is(2019, detergent).
+is(2019, tooth_paste).
+state(2019, closed).
 state(2019, clean).
 
 % id-2020
-is(2020, clothes_scarf).
+is(2020, food_egg).
 state(2020, clean).
 
 % id-2021
-is(2021, crayon).
+is(2021, mouse).
+state(2021, plugged_in).
 state(2021, clean).
 
 % id-2022
-is(2022, shampoo).
+is(2022, beer).
 state(2022, open).
 state(2022, clean).
 
 % id-2023
-is(2023, napkin).
-state(2023, dirty).
+is(2023, comb).
+state(2023, clean).
 
 % id-2024
-is(2024, tape).
+is(2024, food_butter).
 state(2024, clean).
 
 % id-2025
-is(2025, ice).
-state(2025, clean).
+is(2025, fork).
+state(2025, dirty).
 
 % id-2026
-is(2026, homework).
+is(2026, knife).
 state(2026, clean).
 
 % id-2027
-is(2027, knife).
-state(2027, clean).
+is(2027, cup).
+state(2027, dirty).
 
 % id-2028
-is(2028, console).
-state(2028, plugged_in).
-state(2028, closed).
-state(2028, clean).
+is(2028, piano_bench).
+state(2028, dirty).
 
 % id-2029
-is(2029, novel).
-state(2029, open).
+is(2029, milk).
+state(2029, closed).
 state(2029, clean).
 
 % id-2030
-is(2030, dog).
+is(2030, food_ice_cream).
 state(2030, clean).
 
 % id-2031
-is(2031, mop).
+is(2031, toothbrush_holder).
 state(2031, clean).
 
 % id-2032
-is(2032, coffee_pot).
-state(2032, open).
+is(2032, needle).
 state(2032, clean).
 
 % id-2033
-is(2033, novel).
-state(2033, closed).
+is(2033, phone).
+state(2033, plugged_in).
+state(2033, off).
 state(2033, clean).
 
 % id-2034
-is(2034, box).
+is(2034, jelly).
 state(2034, closed).
 state(2034, clean).
 
 % id-2035
-is(2035, ground_coffee).
-state(2035, closed).
+is(2035, food_steak).
 state(2035, clean).
 
 % id-2036
-is(2036, controller).
-state(2036, plugged_in).
+is(2036, clothes_scarf).
 state(2036, clean).
 
 % id-2037
-is(2037, shoes).
+is(2037, milk).
+state(2037, open).
 state(2037, clean).
 
 % id-2038
-is(2038, towel).
+is(2038, food_food).
 state(2038, clean).
 
 % id-2039
-is(2039, board_game).
+is(2039, bookmark).
 state(2039, clean).
 
 % id-2040
-is(2040, pajamas).
+is(2040, broom).
 state(2040, clean).
 
 % id-2041
-is(2041, soap).
+is(2041, cup).
 state(2041, clean).
 
 % id-2042
-is(2042, clothes_dress).
+is(2042, food_food).
 state(2042, dirty).
 
 % id-2043
-is(2043, mouthwash).
-state(2043, clean).
+is(2043, table_cloth).
+state(2043, dirty).
 
 % id-2044
-is(2044, mop_bucket).
+is(2044, pot).
+state(2044, closed).
 state(2044, dirty).
 
 % id-2045
-is(2045, dustpan).
+is(2045, pillow).
 state(2045, clean).
 
 % id-2046
-is(2046, foundation).
-state(2046, clean).
+is(2046, food_food).
+state(2046, dirty).
 
 % id-2047
-is(2047, food_onion).
+is(2047, novel).
+state(2047, open).
 state(2047, clean).
 
 % id-2048
-is(2048, food_donut).
+is(2048, food_food).
 state(2048, clean).
 
 % id-2049
-is(2049, toothbrush_holder).
+is(2049, food_noodles).
 state(2049, clean).
 
 % id-2050
-is(2050, detergent).
+is(2050, food_bread).
 state(2050, clean).
 
-% id-2051
-is(2051, conditioner).
-state(2051, clean).
-
-% id-2052
-is(2052, basket_for_clothes).
-state(2052, closed).
-state(2052, clean).
-
-% id-2053
-is(2053, clothes_underwear).
-state(2053, clean).
-
-% id-2054
-is(2054, cards).
-state(2054, clean).
-
-% id-2055
-is(2055, food_food).
-state(2055, clean).
-
-% id-2056
-is(2056, check).
-state(2056, clean).
-
-% id-2057
-is(2057, shoe_shine_kit).
-state(2057, open).
-state(2057, clean).
-
-% id-2058
-is(2058, food_ice_cream).
-state(2058, clean).
-
-% id-2059
-is(2059, cup).
-state(2059, clean).
-
-% id-2060
-is(2060, after_shave).
-state(2060, closed).
-state(2060, clean).
-
-relation(close, 2023, 305).
-relation(close, 2038, 36).
+relation(close, 2023, 27).
+relation(close, 2038, 234).
 relation(facing, 107, 109).
 relation(facing, 107, 110).
-relation(close, 2028, 189).
-relation(close, 2043, 36).
+relation(close, 2028, 6).
+relation(close, 2043, 2048).
+relation(close, 2043, 2046).
+relation(close, 2043, 103).
 relation(inside, 80, 64).
-relation(inside, 2041, 193).
-relation(inside, 2041, 163).
+relation(inside, 2041, 305).
+relation(inside, 2041, 246).
 relation(on, 228, 238).
 relation(close, 273, 128).
 relation(close, 273, 129).
@@ -1290,7 +1250,7 @@ relation(close, 273, 96).
 relation(close, 273, 252).
 relation(close, 273, 125).
 relation(on, 103, 70).
-relation(inside, 2005, 64).
+relation(inside, 2005, 163).
 relation(close, 313, 256).
 relation(close, 313, 260).
 relation(close, 313, 266).
@@ -1330,13 +1290,14 @@ relation(close, 319, 72).
 relation(close, 319, 75).
 relation(close, 319, 83).
 relation(close, 319, 100).
+relation(close, 319, 2021).
 relation(close, 319, 253).
 relation(close, 319, 252).
 relation(close, 319, 125).
 relation(close, 319, 126).
 relation(close, 319, 127).
+relation(inside, 2015, 234).
 relation(inside, 2015, 163).
-relation(inside, 2015, 229).
 relation(close, 22, 32).
 relation(close, 22, 9).
 relation(close, 22, 10).
@@ -1368,11 +1329,11 @@ relation(close, 27, 174).
 relation(close, 27, 176).
 relation(close, 27, 204).
 relation(close, 27, 205).
-relation(close, 27, 2009).
+relation(close, 27, 2000).
 relation(close, 27, 229).
 relation(close, 27, 230).
+relation(close, 27, 2023).
 relation(close, 27, 235).
-relation(close, 27, 2046).
 relation(inside, 125, 64).
 relation(inside, 125, 100).
 relation(facing, 264, 307).
@@ -1445,7 +1406,6 @@ relation(close, 100, 133).
 relation(close, 100, 134).
 relation(close, 100, 257).
 relation(close, 100, 258).
-relation(close, 100, 2053).
 relation(close, 100, 141).
 relation(close, 100, 142).
 relation(close, 100, 143).
@@ -1465,15 +1425,20 @@ relation(close, 100, 71).
 relation(close, 100, 75).
 relation(close, 100, 78).
 relation(close, 100, 83).
+relation(close, 100, 2008).
 relation(close, 100, 90).
+relation(close, 100, 2014).
+relation(close, 100, 2040).
 relation(close, 100, 253).
+relation(close, 100, 2042).
 relation(close, 100, 124).
 relation(close, 100, 125).
 relation(close, 100, 126).
 relation(close, 100, 127).
-relation(inside, 2008, 163).
+relation(inside, 2008, 64).
+relation(inside, 2008, 100).
 relation(inside, 257, 246).
-relation(inside, 2044, 64).
+relation(inside, 2044, 246).
 relation(inside, 37, 1).
 relation(inside, 37, 35).
 relation(facing, 270, 321).
@@ -1498,13 +1463,13 @@ relation(close, 65, 99).
 relation(close, 65, 101).
 relation(close, 65, 71).
 relation(close, 65, 107).
+relation(close, 65, 2027).
 relation(close, 65, 109).
 relation(close, 65, 78).
 relation(close, 65, 142).
 relation(close, 65, 141).
 relation(close, 65, 145).
 relation(close, 65, 114).
-relation(close, 65, 2044).
 relation(inside, 266, 246).
 relation(inside, 92, 64).
 relation(close, 90, 128).
@@ -1529,7 +1494,7 @@ relation(close, 90, 124).
 relation(close, 90, 125).
 relation(close, 90, 126).
 relation(close, 90, 127).
-relation(inside, 2027, 64).
+relation(inside, 2027, 246).
 relation(close, 285, 289).
 relation(close, 285, 291).
 relation(close, 285, 260).
@@ -1598,14 +1563,11 @@ relation(close, 316, 253).
 relation(close, 316, 252).
 relation(close, 316, 125).
 relation(close, 316, 127).
-relation(inside, 2011, 246).
+relation(inside, 2011, 64).
 relation(inside, 4, 1).
 relation(on, 322, 282).
-relation(inside, 2052, 284).
-relation(inside, 2052, 246).
 relation(inside, 24, 1).
 relation(inside, 321, 246).
-relation(on, 2012, 189).
 relation(on, 185, 168).
 relation(close, 61, 32).
 relation(close, 61, 5).
@@ -1629,7 +1591,6 @@ relation(close, 66, 142).
 relation(close, 66, 141).
 relation(close, 66, 145).
 relation(close, 66, 114).
-relation(close, 66, 2031).
 relation(facing, 104, 202).
 relation(facing, 104, 108).
 relation(facing, 104, 197).
@@ -1652,8 +1613,8 @@ relation(close, 165, 189).
 relation(close, 165, 191).
 relation(inside, 85, 64).
 relation(inside, 192, 163).
-relation(inside, 2020, 284).
-relation(inside, 2020, 246).
+relation(inside, 2020, 163).
+relation(inside, 2020, 229).
 relation(inside, 269, 246).
 relation(inside, 33, 1).
 relation(facing, 110, 108).
@@ -1679,7 +1640,6 @@ relation(close, 3, 205).
 relation(close, 3, 81).
 relation(close, 3, 229).
 relation(close, 3, 230).
-relation(close, 2051, 193).
 relation(close, 8, 32).
 relation(close, 8, 5).
 relation(close, 8, 38).
@@ -1688,18 +1648,15 @@ relation(close, 8, 10).
 relation(close, 8, 11).
 relation(close, 8, 26).
 relation(close, 8, 30).
-relation(close, 2056, 195).
 relation(inside, 7, 1).
 relation(on, 190, 168).
 relation(inside, 201, 163).
 relation(on, 20, 9).
-relation(close, 2015, 229).
-relation(close, 2030, 279).
-relation(close, 2020, 284).
+relation(close, 2015, 234).
+relation(close, 2030, 192).
+relation(close, 2020, 229).
 relation(inside, 278, 246).
-relation(close, 2035, 305).
-relation(inside, 2055, 234).
-relation(inside, 2055, 163).
+relation(close, 2035, 238).
 relation(close, 167, 2).
 relation(close, 167, 3).
 relation(close, 167, 12).
@@ -1799,8 +1756,8 @@ relation(close, 125, 126).
 relation(close, 125, 127).
 relation(facing, 265, 307).
 relation(facing, 265, 309).
-relation(inside, 2048, 246).
-relation(on, 2036, 99).
+relation(on, 2049, 229).
+relation(inside, 2048, 64).
 relation(close, 14, 6).
 relation(close, 14, 39).
 relation(close, 14, 40).
@@ -1859,9 +1816,10 @@ relation(close, 67, 115).
 relation(close, 67, 84).
 relation(close, 67, 79).
 relation(close, 67, 95).
+relation(on, 2029, 192).
 relation(inside, 168, 163).
-relation(close, 2033, 103).
-relation(on, 2017, 107).
+relation(close, 2033, 284).
+relation(on, 2017, 2).
 relation(inside, 204, 163).
 relation(facing, 219, 197).
 relation(close, 272, 261).
@@ -1873,7 +1831,6 @@ relation(close, 272, 312).
 relation(facing, 86, 109).
 relation(on, 264, 259).
 relation(facing, 173, 204).
-relation(on, 2054, 282).
 relation(close, 231, 192).
 relation(close, 231, 193).
 relation(close, 231, 194).
@@ -1883,6 +1840,7 @@ relation(close, 231, 236).
 relation(close, 231, 173).
 relation(close, 231, 177).
 relation(close, 250, 256).
+relation(close, 250, 2018).
 relation(close, 250, 260).
 relation(close, 250, 249).
 relation(close, 250, 281).
@@ -1918,8 +1876,7 @@ relation(close, 15, 62).
 relation(close, 15, 31).
 relation(inside, 223, 163).
 relation(on, 2022, 281).
-relation(close, 2034, 2039).
-relation(close, 2034, 279).
+relation(close, 2034, 103).
 relation(facing, 228, 204).
 relation(close, 277, 259).
 relation(close, 277, 262).
@@ -1996,6 +1953,7 @@ relation(close, 308, 261).
 relation(close, 308, 263).
 relation(close, 308, 251).
 relation(close, 308, 283).
+relation(close, 308, 2001).
 relation(close, 308, 274).
 relation(close, 308, 275).
 relation(close, 308, 310).
@@ -2004,6 +1962,7 @@ relation(close, 308, 312).
 relation(close, 308, 281).
 relation(close, 308, 250).
 relation(close, 308, 315).
+relation(close, 308, 2044).
 relation(close, 308, 311).
 relation(close, 308, 254).
 relation(close, 308, 255).
@@ -2038,19 +1997,17 @@ relation(facing, 260, 315).
 relation(facing, 260, 307).
 relation(inside, 313, 246).
 relation(inside, 180, 163).
-relation(close, 2045, 253).
+relation(close, 2045, 166).
 relation(close, 279, 256).
-relation(close, 279, 2042).
+relation(close, 279, 322).
 relation(close, 279, 261).
 relation(close, 279, 313).
 relation(close, 279, 263).
-relation(close, 279, 2026).
-relation(close, 279, 2030).
+relation(close, 279, 1000).
 relation(close, 279, 251).
 relation(close, 279, 274).
 relation(close, 279, 275).
 relation(close, 279, 308).
-relation(close, 279, 2034).
 relation(close, 279, 310).
 relation(close, 279, 311).
 relation(close, 279, 312).
@@ -2059,27 +2016,22 @@ relation(close, 279, 250).
 relation(close, 279, 315).
 relation(close, 279, 254).
 relation(close, 279, 255).
-relation(close, 284, 260).
-relation(close, 284, 2052).
-relation(close, 284, 262).
-relation(close, 284, 266).
-relation(close, 284, 285).
-relation(close, 284, 287).
 relation(close, 284, 289).
 relation(close, 284, 291).
+relation(close, 284, 260).
 relation(close, 284, 293).
+relation(close, 284, 262).
 relation(close, 284, 295).
 relation(close, 284, 296).
+relation(close, 284, 266).
 relation(close, 284, 299).
 relation(close, 284, 301).
+relation(close, 284, 2033).
 relation(close, 284, 306).
 relation(close, 284, 307).
-relation(close, 284, 2006).
-relation(close, 284, 2007).
-relation(close, 284, 2016).
-relation(close, 284, 2020).
-relation(close, 284, 2029).
 relation(close, 284, 249).
+relation(close, 284, 285).
+relation(close, 284, 287).
 relation(inside, 103, 64).
 relation(inside, 128, 64).
 relation(inside, 128, 100).
@@ -2097,10 +2049,10 @@ relation(close, 112, 84).
 relation(close, 112, 86).
 relation(close, 112, 87).
 relation(close, 112, 95).
-relation(on, 2005, 98).
+relation(on, 2005, 189).
 relation(inside, 164, 163).
-relation(inside, 2038, 1).
-relation(inside, 2038, 36).
+relation(inside, 2038, 234).
+relation(inside, 2038, 163).
 relation(on, 234, 166).
 relation(on, 238, 192).
 relation(facing, 67, 109).
@@ -2131,7 +2083,7 @@ relation(close, 134, 126).
 relation(close, 134, 127).
 relation(inside, 199, 163).
 relation(inside, 96, 64).
-relation(on, 2046, 27).
+relation(on, 2046, 2043).
 relation(close, 174, 4).
 relation(close, 174, 9).
 relation(close, 174, 20).
@@ -2204,7 +2156,7 @@ relation(close, 179, 175).
 relation(close, 179, 178).
 relation(close, 179, 180).
 relation(close, 179, 186).
-relation(inside, 2047, 163).
+relation(inside, 2047, 246).
 relation(inside, 280, 246).
 relation(facing, 170, 197).
 relation(facing, 170, 198).
@@ -2224,6 +2176,7 @@ relation(close, 322, 143).
 relation(close, 322, 144).
 relation(close, 322, 145).
 relation(close, 322, 146).
+relation(close, 322, 279).
 relation(close, 322, 282).
 relation(close, 322, 283).
 relation(close, 322, 318).
@@ -2234,12 +2187,14 @@ relation(close, 322, 71).
 relation(close, 322, 75).
 relation(close, 322, 83).
 relation(close, 322, 100).
+relation(close, 322, 1000).
 relation(close, 322, 125).
 relation(close, 322, 124).
 relation(close, 322, 253).
 relation(close, 322, 126).
 relation(close, 322, 127).
-relation(inside, 2031, 64).
+relation(inside, 2031, 1).
+relation(inside, 2031, 36).
 relation(inside, 131, 64).
 relation(inside, 131, 100).
 relation(on, 102, 68).
@@ -2247,7 +2202,7 @@ relation(inside, 289, 284).
 relation(inside, 289, 246).
 relation(inside, 115, 64).
 relation(facing, 272, 315).
-relation(close, 2025, 189).
+relation(close, 2025, 103).
 relation(inside, 299, 284).
 relation(inside, 299, 246).
 relation(inside, 79, 64).
@@ -2321,8 +2276,8 @@ relation(close, 202, 171).
 relation(close, 202, 172).
 relation(close, 202, 219).
 relation(close, 202, 188).
-relation(inside, 2014, 163).
-relation(inside, 2014, 229).
+relation(inside, 2014, 64).
+relation(inside, 2014, 100).
 relation(close, 223, 195).
 relation(close, 223, 198).
 relation(close, 223, 169).
@@ -2342,15 +2297,15 @@ relation(close, 238, 236).
 relation(close, 238, 173).
 relation(close, 238, 174).
 relation(close, 238, 177).
+relation(close, 238, 2035).
 relation(close, 238, 182).
-relation(inside, 2034, 246).
+relation(inside, 2034, 64).
 relation(facing, 278, 321).
-relation(on, 2050, 281).
+relation(on, 2050, 228).
 relation(on, 305, 248).
 relation(facing, 229, 204).
 relation(inside, 11, 1).
 relation(inside, 308, 246).
-relation(inside, 2059, 64).
 relation(facing, 253, 321).
 relation(close, 130, 128).
 relation(close, 130, 129).
@@ -2382,20 +2337,18 @@ relation(close, 130, 126).
 relation(close, 130, 127).
 relation(facing, 271, 321).
 relation(facing, 271, 315).
-relation(close, 2001, 282).
-relation(close, 2021, 305).
+relation(close, 2001, 308).
+relation(close, 2021, 319).
 relation(on, 85, 78).
 relation(inside, 256, 246).
-relation(close, 2026, 279).
+relation(close, 2026, 196).
 relation(inside, 82, 64).
-relation(close, 2032, 229).
-relation(on, 2018, 189).
-relation(inside, 2043, 1).
-relation(inside, 2043, 36).
+relation(close, 2032, 305).
+relation(inside, 2043, 64).
+relation(on, 2018, 250).
 relation(facing, 174, 204).
 relation(facing, 261, 315).
-relation(inside, 2007, 284).
-relation(inside, 2007, 246).
+relation(inside, 2007, 64).
 relation(inside, 66, 64).
 relation(inside, 20, 1).
 relation(inside, 2001, 246).
@@ -2409,7 +2362,6 @@ relation(close, 5, 13).
 relation(close, 5, 21).
 relation(close, 5, 61).
 relation(close, 5, 30).
-relation(close, 2053, 100).
 relation(inside, 30, 1).
 relation(close, 10, 32).
 relation(close, 10, 5).
@@ -2447,13 +2399,12 @@ relation(close, 25, 81).
 relation(close, 25, 93).
 relation(close, 25, 104).
 relation(close, 25, 108).
-relation(close, 2058, 234).
 relation(inside, 127, 64).
 relation(inside, 127, 100).
 relation(facing, 88, 108).
 relation(facing, 88, 110).
 relation(inside, 234, 163).
-relation(close, 2037, 107).
+relation(close, 2037, 234).
 relation(inside, 311, 312).
 relation(inside, 311, 246).
 relation(facing, 112, 109).
@@ -2467,27 +2418,22 @@ relation(close, 271, 274).
 relation(close, 271, 276).
 relation(close, 271, 278).
 relation(inside, 75, 64).
-relation(close, 189, 164).
+relation(close, 189, 196).
 relation(close, 189, 165).
 relation(close, 189, 166).
 relation(close, 189, 167).
+relation(close, 189, 199).
 relation(close, 189, 168).
-relation(close, 189, 169).
 relation(close, 189, 170).
+relation(close, 189, 169).
+relation(close, 189, 164).
 relation(close, 189, 172).
-relation(close, 189, 173).
 relation(close, 189, 174).
+relation(close, 189, 173).
 relation(close, 189, 175).
+relation(close, 189, 2005).
 relation(close, 189, 190).
 relation(close, 189, 191).
-relation(close, 189, 196).
-relation(close, 189, 199).
-relation(close, 189, 2002).
-relation(close, 189, 2012).
-relation(close, 189, 2013).
-relation(close, 189, 2018).
-relation(close, 189, 2025).
-relation(close, 189, 2028).
 relation(close, 276, 265).
 relation(close, 276, 267).
 relation(close, 276, 268).
@@ -2510,8 +2456,8 @@ relation(close, 104, 25).
 relation(close, 104, 93).
 relation(facing, 66, 109).
 relation(inside, 259, 246).
-relation(inside, 2010, 163).
-relation(inside, 2010, 229).
+relation(inside, 2010, 305).
+relation(inside, 2010, 246).
 relation(facing, 94, 108).
 relation(facing, 94, 109).
 relation(facing, 94, 110).
@@ -2551,7 +2497,6 @@ relation(close, 12, 230).
 relation(close, 12, 104).
 relation(close, 12, 235).
 relation(close, 12, 108).
-relation(close, 2060, 28).
 relation(inside, 23, 1).
 relation(close, 32, 5).
 relation(close, 32, 8).
@@ -2592,7 +2537,7 @@ relation(close, 131, 125).
 relation(close, 131, 126).
 relation(close, 131, 127).
 relation(facing, 111, 109).
-relation(close, 2039, 2034).
+relation(close, 2039, 305).
 relation(inside, 268, 246).
 relation(close, 69, 97).
 relation(close, 69, 68).
@@ -2607,10 +2552,8 @@ relation(close, 69, 81).
 relation(close, 69, 115).
 relation(close, 69, 183).
 relation(inside, 94, 64).
-relation(on, 2042, 279).
-relation(close, 2044, 65).
-relation(inside, 2029, 284).
-relation(inside, 2029, 246).
+relation(close, 2044, 308).
+relation(inside, 2029, 163).
 relation(close, 115, 99).
 relation(close, 115, 67).
 relation(close, 115, 69).
@@ -2661,6 +2604,7 @@ relation(close, 310, 308).
 relation(close, 310, 279).
 relation(close, 310, 255).
 relation(inside, 2003, 163).
+relation(inside, 2003, 229).
 relation(facing, 101, 109).
 relation(close, 314, 259).
 relation(close, 314, 262).
@@ -2674,7 +2618,6 @@ relation(close, 314, 247).
 relation(close, 314, 248).
 relation(facing, 273, 309).
 relation(inside, 6, 1).
-relation(inside, 2054, 246).
 relation(inside, 26, 1).
 relation(on, 39, 73).
 relation(on, 39, 6).
@@ -2793,9 +2736,11 @@ relation(facing, 70, 108).
 relation(facing, 70, 109).
 relation(facing, 70, 110).
 relation(inside, 35, 1).
+relation(on, 2043, 103).
 relation(inside, 255, 246).
 relation(facing, 306, 315).
 relation(facing, 306, 307).
+relation(on, 2007, 98).
 relation(close, 128, 129).
 relation(close, 128, 130).
 relation(close, 128, 131).
@@ -2825,7 +2770,7 @@ relation(close, 128, 124).
 relation(close, 128, 125).
 relation(close, 128, 126).
 relation(close, 128, 127).
-relation(close, 2024, 305).
+relation(close, 2024, 234).
 relation(on, 236, 192).
 relation(inside, 167, 163).
 relation(close, 176, 2).
@@ -2875,10 +2820,9 @@ relation(on, 188, 169).
 relation(facing, 89, 108).
 relation(facing, 89, 109).
 relation(facing, 89, 110).
-relation(on, 2032, 229).
 relation(inside, 2, 1).
 relation(facing, 113, 109).
-relation(inside, 2050, 246).
+relation(inside, 2050, 163).
 relation(facing, 268, 321).
 relation(facing, 268, 307).
 relation(facing, 268, 309).
@@ -2902,6 +2846,7 @@ relation(close, 181, 187).
 relation(close, 181, 29).
 relation(inside, 134, 64).
 relation(inside, 134, 100).
+relation(close, 229, 2049).
 relation(close, 229, 2).
 relation(close, 229, 3).
 relation(close, 229, 4).
@@ -2919,15 +2864,12 @@ relation(close, 229, 174).
 relation(close, 229, 176).
 relation(close, 229, 192).
 relation(close, 229, 2003).
-relation(close, 229, 2010).
-relation(close, 229, 2014).
-relation(close, 229, 2015).
 relation(close, 229, 228).
+relation(close, 229, 2020).
 relation(close, 229, 230).
 relation(close, 229, 234).
 relation(close, 229, 235).
 relation(close, 229, 238).
-relation(close, 229, 2032).
 relation(close, 235, 36).
 relation(close, 235, 229).
 relation(close, 235, 230).
@@ -2974,7 +2916,6 @@ relation(close, 19, 20).
 relation(close, 19, 22).
 relation(close, 19, 23).
 relation(close, 19, 61).
-relation(on, 2031, 66).
 relation(close, 24, 33).
 relation(close, 24, 34).
 relation(close, 24, 4).
@@ -2989,12 +2930,11 @@ relation(close, 24, 174).
 relation(close, 24, 20).
 relation(close, 24, 182).
 relation(close, 24, 27).
-relation(close, 2052, 284).
-relation(close, 2006, 284).
-relation(close, 2011, 281).
+relation(close, 2006, 281).
+relation(close, 2011, 68).
 relation(inside, 322, 246).
-relation(close, 2031, 66).
-relation(close, 2036, 99).
+relation(close, 2031, 36).
+relation(close, 2036, 305).
 relation(facing, 200, 197).
 relation(close, 183, 2).
 relation(close, 183, 3).
@@ -3049,13 +2989,12 @@ relation(close, 266, 313).
 relation(close, 266, 284).
 relation(close, 266, 285).
 relation(close, 266, 287).
-relation(close, 281, 2048).
-relation(close, 281, 2050).
 relation(close, 281, 261).
-relation(close, 281, 2011).
 relation(close, 281, 2022).
 relation(close, 281, 251).
 relation(close, 281, 308).
+relation(close, 281, 2004).
+relation(close, 281, 2006).
 relation(close, 281, 279).
 relation(close, 281, 248).
 relation(close, 281, 250).
@@ -3082,9 +3021,7 @@ relation(facing, 178, 202).
 relation(facing, 178, 197).
 relation(facing, 178, 198).
 relation(on, 87, 79).
-relation(inside, 2021, 305).
 relation(inside, 2021, 246).
-relation(on, 2008, 192).
 relation(close, 38, 8).
 relation(close, 38, 10).
 relation(close, 38, 18).
@@ -3127,6 +3064,7 @@ relation(close, 68, 102).
 relation(close, 68, 107).
 relation(close, 68, 79).
 relation(close, 68, 113).
+relation(close, 68, 2011).
 relation(close, 68, 95).
 relation(inside, 182, 163).
 relation(close, 83, 128).
@@ -3166,14 +3104,14 @@ relation(close, 83, 126).
 relation(close, 83, 127).
 relation(facing, 108, 198).
 relation(facing, 108, 110).
-relation(on, 2001, 282).
-relation(inside, 2030, 246).
+relation(on, 2001, 308).
+relation(inside, 2030, 163).
 relation(inside, 279, 246).
 relation(inside, 89, 64).
 relation(inside, 130, 64).
 relation(inside, 130, 100).
-relation(inside, 2024, 305).
-relation(inside, 2024, 246).
+relation(inside, 2024, 234).
+relation(inside, 2024, 163).
 relation(close, 247, 248).
 relation(close, 247, 96).
 relation(close, 247, 259).
@@ -3244,7 +3182,8 @@ relation(facing, 315, 321).
 relation(facing, 315, 307).
 relation(facing, 315, 309).
 relation(inside, 62, 1).
-relation(inside, 2033, 64).
+relation(inside, 2033, 284).
+relation(inside, 2033, 246).
 relation(close, 127, 128).
 relation(close, 127, 129).
 relation(close, 127, 130).
@@ -3290,8 +3229,8 @@ relation(close, 301, 285).
 relation(close, 301, 287).
 relation(facing, 269, 307).
 relation(facing, 269, 309).
-relation(inside, 2017, 64).
-relation(on, 2044, 65).
+relation(inside, 2017, 246).
+relation(on, 2044, 308).
 relation(close, 29, 2).
 relation(close, 29, 3).
 relation(close, 29, 4).
@@ -3326,15 +3265,16 @@ relation(inside, 291, 284).
 relation(inside, 291, 246).
 relation(facing, 199, 197).
 relation(facing, 199, 198).
-relation(on, 2025, 189).
+relation(on, 2025, 103).
 relation(inside, 301, 284).
 relation(inside, 301, 246).
 relation(inside, 65, 64).
 relation(inside, 275, 246).
 relation(inside, 101, 64).
 relation(on, 272, 261).
-relation(inside, 2000, 64).
-relation(inside, 2036, 64).
+relation(inside, 2000, 1).
+relation(inside, 2036, 305).
+relation(inside, 2036, 246).
 relation(inside, 29, 1).
 relation(facing, 201, 197).
 relation(inside, 13, 1).
@@ -3398,7 +3338,7 @@ relation(close, 180, 25).
 relation(close, 180, 186).
 relation(close, 180, 93).
 relation(inside, 2045, 246).
-relation(close, 2046, 27).
+relation(close, 2046, 2043).
 relation(facing, 85, 109).
 relation(facing, 257, 321).
 relation(inside, 68, 64).
@@ -3431,7 +3371,7 @@ relation(close, 35, 91).
 relation(inside, 236, 163).
 relation(facing, 187, 202).
 relation(facing, 187, 204).
-relation(close, 2041, 193).
+relation(close, 2041, 305).
 relation(inside, 77, 64).
 relation(close, 178, 200).
 relation(close, 178, 171).
@@ -3447,7 +3387,6 @@ relation(close, 178, 187).
 relation(on, 38, 8).
 relation(close, 193, 192).
 relation(close, 193, 194).
-relation(close, 193, 2051).
 relation(close, 193, 164).
 relation(close, 193, 165).
 relation(close, 193, 228).
@@ -3457,7 +3396,6 @@ relation(close, 193, 236).
 relation(close, 193, 173).
 relation(close, 193, 238).
 relation(close, 193, 174).
-relation(close, 193, 2041).
 relation(close, 199, 196).
 relation(close, 199, 167).
 relation(close, 199, 168).
@@ -3476,7 +3414,6 @@ relation(close, 280, 37).
 relation(close, 280, 7).
 relation(close, 280, 264).
 relation(close, 280, 72).
-relation(close, 280, 1000).
 relation(close, 280, 11).
 relation(close, 280, 269).
 relation(close, 280, 273).
@@ -3488,28 +3425,27 @@ relation(close, 280, 247).
 relation(close, 280, 26).
 relation(close, 280, 252).
 relation(close, 280, 317).
+relation(inside, 2012, 234).
 relation(inside, 2012, 163).
 relation(inside, 261, 246).
 relation(inside, 174, 163).
-relation(on, 2013, 189).
+relation(on, 2013, 103).
 relation(inside, 25, 1).
 relation(facing, 266, 315).
 relation(facing, 266, 307).
 relation(between, 273, 64).
 relation(between, 273, 246).
 relation(inside, 9, 1).
-relation(inside, 2057, 305).
-relation(inside, 2057, 246).
 relation(on, 194, 192).
-relation(close, 2002, 189).
-relation(close, 2017, 107).
+relation(close, 2002, 234).
+relation(close, 2017, 2).
 relation(inside, 193, 192).
 relation(inside, 193, 163).
 relation(facing, 196, 197).
 relation(facing, 196, 198).
 relation(inside, 229, 163).
 relation(inside, 270, 246).
-relation(close, 2042, 279).
+relation(close, 2042, 100).
 relation(close, 73, 6).
 relation(close, 73, 39).
 relation(close, 73, 40).
@@ -3529,7 +3465,7 @@ relation(close, 94, 88).
 relation(close, 94, 89).
 relation(close, 94, 90).
 relation(close, 94, 92).
-relation(on, 2002, 189).
+relation(on, 2006, 281).
 relation(inside, 177, 163).
 relation(facing, 73, 108).
 relation(facing, 73, 110).
@@ -3562,8 +3498,7 @@ relation(close, 299, 287).
 relation(facing, 97, 108).
 relation(inside, 141, 64).
 relation(inside, 141, 100).
-relation(on, 1000, 280).
-relation(close, 2049, 305).
+relation(close, 2049, 229).
 relation(close, 21, 2).
 relation(close, 21, 3).
 relation(close, 21, 4).
@@ -3611,7 +3546,6 @@ relation(close, 74, 183).
 relation(close, 74, 25).
 relation(close, 74, 62).
 relation(close, 74, 31).
-relation(on, 2037, 107).
 relation(close, 80, 6).
 relation(close, 80, 39).
 relation(close, 80, 40).
@@ -3644,9 +3578,7 @@ relation(close, 28, 235).
 relation(close, 28, 204).
 relation(close, 28, 12).
 relation(close, 28, 174).
-relation(close, 28, 2019).
 relation(close, 28, 176).
-relation(close, 28, 2060).
 relation(close, 28, 21).
 relation(close, 28, 27).
 relation(close, 28, 29).
@@ -3715,11 +3647,11 @@ relation(close, 85, 78).
 relation(close, 85, 86).
 relation(close, 85, 90).
 relation(close, 85, 124).
-relation(on, 2026, 279).
+relation(on, 2026, 196).
 relation(inside, 112, 64).
 relation(inside, 112, 111).
 relation(facing, 311, 315).
-relation(on, 2030, 279).
+relation(on, 2030, 192).
 relation(inside, 189, 163).
 relation(close, 311, 256).
 relation(close, 311, 261).
@@ -3737,7 +3669,6 @@ relation(facing, 190, 198).
 relation(facing, 313, 315).
 relation(facing, 313, 307).
 relation(facing, 68, 110).
-relation(on, 2059, 103).
 relation(facing, 92, 108).
 relation(facing, 92, 110).
 relation(close, 145, 320).
@@ -3808,8 +3739,9 @@ relation(close, 185, 184).
 relation(on, 219, 188).
 relation(inside, 95, 64).
 relation(inside, 2040, 64).
+relation(inside, 2040, 100).
 relation(on, 183, 74).
-relation(on, 2027, 103).
+relation(on, 2027, 65).
 relation(close, 254, 257).
 relation(close, 254, 261).
 relation(close, 254, 263).
@@ -3823,13 +3755,12 @@ relation(close, 254, 281).
 relation(close, 254, 283).
 relation(close, 254, 253).
 relation(close, 254, 255).
-relation(inside, 2004, 305).
 relation(inside, 2004, 246).
 relation(inside, 314, 246).
 relation(facing, 263, 321).
 relation(facing, 263, 315).
-relation(close, 2000, 103).
-relation(close, 2009, 27).
+relation(close, 2000, 27).
+relation(close, 2009, 305).
 relation(close, 141, 128).
 relation(close, 141, 129).
 relation(close, 141, 130).
@@ -3884,14 +3815,15 @@ relation(close, 146, 100).
 relation(close, 146, 252).
 relation(close, 146, 253).
 relation(inside, 88, 64).
-relation(close, 2040, 99).
+relation(close, 2040, 100).
 relation(inside, 124, 64).
 relation(inside, 124, 100).
 relation(inside, 165, 163).
 relation(facing, 299, 315).
-relation(inside, 2039, 2034).
+relation(inside, 2039, 305).
 relation(inside, 2039, 246).
 relation(inside, 272, 246).
+relation(close, 192, 2016).
 relation(close, 192, 193).
 relation(close, 192, 194).
 relation(close, 192, 164).
@@ -3906,8 +3838,8 @@ relation(close, 192, 236).
 relation(close, 192, 173).
 relation(close, 192, 238).
 relation(close, 192, 174).
-relation(close, 192, 2008).
-relation(close, 192, 2047).
+relation(close, 192, 2029).
+relation(close, 192, 2030).
 relation(facing, 166, 204).
 relation(close, 291, 289).
 relation(close, 291, 260).
@@ -3939,8 +3871,7 @@ relation(close, 296, 249).
 relation(close, 296, 284).
 relation(close, 296, 285).
 relation(close, 296, 287).
-relation(inside, 2023, 305).
-relation(inside, 2023, 246).
+relation(inside, 2023, 1).
 relation(close, 249, 260).
 relation(close, 249, 296).
 relation(close, 249, 299).
@@ -3991,8 +3922,7 @@ relation(close, 267, 311).
 relation(close, 267, 312).
 relation(close, 267, 313).
 relation(inside, 71, 64).
-relation(inside, 2016, 284).
-relation(inside, 2016, 246).
+relation(inside, 2016, 163).
 relation(inside, 265, 246).
 relation(inside, 91, 64).
 relation(inside, 132, 64).
@@ -4018,7 +3948,7 @@ relation(close, 205, 25).
 relation(close, 205, 27).
 relation(close, 205, 93).
 relation(facing, 185, 197).
-relation(inside, 2026, 246).
+relation(inside, 2026, 163).
 relation(close, 236, 192).
 relation(close, 236, 193).
 relation(close, 236, 194).
@@ -4041,7 +3971,7 @@ relation(close, 251, 250).
 relation(close, 251, 315).
 relation(close, 251, 252).
 relation(close, 251, 254).
-relation(close, 2048, 281).
+relation(close, 2048, 2043).
 relation(close, 20, 33).
 relation(close, 20, 34).
 relation(close, 20, 36).
@@ -4058,12 +3988,9 @@ relation(close, 20, 24).
 relation(close, 20, 22).
 relation(close, 20, 29).
 relation(facing, 79, 110).
-relation(on, 2003, 229).
-relation(close, 2007, 284).
+relation(close, 2007, 98).
 relation(inside, 3, 1).
-relation(inside, 2051, 193).
-relation(inside, 2051, 163).
-relation(close, 2012, 189).
+relation(close, 2012, 234).
 relation(inside, 320, 246).
 relation(facing, 103, 108).
 relation(facing, 103, 109).
@@ -4124,8 +4051,8 @@ relation(close, 278, 283).
 relation(close, 278, 253).
 relation(close, 278, 254).
 relation(inside, 284, 246).
-relation(inside, 2035, 305).
-relation(inside, 2035, 246).
+relation(inside, 2035, 163).
+relation(inside, 2035, 238).
 relation(facing, 69, 108).
 relation(facing, 69, 110).
 relation(close, 282, 128).
@@ -4137,7 +4064,6 @@ relation(close, 282, 133).
 relation(close, 282, 134).
 relation(close, 282, 129).
 relation(close, 282, 258).
-relation(close, 282, 2054).
 relation(close, 282, 141).
 relation(close, 282, 142).
 relation(close, 282, 143).
@@ -4147,6 +4073,7 @@ relation(close, 282, 146).
 relation(close, 282, 273).
 relation(close, 282, 278).
 relation(close, 282, 283).
+relation(close, 282, 2047).
 relation(close, 282, 316).
 relation(close, 282, 317).
 relation(close, 282, 318).
@@ -4157,7 +4084,6 @@ relation(close, 282, 322).
 relation(close, 282, 71).
 relation(close, 282, 72).
 relation(close, 282, 75).
-relation(close, 282, 2001).
 relation(close, 282, 83).
 relation(close, 282, 100).
 relation(close, 282, 252).
@@ -4170,26 +4096,23 @@ relation(on, 196, 189).
 relation(inside, 84, 64).
 relation(facing, 93, 108).
 relation(facing, 93, 110).
-relation(close, 305, 2049).
+relation(close, 305, 2010).
 relation(close, 305, 259).
-relation(close, 305, 2021).
 relation(close, 305, 262).
-relation(close, 305, 2023).
-relation(close, 305, 2024).
-relation(close, 305, 2057).
+relation(close, 305, 2032).
 relation(close, 305, 307).
-relation(close, 305, 2004).
+relation(close, 305, 2036).
 relation(close, 305, 277).
 relation(close, 305, 309).
 relation(close, 305, 247).
 relation(close, 305, 248).
-relation(close, 305, 2035).
+relation(close, 305, 2009).
 relation(close, 305, 314).
+relation(close, 305, 2039).
+relation(close, 305, 2041).
 relation(inside, 2019, 1).
-relation(inside, 2019, 28).
+relation(inside, 2019, 36).
 relation(inside, 12, 1).
-relation(inside, 2060, 1).
-relation(inside, 2060, 28).
 relation(inside, 32, 1).
 relation(on, 318, 282).
 relation(on, 318, 319).
@@ -4255,6 +4178,7 @@ relation(on, 141, 142).
 relation(inside, 200, 163).
 relation(inside, 67, 64).
 relation(inside, 277, 246).
+relation(inside, 2002, 234).
 relation(inside, 2002, 163).
 relation(inside, 31, 1).
 relation(close, 321, 257).
@@ -4313,7 +4237,7 @@ relation(close, 133, 124).
 relation(close, 133, 125).
 relation(close, 133, 126).
 relation(close, 133, 127).
-relation(on, 2048, 281).
+relation(on, 2048, 2043).
 relation(close, 144, 128).
 relation(close, 144, 129).
 relation(close, 144, 130).
@@ -4409,8 +4333,8 @@ relation(close, 317, 318).
 relation(close, 317, 319).
 relation(on, 95, 98).
 relation(inside, 8, 1).
-relation(inside, 2056, 163).
-relation(on, 2028, 189).
+relation(on, 2028, 6).
+relation(on, 2016, 192).
 relation(inside, 18, 1).
 relation(inside, 228, 163).
 relation(inside, 248, 246).
@@ -4449,6 +4373,7 @@ relation(inside, 27, 1).
 relation(close, 228, 192).
 relation(close, 228, 193).
 relation(close, 228, 194).
+relation(close, 228, 2050).
 relation(close, 228, 229).
 relation(close, 228, 166).
 relation(close, 228, 234).
@@ -4477,11 +4402,11 @@ relation(facing, 168, 197).
 relation(facing, 168, 198).
 relation(inside, 195, 163).
 relation(close, 2022, 281).
-relation(close, 2027, 103).
+relation(close, 2027, 65).
 relation(inside, 231, 163).
 relation(facing, 192, 204).
 relation(facing, 295, 315).
-relation(close, 2047, 192).
+relation(close, 2047, 282).
 relation(close, 270, 128).
 relation(close, 270, 257).
 relation(close, 270, 130).
@@ -4552,7 +4477,6 @@ relation(close, 318, 125).
 relation(close, 318, 126).
 relation(close, 318, 127).
 relation(facing, 198, 108).
-relation(on, 2040, 99).
 relation(inside, 143, 64).
 relation(inside, 143, 100).
 relation(close, 6, 2).
@@ -4566,12 +4490,12 @@ relation(close, 6, 7).
 relation(close, 6, 11).
 relation(close, 6, 12).
 relation(close, 6, 14).
+relation(close, 6, 2028).
 relation(close, 6, 80).
 relation(close, 6, 21).
 relation(close, 6, 62).
 relation(close, 6, 31).
 relation(on, 314, 305).
-relation(close, 2054, 282).
 relation(close, 31, 2).
 relation(close, 31, 3).
 relation(close, 31, 6).
@@ -4589,9 +4513,9 @@ relation(close, 31, 92).
 relation(close, 31, 93).
 relation(close, 31, 62).
 relation(facing, 76, 108).
+relation(on, 2004, 281).
 relation(facing, 191, 202).
 relation(facing, 191, 198).
-relation(on, 2033, 103).
 relation(inside, 188, 163).
 relation(close, 256, 260).
 relation(close, 256, 261).
@@ -4624,8 +4548,6 @@ relation(close, 99, 114).
 relation(close, 99, 115).
 relation(close, 99, 84).
 relation(close, 99, 79).
-relation(close, 99, 2036).
-relation(close, 99, 2040).
 relation(close, 99, 95).
 relation(close, 194, 192).
 relation(close, 194, 193).
@@ -4644,7 +4566,7 @@ relation(facing, 251, 307).
 relation(facing, 251, 309).
 relation(facing, 181, 197).
 relation(facing, 181, 198).
-relation(inside, 2046, 1).
+relation(inside, 2046, 64).
 relation(inside, 146, 64).
 relation(inside, 146, 100).
 relation(close, 7, 96).
@@ -4662,11 +4584,10 @@ relation(close, 7, 82).
 relation(close, 7, 247).
 relation(close, 7, 280).
 relation(close, 7, 26).
-relation(close, 2055, 234).
 relation(facing, 259, 307).
 relation(facing, 259, 309).
-relation(close, 2013, 189).
-relation(close, 2018, 189).
+relation(close, 2013, 103).
+relation(close, 2018, 250).
 relation(on, 182, 174).
 relation(facing, 283, 321).
 relation(close, 89, 115).
@@ -4784,9 +4705,8 @@ relation(close, 253, 71).
 relation(close, 253, 75).
 relation(close, 253, 100).
 relation(close, 253, 252).
-relation(close, 253, 2045).
 relation(close, 253, 254).
-relation(inside, 2013, 163).
+relation(inside, 2013, 64).
 relation(close, 2, 3).
 relation(close, 2, 4).
 relation(close, 2, 6).
@@ -4806,12 +4726,14 @@ relation(close, 2, 62).
 relation(close, 2, 74).
 relation(close, 2, 205).
 relation(close, 2, 81).
+relation(close, 2, 2017).
 relation(close, 2, 229).
 relation(close, 2, 230).
 relation(facing, 40, 110).
-relation(close, 2050, 281).
+relation(close, 2050, 228).
 relation(inside, 307, 246).
 relation(inside, 87, 64).
+relation(on, 2021, 319).
 relation(close, 96, 258).
 relation(close, 96, 35).
 relation(close, 96, 259).
@@ -4829,10 +4751,8 @@ relation(close, 96, 91).
 relation(close, 96, 316).
 relation(close, 96, 317).
 relation(facing, 316, 309).
-relation(on, 2009, 27).
 relation(close, 195, 197).
 relation(close, 195, 198).
-relation(close, 195, 2056).
 relation(close, 195, 169).
 relation(close, 195, 170).
 relation(close, 195, 172).
@@ -4846,8 +4766,8 @@ relation(inside, 81, 64).
 relation(facing, 169, 202).
 relation(facing, 169, 197).
 relation(facing, 169, 198).
-relation(inside, 2042, 246).
-relation(inside, 2006, 284).
+relation(inside, 2042, 64).
+relation(inside, 2042, 100).
 relation(inside, 2006, 246).
 relation(inside, 19, 1).
 relation(inside, 316, 246).
@@ -4887,12 +4807,13 @@ relation(close, 143, 124).
 relation(close, 143, 125).
 relation(close, 143, 126).
 relation(close, 143, 127).
-relation(close, 2014, 229).
+relation(close, 2014, 100).
 relation(facing, 99, 109).
 relation(facing, 99, 110).
-relation(close, 2019, 28).
+relation(close, 2019, 36).
 relation(inside, 264, 246).
-relation(close, 1000, 280).
+relation(close, 1000, 322).
+relation(close, 1000, 279).
 relation(inside, 90, 64).
 relation(close, 166, 4).
 relation(close, 166, 9).
@@ -4917,6 +4838,7 @@ relation(close, 166, 230).
 relation(close, 166, 234).
 relation(close, 166, 236).
 relation(close, 166, 238).
+relation(close, 166, 2045).
 relation(inside, 126, 64).
 relation(inside, 126, 100).
 relation(close, 171, 168).
@@ -4929,7 +4851,7 @@ relation(close, 171, 178).
 relation(close, 171, 184).
 relation(close, 171, 185).
 relation(close, 171, 188).
-relation(inside, 2025, 163).
+relation(inside, 2025, 64).
 relation(inside, 274, 246).
 relation(close, 191, 196).
 relation(close, 191, 165).
@@ -4950,6 +4872,7 @@ relation(close, 109, 85).
 relation(close, 196, 167).
 relation(close, 196, 199).
 relation(close, 196, 168).
+relation(close, 196, 2026).
 relation(close, 196, 172).
 relation(close, 196, 173).
 relation(close, 196, 174).
@@ -4961,7 +4884,8 @@ relation(facing, 77, 109).
 relation(on, 29, 27).
 relation(inside, 74, 64).
 relation(facing, 202, 197).
-relation(inside, 2009, 1).
+relation(inside, 2009, 305).
+relation(inside, 2009, 246).
 relation(inside, 38, 1).
 relation(facing, 254, 321).
 relation(inside, 283, 246).
@@ -4969,7 +4893,7 @@ relation(inside, 109, 64).
 relation(inside, 319, 246).
 relation(facing, 280, 307).
 relation(facing, 280, 309).
-relation(on, 2045, 253).
+relation(on, 2045, 166).
 relation(inside, 83, 64).
 relation(close, 182, 228).
 relation(close, 182, 36).
@@ -4993,7 +4917,7 @@ relation(close, 186, 178).
 relation(close, 186, 179).
 relation(close, 186, 180).
 relation(close, 186, 181).
-relation(inside, 2018, 163).
+relation(inside, 2018, 246).
 relation(inside, 267, 246).
 relation(on, 18, 10).
 relation(inside, 93, 64).
@@ -5020,24 +4944,28 @@ relation(close, 230, 24).
 relation(close, 230, 27).
 relation(close, 230, 28).
 relation(close, 230, 29).
-relation(inside, 2028, 163).
-relation(close, 234, 192).
-relation(close, 234, 228).
-relation(close, 234, 229).
-relation(close, 234, 166).
-relation(close, 234, 230).
-relation(close, 234, 165).
+relation(inside, 2028, 1).
 relation(close, 234, 9).
+relation(close, 234, 24).
 relation(close, 234, 164).
-relation(close, 234, 235).
-relation(close, 234, 236).
+relation(close, 234, 165).
+relation(close, 234, 166).
 relation(close, 234, 173).
 relation(close, 234, 174).
-relation(close, 234, 238).
-relation(close, 234, 2055).
-relation(close, 234, 2058).
 relation(close, 234, 182).
-relation(close, 234, 24).
+relation(close, 234, 192).
+relation(close, 234, 2002).
+relation(close, 234, 2012).
+relation(close, 234, 2015).
+relation(close, 234, 228).
+relation(close, 234, 229).
+relation(close, 234, 230).
+relation(close, 234, 2024).
+relation(close, 234, 235).
+relation(close, 234, 236).
+relation(close, 234, 238).
+relation(close, 234, 2037).
+relation(close, 234, 2038).
 relation(close, 255, 261).
 relation(close, 255, 308).
 relation(close, 255, 310).
@@ -5050,17 +4978,15 @@ relation(facing, 310, 315).
 relation(inside, 312, 246).
 relation(inside, 312, 311).
 relation(facing, 164, 204).
-relation(close, 2005, 98).
+relation(close, 2005, 189).
 relation(inside, 5, 1).
-relation(inside, 2053, 64).
-relation(inside, 2053, 100).
-relation(close, 2010, 229).
-relation(close, 2016, 284).
+relation(close, 2010, 305).
+relation(close, 2016, 192).
 relation(facing, 188, 202).
 relation(facing, 188, 197).
 relation(facing, 188, 198).
 relation(inside, 276, 246).
-relation(on, 2034, 279).
+relation(on, 2034, 103).
 relation(inside, 102, 64).
 relation(close, 261, 256).
 relation(close, 261, 263).
@@ -5078,7 +5004,8 @@ relation(close, 261, 250).
 relation(close, 261, 311).
 relation(close, 261, 254).
 relation(close, 261, 255).
-relation(inside, 2037, 64).
+relation(inside, 2037, 234).
+relation(inside, 2037, 163).
 relation(facing, 65, 109).
 relation(close, 307, 289).
 relation(close, 307, 291).
@@ -5135,7 +5062,7 @@ relation(close, 37, 252).
 relation(inside, 254, 246).
 relation(inside, 295, 284).
 relation(inside, 295, 246).
-relation(close, 2029, 284).
+relation(close, 2029, 192).
 relation(facing, 223, 108).
 relation(close, 88, 97).
 relation(close, 88, 198).
@@ -5196,8 +5123,7 @@ relation(close, 252, 247).
 relation(close, 252, 251).
 relation(close, 252, 253).
 relation(on, 143, 144).
-relation(inside, 2049, 305).
-relation(inside, 2049, 246).
+relation(inside, 2049, 163).
 relation(facing, 176, 198).
 relation(inside, 262, 246).
 relation(inside, 175, 163).
@@ -5256,7 +5182,6 @@ relation(close, 107, 78).
 relation(close, 107, 79).
 relation(close, 107, 84).
 relation(close, 107, 95).
-relation(close, 107, 2017).
 relation(close, 107, 98).
 relation(close, 107, 99).
 relation(close, 107, 101).
@@ -5266,7 +5191,6 @@ relation(close, 107, 112).
 relation(close, 107, 113).
 relation(close, 107, 114).
 relation(close, 107, 115).
-relation(close, 107, 2037).
 relation(inside, 169, 163).
 relation(facing, 182, 204).
 relation(close, 306, 256).
@@ -5287,8 +5211,6 @@ relation(facing, 281, 321).
 relation(facing, 281, 315).
 relation(facing, 281, 307).
 relation(facing, 281, 309).
-relation(inside, 2058, 234).
-relation(inside, 2058, 163).
 relation(inside, 133, 64).
 relation(inside, 133, 100).
 relation(on, 114, 99).
@@ -5304,12 +5226,12 @@ relation(close, 103, 69).
 relation(close, 103, 70).
 relation(close, 103, 71).
 relation(close, 103, 73).
+relation(close, 103, 2025).
 relation(close, 103, 107).
-relation(close, 103, 2027).
-relation(close, 103, 2059).
-relation(close, 103, 2000).
-relation(close, 103, 2033).
+relation(close, 103, 2034).
 relation(close, 103, 115).
+relation(close, 103, 2043).
+relation(close, 103, 2013).
 relation(facing, 235, 204).
 relation(close, 108, 39).
 relation(close, 108, 40).
@@ -5338,11 +5260,12 @@ relation(close, 201, 173).
 relation(close, 201, 184).
 relation(close, 201, 185).
 relation(facing, 165, 204).
-relation(inside, 162, 64).
+relation(inside, 162, 163).
 relation(facing, 189, 197).
 relation(facing, 189, 198).
+relation(on, 2023, 27).
 relation(facing, 314, 307).
-relation(on, 2011, 281).
+relation(on, 2011, 68).
 relation(close, 129, 128).
 relation(close, 129, 257).
 relation(close, 129, 130).
@@ -5372,7 +5295,7 @@ relation(close, 129, 124).
 relation(close, 129, 125).
 relation(close, 129, 126).
 relation(close, 129, 127).
-relation(close, 2008, 192).
+relation(close, 2008, 100).
 relation(facing, 267, 315).
 relation(facing, 267, 307).
 relation(inside, 197, 163).
@@ -5387,7 +5310,7 @@ relation(close, 98, 113).
 relation(close, 98, 79).
 relation(close, 98, 114).
 relation(close, 98, 84).
-relation(close, 98, 2005).
+relation(close, 98, 2007).
 relation(close, 98, 95).
 relation(inside, 104, 64).
 relation(inside, 145, 64).
@@ -5395,7 +5318,7 @@ relation(inside, 145, 100).
 relation(inside, 181, 163).
 relation(inside, 129, 64).
 relation(inside, 129, 100).
-relation(on, 2000, 103).
+relation(on, 2000, 27).
 relation(close, 9, 2).
 relation(close, 9, 3).
 relation(close, 9, 4).
@@ -5425,8 +5348,7 @@ relation(close, 9, 229).
 relation(close, 9, 230).
 relation(close, 9, 234).
 relation(close, 9, 235).
-relation(close, 2057, 305).
-relation(close, 2004, 305).
+relation(close, 2004, 281).
 relation(inside, 113, 64).
 relation(close, 40, 6).
 relation(close, 40, 39).
@@ -5513,10 +5435,11 @@ relation(close, 219, 169).
 relation(close, 219, 202).
 relation(close, 219, 172).
 relation(close, 219, 188).
-relation(inside, 2032, 163).
+relation(inside, 2032, 305).
+relation(inside, 2032, 246).
 relation(facing, 177, 204).
 relation(inside, 61, 1).
-relation(on, 2047, 192).
+relation(on, 2047, 282).
 relation(close, 11, 258).
 relation(close, 11, 259).
 relation(close, 11, 6).
@@ -5544,7 +5467,6 @@ relation(close, 11, 91).
 relation(close, 11, 96).
 relation(close, 11, 105).
 relation(close, 11, 247).
-relation(close, 2059, 103).
 relation(facing, 71, 109).
 relation(close, 16, 40).
 relation(close, 16, 105).
@@ -5561,9 +5483,9 @@ relation(close, 16, 92).
 relation(close, 16, 62).
 relation(close, 16, 31).
 relation(inside, 306, 246).
+relation(close, 36, 2019).
 relation(close, 36, 229).
 relation(close, 36, 230).
-relation(close, 36, 2043).
 relation(close, 36, 9).
 relation(close, 36, 235).
 relation(close, 36, 204).
@@ -5572,16 +5494,15 @@ relation(close, 36, 174).
 relation(close, 36, 15).
 relation(close, 36, 176).
 relation(close, 36, 205).
+relation(close, 36, 2031).
 relation(close, 36, 20).
 relation(close, 36, 181).
 relation(close, 36, 182).
-relation(close, 36, 2038).
 relation(close, 36, 24).
 relation(close, 36, 25).
 relation(close, 36, 27).
 relation(close, 36, 28).
 relation(close, 36, 29).
-relation(on, 2056, 195).
 has_property(O, surfaces) :- is(O, floor), related(O).
 has_property(O, surfaces) :- is(O, mat), related(O).
 has_property(O, sittable) :- is(O, mat), related(O).
@@ -5703,216 +5624,175 @@ has_property(O, has_switch) :- is(O, computer), related(O).
 has_property(O, has_plug) :- is(O, keyboard), related(O).
 has_property(O, grabbable) :- is(O, keyboard), related(O).
 has_property(O, movable) :- is(O, keyboard), related(O).
-has_property(O, can_open) :- is(O, novel), related(O).
-has_property(O, readable) :- is(O, novel), related(O).
-has_property(O, cuttable) :- is(O, novel), related(O).
-has_property(O, grabbable) :- is(O, novel), related(O).
-has_property(O, has_paper) :- is(O, novel), related(O).
-has_property(O, movable) :- is(O, novel), related(O).
+has_property(O, has_plug) :- is(O, laptop), related(O).
+has_property(O, lookable) :- is(O, laptop), related(O).
+has_property(O, has_switch) :- is(O, laptop), related(O).
+has_property(O, grabbable) :- is(O, laptop), related(O).
+has_property(O, movable) :- is(O, laptop), related(O).
+has_property(O, grabbable) :- is(O, soap), related(O).
+has_property(O, movable) :- is(O, soap), related(O).
+has_property(O, cream) :- is(O, soap), related(O).
+has_property(O, surfaces) :- is(O, dishrack), related(O).
+has_property(O, grabbable) :- is(O, dishrack), related(O).
+has_property(O, movable) :- is(O, dishrack), related(O).
+has_property(O, cuttable) :- is(O, food_food), related(O).
+has_property(O, movable) :- is(O, food_food), related(O).
+has_property(O, grabbable) :- is(O, food_food), related(O).
+has_property(O, eatable) :- is(O, food_food), related(O).
+has_property(O, grabbable) :- is(O, dough), related(O).
+has_property(O, movable) :- is(O, dough), related(O).
+has_property(O, cream) :- is(O, dough), related(O).
+has_property(O, grabbable) :- is(O, glue), related(O).
+has_property(O, movable) :- is(O, glue), related(O).
+has_property(O, cream) :- is(O, glue), related(O).
+has_property(O, grabbable) :- is(O, scrabble), related(O).
+has_property(O, movable) :- is(O, scrabble), related(O).
+has_property(O, clothes) :- is(O, oven_mitts), related(O).
+has_property(O, hangable) :- is(O, oven_mitts), related(O).
+has_property(O, movable) :- is(O, oven_mitts), related(O).
+has_property(O, grabbable) :- is(O, oven_mitts), related(O).
+has_property(O, has_plug) :- is(O, stereo), related(O).
+has_property(O, can_open) :- is(O, stereo), related(O).
+has_property(O, surfaces) :- is(O, stereo), related(O).
+has_property(O, has_switch) :- is(O, stereo), related(O).
+has_property(O, grabbable) :- is(O, stereo), related(O).
+has_property(O, movable) :- is(O, stereo), related(O).
+has_property(O, grabbable) :- is(O, detergent), related(O).
+has_property(O, movable) :- is(O, detergent), related(O).
+has_property(O, pourable) :- is(O, detergent), related(O).
+has_property(O, readable) :- is(O, check), related(O).
+has_property(O, movable) :- is(O, check), related(O).
+has_property(O, grabbable) :- is(O, check), related(O).
+has_property(O, has_paper) :- is(O, check), related(O).
+has_property(O, has_plug) :- is(O, vacuum_cleaner), related(O).
+has_property(O, grabbable) :- is(O, vacuum_cleaner), related(O).
+has_property(O, movable) :- is(O, vacuum_cleaner), related(O).
+has_property(O, has_switch) :- is(O, vacuum_cleaner), related(O).
 has_property(O, has_plug) :- is(O, dvd_player), related(O).
 has_property(O, can_open) :- is(O, dvd_player), related(O).
 has_property(O, surfaces) :- is(O, dvd_player), related(O).
 has_property(O, has_switch) :- is(O, dvd_player), related(O).
 has_property(O, grabbable) :- is(O, dvd_player), related(O).
 has_property(O, movable) :- is(O, dvd_player), related(O).
-has_property(O, readable) :- is(O, bills), related(O).
-has_property(O, cuttable) :- is(O, bills), related(O).
-has_property(O, grabbable) :- is(O, bills), related(O).
-has_property(O, has_paper) :- is(O, bills), related(O).
-has_property(O, movable) :- is(O, bills), related(O).
-has_property(O, clothes) :- is(O, headset), related(O).
-has_property(O, grabbable) :- is(O, headset), related(O).
-has_property(O, movable) :- is(O, headset), related(O).
-has_property(O, grabbable) :- is(O, dry_pasta), related(O).
-has_property(O, movable) :- is(O, dry_pasta), related(O).
 has_property(O, cover_object) :- is(O, napkin), related(O).
 has_property(O, movable) :- is(O, napkin), related(O).
 has_property(O, grabbable) :- is(O, napkin), related(O).
 has_property(O, has_paper) :- is(O, napkin), related(O).
+has_property(O, grabbable) :- is(O, spoon), related(O).
+has_property(O, movable) :- is(O, spoon), related(O).
+has_property(O, grabbable) :- is(O, dog), related(O).
+has_property(O, movable) :- is(O, dog), related(O).
+has_property(O, grabbable) :- is(O, deck_of_cards), related(O).
+has_property(O, movable) :- is(O, deck_of_cards), related(O).
+has_property(O, has_paper) :- is(O, deck_of_cards), related(O).
+has_property(O, can_open) :- is(O, tooth_paste), related(O).
+has_property(O, grabbable) :- is(O, tooth_paste), related(O).
+has_property(O, pourable) :- is(O, tooth_paste), related(O).
+has_property(O, movable) :- is(O, tooth_paste), related(O).
+has_property(O, cream) :- is(O, tooth_paste), related(O).
+has_property(O, cuttable) :- is(O, food_egg), related(O).
+has_property(O, movable) :- is(O, food_egg), related(O).
+has_property(O, grabbable) :- is(O, food_egg), related(O).
+has_property(O, eatable) :- is(O, food_egg), related(O).
+has_property(O, can_open) :- is(O, beer), related(O).
+has_property(O, grabbable) :- is(O, beer), related(O).
+has_property(O, pourable) :- is(O, beer), related(O).
+has_property(O, drinkable) :- is(O, beer), related(O).
+has_property(O, movable) :- is(O, beer), related(O).
+has_property(O, grabbable) :- is(O, comb), related(O).
+has_property(O, movable) :- is(O, comb), related(O).
+has_property(O, grabbable) :- is(O, food_butter), related(O).
+has_property(O, movable) :- is(O, food_butter), related(O).
+has_property(O, cream) :- is(O, food_butter), related(O).
+has_property(O, grabbable) :- is(O, fork), related(O).
+has_property(O, movable) :- is(O, fork), related(O).
+has_property(O, grabbable) :- is(O, knife), related(O).
+has_property(O, movable) :- is(O, knife), related(O).
 has_property(O, recipient) :- is(O, cup), related(O).
 has_property(O, movable) :- is(O, cup), related(O).
 has_property(O, pourable) :- is(O, cup), related(O).
 has_property(O, grabbable) :- is(O, cup), related(O).
-has_property(O, grabbable) :- is(O, hairbrush), related(O).
-has_property(O, movable) :- is(O, hairbrush), related(O).
-has_property(O, has_plug) :- is(O, controller), related(O).
-has_property(O, grabbable) :- is(O, controller), related(O).
-has_property(O, movable) :- is(O, controller), related(O).
-has_property(O, can_open) :- is(O, food_jam), related(O).
-has_property(O, grabbable) :- is(O, food_jam), related(O).
-has_property(O, movable) :- is(O, food_jam), related(O).
-has_property(O, cream) :- is(O, food_jam), related(O).
-has_property(O, eatable) :- is(O, food_jam), related(O).
-has_property(O, has_plug) :- is(O, hairdryer), related(O).
-has_property(O, grabbable) :- is(O, hairdryer), related(O).
-has_property(O, movable) :- is(O, hairdryer), related(O).
-has_property(O, has_switch) :- is(O, hairdryer), related(O).
-has_property(O, cuttable) :- is(O, food_onion), related(O).
-has_property(O, movable) :- is(O, food_onion), related(O).
-has_property(O, grabbable) :- is(O, food_onion), related(O).
-has_property(O, eatable) :- is(O, food_onion), related(O).
-has_property(O, has_plug) :- is(O, console), related(O).
-has_property(O, can_open) :- is(O, console), related(O).
-has_property(O, has_switch) :- is(O, console), related(O).
-has_property(O, grabbable) :- is(O, console), related(O).
-has_property(O, movable) :- is(O, console), related(O).
-has_property(O, cuttable) :- is(O, food_carrot), related(O).
-has_property(O, movable) :- is(O, food_carrot), related(O).
-has_property(O, grabbable) :- is(O, food_carrot), related(O).
-has_property(O, eatable) :- is(O, food_carrot), related(O).
-has_property(O, grabbable) :- is(O, cd), related(O).
-has_property(O, movable) :- is(O, cd), related(O).
-has_property(O, cuttable) :- is(O, food_food), related(O).
-has_property(O, movable) :- is(O, food_food), related(O).
-has_property(O, grabbable) :- is(O, food_food), related(O).
-has_property(O, eatable) :- is(O, food_food), related(O).
-has_property(O, grabbable) :- is(O, oil), related(O).
-has_property(O, movable) :- is(O, oil), related(O).
-has_property(O, pourable) :- is(O, oil), related(O).
-has_property(O, drinkable) :- is(O, oil), related(O).
-has_property(O, clothes) :- is(O, pajamas), related(O).
-has_property(O, grabbable) :- is(O, pajamas), related(O).
-has_property(O, movable) :- is(O, pajamas), related(O).
-has_property(O, can_open) :- is(O, pot), related(O).
-has_property(O, recipient) :- is(O, pot), related(O).
-has_property(O, movable) :- is(O, pot), related(O).
-has_property(O, grabbable) :- is(O, pot), related(O).
-has_property(O, grabbable) :- is(O, candle), related(O).
-has_property(O, movable) :- is(O, candle), related(O).
-has_property(O, has_switch) :- is(O, candle), related(O).
-has_property(O, grabbable) :- is(O, detergent), related(O).
-has_property(O, movable) :- is(O, detergent), related(O).
-has_property(O, pourable) :- is(O, detergent), related(O).
+has_property(O, sittable) :- is(O, piano_bench), related(O).
+has_property(O, surfaces) :- is(O, piano_bench), related(O).
+has_property(O, grabbable) :- is(O, piano_bench), related(O).
+has_property(O, movable) :- is(O, piano_bench), related(O).
+has_property(O, can_open) :- is(O, milk), related(O).
+has_property(O, grabbable) :- is(O, milk), related(O).
+has_property(O, pourable) :- is(O, milk), related(O).
+has_property(O, drinkable) :- is(O, milk), related(O).
+has_property(O, movable) :- is(O, milk), related(O).
+has_property(O, grabbable) :- is(O, food_ice_cream), related(O).
+has_property(O, movable) :- is(O, food_ice_cream), related(O).
+has_property(O, cream) :- is(O, food_ice_cream), related(O).
+has_property(O, containers) :- is(O, toothbrush_holder), related(O).
+has_property(O, grabbable) :- is(O, toothbrush_holder), related(O).
+has_property(O, movable) :- is(O, toothbrush_holder), related(O).
+has_property(O, grabbable) :- is(O, needle), related(O).
+has_property(O, movable) :- is(O, needle), related(O).
+has_property(O, can_open) :- is(O, jelly), related(O).
+has_property(O, grabbable) :- is(O, jelly), related(O).
+has_property(O, movable) :- is(O, jelly), related(O).
+has_property(O, cream) :- is(O, jelly), related(O).
+has_property(O, cuttable) :- is(O, food_steak), related(O).
+has_property(O, movable) :- is(O, food_steak), related(O).
+has_property(O, grabbable) :- is(O, food_steak), related(O).
+has_property(O, eatable) :- is(O, food_steak), related(O).
 has_property(O, clothes) :- is(O, clothes_scarf), related(O).
 has_property(O, hangable) :- is(O, clothes_scarf), related(O).
 has_property(O, movable) :- is(O, clothes_scarf), related(O).
 has_property(O, grabbable) :- is(O, clothes_scarf), related(O).
-has_property(O, grabbable) :- is(O, crayon), related(O).
-has_property(O, movable) :- is(O, crayon), related(O).
-has_property(O, can_open) :- is(O, shampoo), related(O).
-has_property(O, grabbable) :- is(O, shampoo), related(O).
-has_property(O, movable) :- is(O, shampoo), related(O).
-has_property(O, pourable) :- is(O, shampoo), related(O).
-has_property(O, grabbable) :- is(O, tape), related(O).
-has_property(O, movable) :- is(O, tape), related(O).
-has_property(O, grabbable) :- is(O, ice), related(O).
-has_property(O, movable) :- is(O, ice), related(O).
-has_property(O, readable) :- is(O, homework), related(O).
-has_property(O, movable) :- is(O, homework), related(O).
-has_property(O, grabbable) :- is(O, homework), related(O).
-has_property(O, has_paper) :- is(O, homework), related(O).
-has_property(O, grabbable) :- is(O, knife), related(O).
-has_property(O, movable) :- is(O, knife), related(O).
-has_property(O, grabbable) :- is(O, dog), related(O).
-has_property(O, movable) :- is(O, dog), related(O).
-has_property(O, grabbable) :- is(O, mop), related(O).
-has_property(O, movable) :- is(O, mop), related(O).
-has_property(O, can_open) :- is(O, coffee_pot), related(O).
-has_property(O, recipient) :- is(O, coffee_pot), related(O).
-has_property(O, movable) :- is(O, coffee_pot), related(O).
-has_property(O, grabbable) :- is(O, coffee_pot), related(O).
-has_property(O, can_open) :- is(O, box), related(O).
-has_property(O, cover_object) :- is(O, box), related(O).
-has_property(O, grabbable) :- is(O, box), related(O).
-has_property(O, containers) :- is(O, box), related(O).
-has_property(O, recipient) :- is(O, box), related(O).
-has_property(O, movable) :- is(O, box), related(O).
-has_property(O, can_open) :- is(O, ground_coffee), related(O).
-has_property(O, grabbable) :- is(O, ground_coffee), related(O).
-has_property(O, movable) :- is(O, ground_coffee), related(O).
-has_property(O, clothes) :- is(O, shoes), related(O).
-has_property(O, grabbable) :- is(O, shoes), related(O).
-has_property(O, movable) :- is(O, shoes), related(O).
-has_property(O, cover_object) :- is(O, towel), related(O).
-has_property(O, movable) :- is(O, towel), related(O).
-has_property(O, grabbable) :- is(O, towel), related(O).
-has_property(O, surfaces) :- is(O, board_game), related(O).
-has_property(O, grabbable) :- is(O, board_game), related(O).
-has_property(O, movable) :- is(O, board_game), related(O).
-has_property(O, lookable) :- is(O, board_game), related(O).
-has_property(O, grabbable) :- is(O, soap), related(O).
-has_property(O, movable) :- is(O, soap), related(O).
-has_property(O, cream) :- is(O, soap), related(O).
-has_property(O, clothes) :- is(O, clothes_dress), related(O).
-has_property(O, hangable) :- is(O, clothes_dress), related(O).
-has_property(O, movable) :- is(O, clothes_dress), related(O).
-has_property(O, grabbable) :- is(O, clothes_dress), related(O).
-has_property(O, grabbable) :- is(O, mouthwash), related(O).
-has_property(O, movable) :- is(O, mouthwash), related(O).
-has_property(O, pourable) :- is(O, mouthwash), related(O).
-has_property(O, drinkable) :- is(O, mouthwash), related(O).
-has_property(O, recipient) :- is(O, mop_bucket), related(O).
-has_property(O, movable) :- is(O, mop_bucket), related(O).
-has_property(O, grabbable) :- is(O, mop_bucket), related(O).
-has_property(O, hangable) :- is(O, dustpan), related(O).
-has_property(O, movable) :- is(O, dustpan), related(O).
-has_property(O, grabbable) :- is(O, dustpan), related(O).
-has_property(O, grabbable) :- is(O, foundation), related(O).
-has_property(O, movable) :- is(O, foundation), related(O).
-has_property(O, cream) :- is(O, foundation), related(O).
-has_property(O, grabbable) :- is(O, food_donut), related(O).
-has_property(O, movable) :- is(O, food_donut), related(O).
-has_property(O, containers) :- is(O, toothbrush_holder), related(O).
-has_property(O, grabbable) :- is(O, toothbrush_holder), related(O).
-has_property(O, movable) :- is(O, toothbrush_holder), related(O).
-has_property(O, grabbable) :- is(O, conditioner), related(O).
-has_property(O, movable) :- is(O, conditioner), related(O).
-has_property(O, pourable) :- is(O, conditioner), related(O).
-has_property(O, cream) :- is(O, conditioner), related(O).
-has_property(O, containers) :- is(O, basket_for_clothes), related(O).
-has_property(O, can_open) :- is(O, basket_for_clothes), related(O).
-has_property(O, grabbable) :- is(O, basket_for_clothes), related(O).
-has_property(O, movable) :- is(O, basket_for_clothes), related(O).
-has_property(O, clothes) :- is(O, clothes_underwear), related(O).
-has_property(O, hangable) :- is(O, clothes_underwear), related(O).
-has_property(O, movable) :- is(O, clothes_underwear), related(O).
-has_property(O, grabbable) :- is(O, clothes_underwear), related(O).
-has_property(O, cuttable) :- is(O, cards), related(O).
-has_property(O, movable) :- is(O, cards), related(O).
-has_property(O, grabbable) :- is(O, cards), related(O).
-has_property(O, has_paper) :- is(O, cards), related(O).
-has_property(O, readable) :- is(O, check), related(O).
-has_property(O, movable) :- is(O, check), related(O).
-has_property(O, grabbable) :- is(O, check), related(O).
-has_property(O, has_paper) :- is(O, check), related(O).
-has_property(O, can_open) :- is(O, shoe_shine_kit), related(O).
-has_property(O, grabbable) :- is(O, shoe_shine_kit), related(O).
-has_property(O, movable) :- is(O, shoe_shine_kit), related(O).
-has_property(O, grabbable) :- is(O, food_ice_cream), related(O).
-has_property(O, movable) :- is(O, food_ice_cream), related(O).
-has_property(O, cream) :- is(O, food_ice_cream), related(O).
-has_property(O, can_open) :- is(O, after_shave), related(O).
-has_property(O, grabbable) :- is(O, after_shave), related(O).
-has_property(O, pourable) :- is(O, after_shave), related(O).
-has_property(O, movable) :- is(O, after_shave), related(O).
-has_property(O, cream) :- is(O, after_shave), related(O).
+has_property(O, grabbable) :- is(O, bookmark), related(O).
+has_property(O, movable) :- is(O, bookmark), related(O).
+has_property(O, has_paper) :- is(O, bookmark), related(O).
+has_property(O, grabbable) :- is(O, broom), related(O).
+has_property(O, movable) :- is(O, broom), related(O).
+has_property(O, surfaces) :- is(O, table_cloth), related(O).
+has_property(O, grabbable) :- is(O, table_cloth), related(O).
+has_property(O, movable) :- is(O, table_cloth), related(O).
+has_property(O, cover_object) :- is(O, table_cloth), related(O).
+has_property(O, can_open) :- is(O, pot), related(O).
+has_property(O, recipient) :- is(O, pot), related(O).
+has_property(O, movable) :- is(O, pot), related(O).
+has_property(O, grabbable) :- is(O, pot), related(O).
+has_property(O, can_open) :- is(O, novel), related(O).
+has_property(O, readable) :- is(O, novel), related(O).
+has_property(O, cuttable) :- is(O, novel), related(O).
+has_property(O, grabbable) :- is(O, novel), related(O).
+has_property(O, has_paper) :- is(O, novel), related(O).
+has_property(O, movable) :- is(O, novel), related(O).
+has_property(O, grabbable) :- is(O, food_noodles), related(O).
+has_property(O, movable) :- is(O, food_noodles), related(O).
+has_property(O, eatable) :- is(O, food_noodles), related(O).
+has_property(O, cuttable) :- is(O, food_bread), related(O).
+has_property(O, movable) :- is(O, food_bread), related(O).
+has_property(O, grabbable) :- is(O, food_bread), related(O).
+has_property(O, eatable) :- is(O, food_bread), related(O).
 
 category(cpuscreen).
-category(shampoo).
 category(maindoor).
-category(box).
+category(stereo).
+category(glue).
 category(toy).
 category(television).
+category(scrabble).
 category(phone).
+category(food_butter).
 category(photoframe).
 category(light).
 category(keyboard).
-category(clothes_dress).
-category(dustpan).
 category(powersocket).
-category(dry_pasta).
+category(milk).
 category(stovefan).
 category(bedroom).
 category(floor).
+category(comb).
+category(dough).
+category(fork).
+category(tooth_paste).
 category(pot).
-category(food_carrot).
 category(food_ice_cream).
-category(food_jam).
 category(bathroom).
 category(shelf).
-category(clothes_underwear).
-category(shoes).
-category(hairdryer).
 category(closetdrawer).
 category(tray).
 category(dog).
@@ -5922,15 +5802,9 @@ category(dining_room).
 category(wall).
 category(coffe_maker).
 category(wallshelf).
-category(mop_bucket).
-category(food_donut).
-category(basket_for_clothes).
-category(pajamas).
 category(mat).
 category(nightstand).
 category(window).
-category(towel).
-category(cards).
 category(door).
 category(vase).
 category(wall_clock).
@@ -5938,92 +5812,81 @@ category(filing_cabinet).
 category(tablelamp).
 category(sink).
 category(curtain).
-category(candle).
 category(dvd_player).
+category(food_bread).
 category(bed).
-category(tape).
 category(bathtub).
 category(computer).
-category(crayon).
+category(bookmark).
 category(ceilinglamp).
 category(mousepad).
-category(food_onion).
 category(dresser).
-category(coffee_pot).
-category(mop).
 category(bookshelf).
-category(ice).
-category(oil).
-category(mouthwash).
-category(homework).
-category(controller).
+category(laptop).
+category(spoon).
+category(table_cloth).
 category(cutting_board).
+category(food_steak).
+category(piano_bench).
+category(needle).
 category(faucet).
 category(microwave).
 category(check).
 category(couch).
+category(food_noodles).
 category(desk).
 category(oven).
 category(bathroom_counter).
 category(detergent).
 category(character).
 category(knife).
+category(dishrack).
+category(beer).
 category(doorjamb).
 category(freezer).
 category(food_food).
-category(headset).
 category(napkin).
 category(clothes_scarf).
 category(standingmirror).
 category(toilet).
 category(cup).
 category(walllamp).
-category(conditioner).
-category(foundation).
 category(toothbrush_holder).
 category(chair).
 category(pillow).
 category(ceiling).
-category(shoe_shine_kit).
+category(vacuum_cleaner).
 category(soap).
+category(food_egg).
 category(bench).
+category(broom).
+category(deck_of_cards).
 category(hanger).
-category(ground_coffee).
-category(after_shave).
+category(oven_mitts).
 category(table).
-category(console).
-category(board_game).
 category(novel).
 category(bathroom_cabinet).
+category(jelly).
 category(towel_rack).
 category(mouse).
-category(cd).
 category(kitchen_counter).
 category(orchid).
-category(hairbrush).
 category(tvstand).
 category(shower).
-category(bills).
 category(toaster).
 
-task(bring_me_red_cookbook(C)) :- subtask(bring_me_red_cookbook(C)).
-relate_task(bring_me_red_cookbook(C)) :- task(bring_me_red_cookbook(C)).
-related(C) :- subtask(bring_me_red_cookbook(C)), relate_task(bring_me_red_cookbook(C)).
+task(surf_internet(C)) :- subtask(surf_internet(C)).
+relate_task(surf_internet(C)) :- task(surf_internet(C)).
+related(C) :- subtask(surf_internet(C)), relate_task(surf_internet(C)).
 
-{subtask(bring_me_red_cookbook(C)): is(C, character)}=1.
-{subtask(bring_me_red_cookbook(C), walk(O), 1): is(O, bookshelf)}=1 :- subtask(bring_me_red_cookbook(C)).
-related(O) :- subtask(bring_me_red_cookbook(C), walk(O), 1), relate_task(bring_me_red_cookbook(C)).
-{subtask(bring_me_red_cookbook(C), lookat(O), 2): is(O, bookshelf)}=1 :- subtask(bring_me_red_cookbook(C)).
-related(O) :- subtask(bring_me_red_cookbook(C), lookat(O), 2), relate_task(bring_me_red_cookbook(C)).
-{subtask(bring_me_red_cookbook(C), grab(O), 3): is(O, novel)}=1 :- subtask(bring_me_red_cookbook(C)).
-related(O) :- subtask(bring_me_red_cookbook(C), grab(O), 3), relate_task(bring_me_red_cookbook(C)).
-{subtask(bring_me_red_cookbook(C), walk(O), 4): is(O, dining_room)}=1 :- subtask(bring_me_red_cookbook(C)).
-related(O) :- subtask(bring_me_red_cookbook(C), walk(O), 4), relate_task(bring_me_red_cookbook(C)).
-{subtask(bring_me_red_cookbook(C), grab(O), 5): is(O, novel)}=1 :- subtask(bring_me_red_cookbook(C)).
-related(O) :- subtask(bring_me_red_cookbook(C), grab(O), 5), relate_task(bring_me_red_cookbook(C)).
-related_action(walk(O)) :- subtask(bring_me_red_cookbook(C), walk(O), 1).
-related_action(lookat(O)) :- subtask(bring_me_red_cookbook(C), lookat(O), 2).
-related_action(grab(O)) :- subtask(bring_me_red_cookbook(C), grab(O), 3).
-related_action(walk(O)) :- subtask(bring_me_red_cookbook(C), walk(O), 4).
-related_action(grab(O)) :- subtask(bring_me_red_cookbook(C), grab(O), 5).
+{subtask(surf_internet(C)): is(C, character)}=1.
+{subtask(surf_internet(C), sit(O), 1): is(O, chair)}=1 :- subtask(surf_internet(C)).
+related(O) :- subtask(surf_internet(C), sit(O), 1), relate_task(surf_internet(C)).
+{subtask(surf_internet(C), open(O), 2): is(O, laptop)}=1 :- subtask(surf_internet(C)).
+related(O) :- subtask(surf_internet(C), open(O), 2), relate_task(surf_internet(C)).
+{subtask(surf_internet(C), plugin(O), 3): is(O, laptop)}=1 :- subtask(surf_internet(C)).
+related(O) :- subtask(surf_internet(C), plugin(O), 3), relate_task(surf_internet(C)).
+related_action(sit(O)) :- subtask(surf_internet(C), sit(O), 1).
+related_action(open(O)) :- subtask(surf_internet(C), open(O), 2).
+related_action(plugin(O)) :- subtask(surf_internet(C), plugin(O), 3).
 

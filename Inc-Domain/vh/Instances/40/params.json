@@ -2,6 +2,6 @@
   "llm_model": "gpt-3.5-turbo-1106",
   "scene_graph": "TrimmedTestScene2_graph",
   "result_folder": "results_intentions_march-13-18",
-  "instance_folder": "file20_2",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene2_graph\\results_intentions_march-13-18\\file20_2"
+  "instance_folder": "file496_1",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene2_graph\\results_intentions_march-13-18\\file496_1"
 }

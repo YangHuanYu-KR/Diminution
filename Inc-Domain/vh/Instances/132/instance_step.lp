@@ -1,10 +1,6 @@
 #program step(t).
 
-goal(pick_up_dirty_dishes(C), T0, t, 1) :- subtask(pick_up_dirty_dishes(C)), subtask(pick_up_dirty_dishes(C), walk(O1_1), 1), goal(subtask(pick_up_dirty_dishes(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(pick_up_dirty_dishes(C), grab(O2_1), 2), goal(subtask(pick_up_dirty_dishes(C), grab(O2_1), 2), T1), T1 <= T2, time(T1), subtask(pick_up_dirty_dishes(C), walk(O3_1), 3), goal(subtask(pick_up_dirty_dishes(C), walk(O3_1), 3), T2), T2 <= t, time(T2).
-goal(pick_up_dirty_dishes(C), T3, t, 2) :- subtask(pick_up_dirty_dishes(C), putin(O4_1, O4_2), 4), goal(subtask(pick_up_dirty_dishes(C), putin(O4_1, O4_2), 4), T3), T3 <= t, time(T3).
-goal(pick_up_dirty_dishes(C), t) :- goal(pick_up_dirty_dishes(C), T0, T2, 1), goal(pick_up_dirty_dishes(C), T3, t, 2), time(T0), time(T2), time(T3), T2 <= T3.
+goal(turn_light_off(C), t) :- subtask(turn_light_off(C)), subtask(turn_light_off(C), find(O1_1), 1), goal(subtask(turn_light_off(C), find(O1_1), 1), T0), T0 <= T1, time(T0), subtask(turn_light_off(C), switchoff(O2_1), 2), goal(subtask(turn_light_off(C), switchoff(O2_1), 2), T1), T1 <= t, time(T1).
 
-goal(subtask(pick_up_dirty_dishes(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(pick_up_dirty_dishes(C), walk(O), 1).
-goal(subtask(pick_up_dirty_dishes(C), grab(O), 2), t) :- goal(C, grab(O), t), subtask(pick_up_dirty_dishes(C), grab(O), 2).
-goal(subtask(pick_up_dirty_dishes(C), walk(O), 3), t) :- goal(C, walk(O), t), subtask(pick_up_dirty_dishes(C), walk(O), 3).
-goal(subtask(pick_up_dirty_dishes(C), putin(O1, O2), 4), t) :- goal(C, putin(O1, O2), t), subtask(pick_up_dirty_dishes(C), putin(O1, O2), 4).
+goal(subtask(turn_light_off(C), find(O), 1), t) :- goal(C, find(O), t), subtask(turn_light_off(C), find(O), 1).
+goal(subtask(turn_light_off(C), switchoff(O), 2), t) :- goal(C, switchoff(O), t), subtask(turn_light_off(C), switchoff(O), 2).

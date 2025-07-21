@@ -1,10 +1,17 @@
 #program step(t).
 
-goal(give_milk_to_cat(C), T0, t, 1) :- subtask(give_milk_to_cat(C)), subtask(give_milk_to_cat(C), walk(O1_1), 1), goal(subtask(give_milk_to_cat(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(give_milk_to_cat(C), grab(O2_1), 2), goal(subtask(give_milk_to_cat(C), grab(O2_1), 2), T1), T1 <= T2, time(T1), subtask(give_milk_to_cat(C), find(O3_1), 3), goal(subtask(give_milk_to_cat(C), find(O3_1), 3), T2), T2 <= t, time(T2).
-goal(give_milk_to_cat(C), T3, t, 2) :- subtask(give_milk_to_cat(C), pour(O4_1, O4_2), 4), goal(subtask(give_milk_to_cat(C), pour(O4_1, O4_2), 4), T3), T3 <= t, time(T3).
-goal(give_milk_to_cat(C), t) :- goal(give_milk_to_cat(C), T0, T2, 1), goal(give_milk_to_cat(C), T3, t, 2), time(T0), time(T2), time(T3), T2 <= T3.
+goal(change_tv_channel(C), T0, t, 1) :- subtask(change_tv_channel(C)), subtask(change_tv_channel(C), walk(O1_1), 1), goal(subtask(change_tv_channel(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(change_tv_channel(C), walk(O2_1), 2), goal(subtask(change_tv_channel(C), walk(O2_1), 2), T1), T1 <= T2, time(T1), subtask(change_tv_channel(C), switchon(O3_1), 3), goal(subtask(change_tv_channel(C), switchon(O3_1), 3), T2), T2 <= t, time(T2).
+goal(change_tv_channel(C), T3, t, 2) :- subtask(change_tv_channel(C), lookat(O4_1), 4), goal(subtask(change_tv_channel(C), lookat(O4_1), 4), T3), T3 <= T4, time(T3), subtask(change_tv_channel(C), touch(O5_1), 5), goal(subtask(change_tv_channel(C), touch(O5_1), 5), T4), T4 <= T5, time(T4), subtask(change_tv_channel(C), switchon(O6_1), 6), goal(subtask(change_tv_channel(C), switchon(O6_1), 6), T5), T5 <= t, time(T5).
+goal(change_tv_channel(C), T0, t, 3) :- goal(change_tv_channel(C), T0, T2, 1), goal(change_tv_channel(C), T3, T5, 2), time(T0), time(T2), time(T3), T2 <= T3, time(T5), T3 <= t.
+goal(change_tv_channel(C), T6, t, 4) :- subtask(change_tv_channel(C), find(O7_1), 7), goal(subtask(change_tv_channel(C), find(O7_1), 7), T6), T6 <= T7, time(T6), subtask(change_tv_channel(C), touch(O8_1), 8), goal(subtask(change_tv_channel(C), touch(O8_1), 8), T7), T7 <= T8, time(T7), subtask(change_tv_channel(C), switchon(O9_1), 9), goal(subtask(change_tv_channel(C), switchon(O9_1), 9), T8), T8 <= t, time(T8).
+goal(change_tv_channel(C), t) :- goal(change_tv_channel(C), T0, T5, 3), goal(change_tv_channel(C), T6, t, 4), time(T0), time(T5), time(T6), T5 <= T6.
 
-goal(subtask(give_milk_to_cat(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(give_milk_to_cat(C), walk(O), 1).
-goal(subtask(give_milk_to_cat(C), grab(O), 2), t) :- goal(C, grab(O), t), subtask(give_milk_to_cat(C), grab(O), 2).
-goal(subtask(give_milk_to_cat(C), find(O), 3), t) :- goal(C, find(O), t), subtask(give_milk_to_cat(C), find(O), 3).
-goal(subtask(give_milk_to_cat(C), pour(O1, O2), 4), t) :- goal(C, pour(O1, O2), t), subtask(give_milk_to_cat(C), pour(O1, O2), 4).
+goal(subtask(change_tv_channel(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(change_tv_channel(C), walk(O), 1).
+goal(subtask(change_tv_channel(C), walk(O), 2), t) :- goal(C, walk(O), t), subtask(change_tv_channel(C), walk(O), 2).
+goal(subtask(change_tv_channel(C), switchon(O), 3), t) :- goal(C, switchon(O), t), subtask(change_tv_channel(C), switchon(O), 3).
+goal(subtask(change_tv_channel(C), lookat(O), 4), t) :- goal(C, lookat(O), t), subtask(change_tv_channel(C), lookat(O), 4).
+goal(subtask(change_tv_channel(C), touch(O), 5), t) :- goal(C, touch(O), t), subtask(change_tv_channel(C), touch(O), 5).
+goal(subtask(change_tv_channel(C), switchon(O), 6), t) :- goal(C, switchon(O), t), subtask(change_tv_channel(C), switchon(O), 6).
+goal(subtask(change_tv_channel(C), find(O), 7), t) :- goal(C, find(O), t), subtask(change_tv_channel(C), find(O), 7).
+goal(subtask(change_tv_channel(C), touch(O), 8), t) :- goal(C, touch(O), t), subtask(change_tv_channel(C), touch(O), 8).
+goal(subtask(change_tv_channel(C), switchon(O), 9), t) :- goal(C, switchon(O), t), subtask(change_tv_channel(C), switchon(O), 9).

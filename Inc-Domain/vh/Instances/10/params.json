@@ -2,6 +2,6 @@
   "llm_model": "gpt-3.5-turbo-1106",
   "scene_graph": "TrimmedTestScene1_graph",
   "result_folder": "results_text_rebuttal_specialparsed_programs_turk_robot",
-  "instance_folder": "split6_1",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene1_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split6_1"
+  "instance_folder": "split79_3",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene1_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split79_3"
 }

@@ -1,7 +1,7 @@
 {
-  "llm_model": "gpt-4o",
-  "scene_graph": "TrimmedTestScene6_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_upwork_july",
-  "instance_folder": "split14_6",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene6_graph\\results_text_rebuttal_specialparsed_programs_upwork_july\\split14_6"
+  "llm_model": "Meta-Llama-3.1-8B-Instruct",
+  "scene_graph": "TrimmedTestScene2_graph",
+  "result_folder": "results_text_rebuttal_specialparsed_programs_turk_third",
+  "instance_folder": "split138_2",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\Meta-Llama-3.1-8B-Instruct\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_turk_third\\split138_2"
 }

@@ -1,7 +1,7 @@
 {
   "llm_model": "gpt-4o",
-  "scene_graph": "TrimmedTestScene1_graph",
+  "scene_graph": "TrimmedTestScene2_graph",
   "result_folder": "results_text_rebuttal_specialparsed_programs_turk_robot",
-  "instance_folder": "split86_2",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene1_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split86_2"
+  "instance_folder": "split45_2",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-4o\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split45_2"
 }

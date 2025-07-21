@@ -1,11 +1,12 @@
 #program step(t).
 
-goal(try_yourself_off(C), T0, t, 1) :- subtask(try_yourself_off(C)), subtask(try_yourself_off(C), walk(O1_1), 1), goal(subtask(try_yourself_off(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(try_yourself_off(C), find(O2_1), 2), goal(subtask(try_yourself_off(C), find(O2_1), 2), T1), T1 <= T2, time(T1), subtask(try_yourself_off(C), touch(O3_1), 3), goal(subtask(try_yourself_off(C), touch(O3_1), 3), T2), T2 <= t, time(T2).
-goal(try_yourself_off(C), T3, t, 2) :- subtask(try_yourself_off(C), wash(O4_1), 4), goal(subtask(try_yourself_off(C), wash(O4_1), 4), T3), T3 <= T4, time(T3), subtask(try_yourself_off(C), touch(O5_1), 5), goal(subtask(try_yourself_off(C), touch(O5_1), 5), T4), T4 <= t, time(T4).
-goal(try_yourself_off(C), t) :- goal(try_yourself_off(C), T0, T2, 1), goal(try_yourself_off(C), T3, t, 2), time(T0), time(T2), time(T3), T2 <= T3.
+goal(shredding(C), T0, t, 1) :- subtask(shredding(C)), subtask(shredding(C), walk(O1_1), 1), goal(subtask(shredding(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(shredding(C), grab(O2_1), 2), goal(subtask(shredding(C), grab(O2_1), 2), T1), T1 <= T2, time(T1), subtask(shredding(C), find(O3_1), 3), goal(subtask(shredding(C), find(O3_1), 3), T2), T2 <= t, time(T2).
+goal(shredding(C), T3, t, 2) :- subtask(shredding(C), plugin(O4_1), 4), goal(subtask(shredding(C), plugin(O4_1), 4), T3), T3 <= T4, time(T3), subtask(shredding(C), putin(O5_1, O5_2), 5), goal(subtask(shredding(C), putin(O5_1, O5_2), 5), T4), T4 <= T5, time(T4), subtask(shredding(C), switchon(O6_1), 6), goal(subtask(shredding(C), switchon(O6_1), 6), T5), T5 <= t, time(T5).
+goal(shredding(C), t) :- goal(shredding(C), T0, T2, 1), goal(shredding(C), T3, t, 2), time(T0), time(T2), time(T3), T2 <= T3.
 
-goal(subtask(try_yourself_off(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(try_yourself_off(C), walk(O), 1).
-goal(subtask(try_yourself_off(C), find(O), 2), t) :- goal(C, find(O), t), subtask(try_yourself_off(C), find(O), 2).
-goal(subtask(try_yourself_off(C), touch(O), 3), t) :- goal(C, touch(O), t), subtask(try_yourself_off(C), touch(O), 3).
-goal(subtask(try_yourself_off(C), wash(O), 4), t) :- goal(C, wash(O), t), subtask(try_yourself_off(C), wash(O), 4).
-goal(subtask(try_yourself_off(C), touch(O), 5), t) :- goal(C, touch(O), t), subtask(try_yourself_off(C), touch(O), 5).
+goal(subtask(shredding(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(shredding(C), walk(O), 1).
+goal(subtask(shredding(C), grab(O), 2), t) :- goal(C, grab(O), t), subtask(shredding(C), grab(O), 2).
+goal(subtask(shredding(C), find(O), 3), t) :- goal(C, find(O), t), subtask(shredding(C), find(O), 3).
+goal(subtask(shredding(C), plugin(O), 4), t) :- goal(C, plugin(O), t), subtask(shredding(C), plugin(O), 4).
+goal(subtask(shredding(C), putin(O1, O2), 5), t) :- goal(C, putin(O1, O2), t), subtask(shredding(C), putin(O1, O2), 5).
+goal(subtask(shredding(C), switchon(O), 6), t) :- goal(C, switchon(O), t), subtask(shredding(C), switchon(O), 6).

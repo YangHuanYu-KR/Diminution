@@ -4,6 +4,8 @@
 Incremental ASP Solver with Rich Per-Step Statistics
 ===================================================
 
+nohup python Inc-Domain/py/solve_incmode_clingo.py --domain vh --index -1 --related --csv --verbose > out.log 2>&1 &
+
 结合原 incmode 版本与 solve_main.py 的功能，支持：
   • 逐步 (step) ground+solve，并记录详细资源/规模指标
   • 批量运行 (--index -1) 与 CSV 汇总
@@ -41,8 +43,7 @@ def find_base_dir(target_dirname: str = "Diminution") -> Path:
 BASE_DIR = find_base_dir()
 sys.path.append(str(BASE_DIR))
 
-from deps.utils import _mb, _rss, all_constants_size, logger, upsert_and_sort_csv
-
+from deps.utils import _mb, _rss, all_constants_size, upsert_and_sort_csv
 
 
 # ─────────────────────────── CLI ────────────────────────────────────────────
@@ -59,7 +60,7 @@ def parse_args() -> argparse.Namespace:
                    type=int,
                    default=1,
                    help="clingo --models=N  (0 = 无上限)")
-    p.add_argument("--threads", type=int, default=0, help="并行线程数；0=自动检测 CPU")
+    p.add_argument("--threads", type=int, default=1, help="并行线程数；0=自动检测 CPU")
     p.add_argument("--verbose", action="store_true", help="打印每步资源消耗")
     p.add_argument("--related",
                    action="store_true",
@@ -67,7 +68,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--csv",
                    action="store_true",
                    help="将总览结果写入 <domain>/result.csv")
-    p.add_argument('--time_limit', type=int, default=300)
+    p.add_argument('--time_limit', type=int, default=30)
     return p.parse_args()
 
 
@@ -119,8 +120,11 @@ def run_step_with_timeout(ctl: Control, aspif_path: str, step: int,
         # ---------- solve --------------------------------------------------
         s_wall0 = time.perf_counter()
         s_cpu0 = time.process_time()
+        
         ret = ctl.solve(on_model=lambda m: collected_models.append(
-            sorted(str(s) for s in m.symbols(shown=True))))
+                sorted(str(s) for s in m.symbols(shown=True))), on_statistics=None)
+
+        
         mem_s = _rss()
         s_wall1 = time.perf_counter()
         s_cpu1 = time.process_time()
@@ -170,16 +174,16 @@ def _wrap_with_timeout(seconds: int):
 
 # ─────────────────────── control & helpers ─────────────────────────────────
 def build_control(args: argparse.Namespace) -> Control:
-
-    ctl = Control(arguments=[f"--stats=2"], logger=logger)
-
+        
+    # ctl = Control(arguments=["--stats=2"])
+    ctl = Control(arguments=["--stats=2"])
     ctl.configuration.solve.models = str(args.models)
     if args.threads == 0:
         import multiprocessing as mp
         threads = mp.cpu_count()
         threads = min(threads, 64)
 
-    ctl.configuration.solve.parallel_mode = str(max(1, threads))
+    ctl.configuration.solve.parallel_mode = str(max(1, args.threads))
     ctl.enable_cleanup = True
     return ctl
 
@@ -366,16 +370,14 @@ def run(args: argparse.Namespace):
     else:
         indices = [args.index]
 
-    csv_path = domain / "result_clingo.csv"
-        
+    csv_path = domain / "result_clingo_719_unrelated.csv"
+    
     for idx in indices:
+        idx = idx
         print(f"Now solving the {idx} instance in {domain}")
         row = solve_incremental(domain, idx, args)
         if args.csv:
             upsert_and_sort_csv(row, csv_path)
-
-
-
 
 
 # ─────────────────────────── entry ─────────────────────────────────────────

@@ -1,81 +1,30 @@
 #program step(t).
 
-goal(set_up_table(C), T0, t, 1) :- subtask(set_up_table(C)), subtask(set_up_table(C), walk(O1_1), 1), goal(subtask(set_up_table(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(set_up_table(C), walk(O2_1), 2), goal(subtask(set_up_table(C), walk(O2_1), 2), T1), T1 <= T2, time(T1), subtask(set_up_table(C), walk(O3_1), 3), goal(subtask(set_up_table(C), walk(O3_1), 3), T2), T2 <= t, time(T2).
-goal(set_up_table(C), T3, t, 2) :- subtask(set_up_table(C), walk(O4_1), 4), goal(subtask(set_up_table(C), walk(O4_1), 4), T3), T3 <= T4, time(T3), subtask(set_up_table(C), walk(O5_1), 5), goal(subtask(set_up_table(C), walk(O5_1), 5), T4), T4 <= T5, time(T4), subtask(set_up_table(C), walk(O6_1), 6), goal(subtask(set_up_table(C), walk(O6_1), 6), T5), T5 <= t, time(T5).
-goal(set_up_table(C), T0, t, 3) :- goal(set_up_table(C), T0, T2, 1), goal(set_up_table(C), T3, T5, 2), time(T0), time(T2), time(T3), T2 <= T3, time(T5), T3 <= t.
-goal(set_up_table(C), T6, t, 4) :- subtask(set_up_table(C), walk(O7_1), 7), goal(subtask(set_up_table(C), walk(O7_1), 7), T6), T6 <= T7, time(T6), subtask(set_up_table(C), walk(O8_1), 8), goal(subtask(set_up_table(C), walk(O8_1), 8), T7), T7 <= T8, time(T7), subtask(set_up_table(C), walk(O9_1), 9), goal(subtask(set_up_table(C), walk(O9_1), 9), T8), T8 <= t, time(T8).
-goal(set_up_table(C), T0, t, 5) :- goal(set_up_table(C), T0, T5, 3), goal(set_up_table(C), T6, T8, 4), time(T0), time(T5), time(T6), T5 <= T6, time(T8), T6 <= t.
-goal(set_up_table(C), T9, t, 6) :- subtask(set_up_table(C), walk(O10_1), 10), goal(subtask(set_up_table(C), walk(O10_1), 10), T9), T9 <= T10, time(T9), subtask(set_up_table(C), walk(O11_1), 11), goal(subtask(set_up_table(C), walk(O11_1), 11), T10), T10 <= T11, time(T10), subtask(set_up_table(C), walk(O12_1), 12), goal(subtask(set_up_table(C), walk(O12_1), 12), T11), T11 <= t, time(T11).
-goal(set_up_table(C), T0, t, 7) :- goal(set_up_table(C), T0, T8, 5), goal(set_up_table(C), T9, T11, 6), time(T0), time(T8), time(T9), T8 <= T9, time(T11), T9 <= t.
-goal(set_up_table(C), T12, t, 8) :- subtask(set_up_table(C), walk(O13_1), 13), goal(subtask(set_up_table(C), walk(O13_1), 13), T12), T12 <= T13, time(T12), subtask(set_up_table(C), walk(O14_1), 14), goal(subtask(set_up_table(C), walk(O14_1), 14), T13), T13 <= T14, time(T13), subtask(set_up_table(C), walk(O15_1), 15), goal(subtask(set_up_table(C), walk(O15_1), 15), T14), T14 <= t, time(T14).
-goal(set_up_table(C), T0, t, 9) :- goal(set_up_table(C), T0, T11, 7), goal(set_up_table(C), T12, T14, 8), time(T0), time(T11), time(T12), T11 <= T12, time(T14), T12 <= t.
-goal(set_up_table(C), T15, t, 10) :- subtask(set_up_table(C), walk(O16_1), 16), goal(subtask(set_up_table(C), walk(O16_1), 16), T15), T15 <= T16, time(T15), subtask(set_up_table(C), walk(O17_1), 17), goal(subtask(set_up_table(C), walk(O17_1), 17), T16), T16 <= T17, time(T16), subtask(set_up_table(C), walk(O18_1), 18), goal(subtask(set_up_table(C), walk(O18_1), 18), T17), T17 <= t, time(T17).
-goal(set_up_table(C), T0, t, 11) :- goal(set_up_table(C), T0, T14, 9), goal(set_up_table(C), T15, T17, 10), time(T0), time(T14), time(T15), T14 <= T15, time(T17), T15 <= t.
-goal(set_up_table(C), T18, t, 12) :- subtask(set_up_table(C), walk(O19_1), 19), goal(subtask(set_up_table(C), walk(O19_1), 19), T18), T18 <= T19, time(T18), subtask(set_up_table(C), walk(O20_1), 20), goal(subtask(set_up_table(C), walk(O20_1), 20), T19), T19 <= T20, time(T19), subtask(set_up_table(C), walk(O21_1), 21), goal(subtask(set_up_table(C), walk(O21_1), 21), T20), T20 <= t, time(T20).
-goal(set_up_table(C), T0, t, 13) :- goal(set_up_table(C), T0, T17, 11), goal(set_up_table(C), T18, T20, 12), time(T0), time(T17), time(T18), T17 <= T18, time(T20), T18 <= t.
-goal(set_up_table(C), T21, t, 14) :- subtask(set_up_table(C), walk(O22_1), 22), goal(subtask(set_up_table(C), walk(O22_1), 22), T21), T21 <= T22, time(T21), subtask(set_up_table(C), walk(O23_1), 23), goal(subtask(set_up_table(C), walk(O23_1), 23), T22), T22 <= T23, time(T22), subtask(set_up_table(C), walk(O24_1), 24), goal(subtask(set_up_table(C), walk(O24_1), 24), T23), T23 <= t, time(T23).
-goal(set_up_table(C), T0, t, 15) :- goal(set_up_table(C), T0, T20, 13), goal(set_up_table(C), T21, T23, 14), time(T0), time(T20), time(T21), T20 <= T21, time(T23), T21 <= t.
-goal(set_up_table(C), T24, t, 16) :- subtask(set_up_table(C), walk(O25_1), 25), goal(subtask(set_up_table(C), walk(O25_1), 25), T24), T24 <= T25, time(T24), subtask(set_up_table(C), walk(O26_1), 26), goal(subtask(set_up_table(C), walk(O26_1), 26), T25), T25 <= T26, time(T25), subtask(set_up_table(C), walk(O27_1), 27), goal(subtask(set_up_table(C), walk(O27_1), 27), T26), T26 <= t, time(T26).
-goal(set_up_table(C), T0, t, 17) :- goal(set_up_table(C), T0, T23, 15), goal(set_up_table(C), T24, T26, 16), time(T0), time(T23), time(T24), T23 <= T24, time(T26), T24 <= t.
-goal(set_up_table(C), T27, t, 18) :- subtask(set_up_table(C), walk(O28_1), 28), goal(subtask(set_up_table(C), walk(O28_1), 28), T27), T27 <= T28, time(T27), subtask(set_up_table(C), walk(O29_1), 29), goal(subtask(set_up_table(C), walk(O29_1), 29), T28), T28 <= T29, time(T28), subtask(set_up_table(C), walk(O30_1), 30), goal(subtask(set_up_table(C), walk(O30_1), 30), T29), T29 <= t, time(T29).
-goal(set_up_table(C), T0, t, 19) :- goal(set_up_table(C), T0, T26, 17), goal(set_up_table(C), T27, T29, 18), time(T0), time(T26), time(T27), T26 <= T27, time(T29), T27 <= t.
-goal(set_up_table(C), T30, t, 20) :- subtask(set_up_table(C), walk(O31_1), 31), goal(subtask(set_up_table(C), walk(O31_1), 31), T30), T30 <= T31, time(T30), subtask(set_up_table(C), walk(O32_1), 32), goal(subtask(set_up_table(C), walk(O32_1), 32), T31), T31 <= T32, time(T31), subtask(set_up_table(C), walk(O33_1), 33), goal(subtask(set_up_table(C), walk(O33_1), 33), T32), T32 <= t, time(T32).
-goal(set_up_table(C), T0, t, 21) :- goal(set_up_table(C), T0, T29, 19), goal(set_up_table(C), T30, T32, 20), time(T0), time(T29), time(T30), T29 <= T30, time(T32), T30 <= t.
-goal(set_up_table(C), T33, t, 22) :- subtask(set_up_table(C), walk(O34_1), 34), goal(subtask(set_up_table(C), walk(O34_1), 34), T33), T33 <= T34, time(T33), subtask(set_up_table(C), walk(O35_1), 35), goal(subtask(set_up_table(C), walk(O35_1), 35), T34), T34 <= T35, time(T34), subtask(set_up_table(C), walk(O36_1), 36), goal(subtask(set_up_table(C), walk(O36_1), 36), T35), T35 <= t, time(T35).
-goal(set_up_table(C), T0, t, 23) :- goal(set_up_table(C), T0, T32, 21), goal(set_up_table(C), T33, T35, 22), time(T0), time(T32), time(T33), T32 <= T33, time(T35), T33 <= t.
-goal(set_up_table(C), T36, t, 24) :- subtask(set_up_table(C), walk(O37_1), 37), goal(subtask(set_up_table(C), walk(O37_1), 37), T36), T36 <= T37, time(T36), subtask(set_up_table(C), walk(O38_1), 38), goal(subtask(set_up_table(C), walk(O38_1), 38), T37), T37 <= T38, time(T37), subtask(set_up_table(C), walk(O39_1), 39), goal(subtask(set_up_table(C), walk(O39_1), 39), T38), T38 <= t, time(T38).
-goal(set_up_table(C), T0, t, 25) :- goal(set_up_table(C), T0, T35, 23), goal(set_up_table(C), T36, T38, 24), time(T0), time(T35), time(T36), T35 <= T36, time(T38), T36 <= t.
-goal(set_up_table(C), T39, t, 26) :- subtask(set_up_table(C), walk(O40_1), 40), goal(subtask(set_up_table(C), walk(O40_1), 40), T39), T39 <= T40, time(T39), subtask(set_up_table(C), walk(O41_1), 41), goal(subtask(set_up_table(C), walk(O41_1), 41), T40), T40 <= T41, time(T40), subtask(set_up_table(C), walk(O42_1), 42), goal(subtask(set_up_table(C), walk(O42_1), 42), T41), T41 <= t, time(T41).
-goal(set_up_table(C), T0, t, 27) :- goal(set_up_table(C), T0, T38, 25), goal(set_up_table(C), T39, T41, 26), time(T0), time(T38), time(T39), T38 <= T39, time(T41), T39 <= t.
-goal(set_up_table(C), T42, t, 28) :- subtask(set_up_table(C), walk(O43_1), 43), goal(subtask(set_up_table(C), walk(O43_1), 43), T42), T42 <= T43, time(T42), subtask(set_up_table(C), walk(O44_1), 44), goal(subtask(set_up_table(C), walk(O44_1), 44), T43), T43 <= T44, time(T43), subtask(set_up_table(C), walk(O45_1), 45), goal(subtask(set_up_table(C), walk(O45_1), 45), T44), T44 <= t, time(T44).
-goal(set_up_table(C), T0, t, 29) :- goal(set_up_table(C), T0, T41, 27), goal(set_up_table(C), T42, T44, 28), time(T0), time(T41), time(T42), T41 <= T42, time(T44), T42 <= t.
-goal(set_up_table(C), T45, t, 30) :- subtask(set_up_table(C), walk(O46_1), 46), goal(subtask(set_up_table(C), walk(O46_1), 46), T45), T45 <= T46, time(T45), subtask(set_up_table(C), walk(O47_1), 47), goal(subtask(set_up_table(C), walk(O47_1), 47), T46), T46 <= t, time(T46).
-goal(set_up_table(C), t) :- goal(set_up_table(C), T0, T44, 29), goal(set_up_table(C), T45, t, 30), time(T0), time(T44), time(T45), T44 <= T45.
+goal(unload_dishwasher(C), T0, t, 1) :- subtask(unload_dishwasher(C)), subtask(unload_dishwasher(C), walk(O1_1), 1), goal(subtask(unload_dishwasher(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(unload_dishwasher(C), grab(O2_1), 2), goal(subtask(unload_dishwasher(C), grab(O2_1), 2), T1), T1 <= T2, time(T1), subtask(unload_dishwasher(C), find(O3_1), 3), goal(subtask(unload_dishwasher(C), find(O3_1), 3), T2), T2 <= t, time(T2).
+goal(unload_dishwasher(C), T3, t, 2) :- subtask(unload_dishwasher(C), open(O4_1), 4), goal(subtask(unload_dishwasher(C), open(O4_1), 4), T3), T3 <= T4, time(T3), subtask(unload_dishwasher(C), putin(O5_1, O5_2), 5), goal(subtask(unload_dishwasher(C), putin(O5_1, O5_2), 5), T4), T4 <= T5, time(T4), subtask(unload_dishwasher(C), close(O6_1), 6), goal(subtask(unload_dishwasher(C), close(O6_1), 6), T5), T5 <= t, time(T5).
+goal(unload_dishwasher(C), T0, t, 3) :- goal(unload_dishwasher(C), T0, T2, 1), goal(unload_dishwasher(C), T3, T5, 2), time(T0), time(T2), time(T3), T2 <= T3, time(T5), T3 <= t.
+goal(unload_dishwasher(C), T6, t, 4) :- subtask(unload_dishwasher(C), walk(O7_1), 7), goal(subtask(unload_dishwasher(C), walk(O7_1), 7), T6), T6 <= T7, time(T6), subtask(unload_dishwasher(C), walk(O8_1), 8), goal(subtask(unload_dishwasher(C), walk(O8_1), 8), T7), T7 <= T8, time(T7), subtask(unload_dishwasher(C), switchon(O9_1), 9), goal(subtask(unload_dishwasher(C), switchon(O9_1), 9), T8), T8 <= t, time(T8).
+goal(unload_dishwasher(C), T0, t, 5) :- goal(unload_dishwasher(C), T0, T5, 3), goal(unload_dishwasher(C), T6, T8, 4), time(T0), time(T5), time(T6), T5 <= T6, time(T8), T6 <= t.
+goal(unload_dishwasher(C), T9, t, 6) :- subtask(unload_dishwasher(C), walk(O10_1), 10), goal(subtask(unload_dishwasher(C), walk(O10_1), 10), T9), T9 <= T10, time(T9), subtask(unload_dishwasher(C), open(O11_1), 11), goal(subtask(unload_dishwasher(C), open(O11_1), 11), T10), T10 <= T11, time(T10), subtask(unload_dishwasher(C), drop(O12_1), 12), goal(subtask(unload_dishwasher(C), drop(O12_1), 12), T11), T11 <= t, time(T11).
+goal(unload_dishwasher(C), T0, t, 7) :- goal(unload_dishwasher(C), T0, T8, 5), goal(unload_dishwasher(C), T9, T11, 6), time(T0), time(T8), time(T9), T8 <= T9, time(T11), T9 <= t.
+goal(unload_dishwasher(C), T12, t, 8) :- subtask(unload_dishwasher(C), close(O13_1), 13), goal(subtask(unload_dishwasher(C), close(O13_1), 13), T12), T12 <= T13, time(T12), subtask(unload_dishwasher(C), putin(O14_1, O14_2), 14), goal(subtask(unload_dishwasher(C), putin(O14_1, O14_2), 14), T13), T13 <= T14, time(T13), subtask(unload_dishwasher(C), pour(O15_1, O15_2), 15), goal(subtask(unload_dishwasher(C), pour(O15_1, O15_2), 15), T14), T14 <= t, time(T14).
+goal(unload_dishwasher(C), T0, t, 9) :- goal(unload_dishwasher(C), T0, T11, 7), goal(unload_dishwasher(C), T12, T14, 8), time(T0), time(T11), time(T12), T11 <= T12, time(T14), T12 <= t.
+goal(unload_dishwasher(C), T15, t, 10) :- subtask(unload_dishwasher(C), putback(O16_1, O16_2), 16), goal(subtask(unload_dishwasher(C), putback(O16_1, O16_2), 16), T15), T15 <= t, time(T15).
+goal(unload_dishwasher(C), t) :- goal(unload_dishwasher(C), T0, T14, 9), goal(unload_dishwasher(C), T15, t, 10), time(T0), time(T14), time(T15), T14 <= T15.
 
-goal(subtask(set_up_table(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 1).
-goal(subtask(set_up_table(C), walk(O), 2), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 2).
-goal(subtask(set_up_table(C), walk(O), 3), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 3).
-goal(subtask(set_up_table(C), walk(O), 4), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 4).
-goal(subtask(set_up_table(C), walk(O), 5), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 5).
-goal(subtask(set_up_table(C), walk(O), 6), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 6).
-goal(subtask(set_up_table(C), walk(O), 7), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 7).
-goal(subtask(set_up_table(C), walk(O), 8), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 8).
-goal(subtask(set_up_table(C), walk(O), 9), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 9).
-goal(subtask(set_up_table(C), walk(O), 10), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 10).
-goal(subtask(set_up_table(C), walk(O), 11), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 11).
-goal(subtask(set_up_table(C), walk(O), 12), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 12).
-goal(subtask(set_up_table(C), walk(O), 13), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 13).
-goal(subtask(set_up_table(C), walk(O), 14), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 14).
-goal(subtask(set_up_table(C), walk(O), 15), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 15).
-goal(subtask(set_up_table(C), walk(O), 16), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 16).
-goal(subtask(set_up_table(C), walk(O), 17), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 17).
-goal(subtask(set_up_table(C), walk(O), 18), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 18).
-goal(subtask(set_up_table(C), walk(O), 19), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 19).
-goal(subtask(set_up_table(C), walk(O), 20), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 20).
-goal(subtask(set_up_table(C), walk(O), 21), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 21).
-goal(subtask(set_up_table(C), walk(O), 22), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 22).
-goal(subtask(set_up_table(C), walk(O), 23), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 23).
-goal(subtask(set_up_table(C), walk(O), 24), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 24).
-goal(subtask(set_up_table(C), walk(O), 25), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 25).
-goal(subtask(set_up_table(C), walk(O), 26), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 26).
-goal(subtask(set_up_table(C), walk(O), 27), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 27).
-goal(subtask(set_up_table(C), walk(O), 28), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 28).
-goal(subtask(set_up_table(C), walk(O), 29), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 29).
-goal(subtask(set_up_table(C), walk(O), 30), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 30).
-goal(subtask(set_up_table(C), walk(O), 31), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 31).
-goal(subtask(set_up_table(C), walk(O), 32), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 32).
-goal(subtask(set_up_table(C), walk(O), 33), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 33).
-goal(subtask(set_up_table(C), walk(O), 34), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 34).
-goal(subtask(set_up_table(C), walk(O), 35), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 35).
-goal(subtask(set_up_table(C), walk(O), 36), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 36).
-goal(subtask(set_up_table(C), walk(O), 37), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 37).
-goal(subtask(set_up_table(C), walk(O), 38), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 38).
-goal(subtask(set_up_table(C), walk(O), 39), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 39).
-goal(subtask(set_up_table(C), walk(O), 40), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 40).
-goal(subtask(set_up_table(C), walk(O), 41), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 41).
-goal(subtask(set_up_table(C), walk(O), 42), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 42).
-goal(subtask(set_up_table(C), walk(O), 43), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 43).
-goal(subtask(set_up_table(C), walk(O), 44), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 44).
-goal(subtask(set_up_table(C), walk(O), 45), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 45).
-goal(subtask(set_up_table(C), walk(O), 46), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 46).
-goal(subtask(set_up_table(C), walk(O), 47), t) :- goal(C, walk(O), t), subtask(set_up_table(C), walk(O), 47).
+goal(subtask(unload_dishwasher(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(unload_dishwasher(C), walk(O), 1).
+goal(subtask(unload_dishwasher(C), grab(O), 2), t) :- goal(C, grab(O), t), subtask(unload_dishwasher(C), grab(O), 2).
+goal(subtask(unload_dishwasher(C), find(O), 3), t) :- goal(C, find(O), t), subtask(unload_dishwasher(C), find(O), 3).
+goal(subtask(unload_dishwasher(C), open(O), 4), t) :- goal(C, open(O), t), subtask(unload_dishwasher(C), open(O), 4).
+goal(subtask(unload_dishwasher(C), putin(O1, O2), 5), t) :- goal(C, putin(O1, O2), t), subtask(unload_dishwasher(C), putin(O1, O2), 5).
+goal(subtask(unload_dishwasher(C), close(O), 6), t) :- goal(C, close(O), t), subtask(unload_dishwasher(C), close(O), 6).
+goal(subtask(unload_dishwasher(C), walk(O), 7), t) :- goal(C, walk(O), t), subtask(unload_dishwasher(C), walk(O), 7).
+goal(subtask(unload_dishwasher(C), walk(O), 8), t) :- goal(C, walk(O), t), subtask(unload_dishwasher(C), walk(O), 8).
+goal(subtask(unload_dishwasher(C), switchon(O), 9), t) :- goal(C, switchon(O), t), subtask(unload_dishwasher(C), switchon(O), 9).
+goal(subtask(unload_dishwasher(C), walk(O), 10), t) :- goal(C, walk(O), t), subtask(unload_dishwasher(C), walk(O), 10).
+goal(subtask(unload_dishwasher(C), open(O), 11), t) :- goal(C, open(O), t), subtask(unload_dishwasher(C), open(O), 11).
+goal(subtask(unload_dishwasher(C), drop(O), 12), t) :- goal(C, drop(O), t), subtask(unload_dishwasher(C), drop(O), 12).
+goal(subtask(unload_dishwasher(C), close(O), 13), t) :- goal(C, close(O), t), subtask(unload_dishwasher(C), close(O), 13).
+goal(subtask(unload_dishwasher(C), putin(O1, O2), 14), t) :- goal(C, putin(O1, O2), t), subtask(unload_dishwasher(C), putin(O1, O2), 14).
+goal(subtask(unload_dishwasher(C), pour(O1, O2), 15), t) :- goal(C, pour(O1, O2), t), subtask(unload_dishwasher(C), pour(O1, O2), 15).
+goal(subtask(unload_dishwasher(C), putback(O1, O2), 16), t) :- goal(C, putback(O1, O2), t), subtask(unload_dishwasher(C), putback(O1, O2), 16).

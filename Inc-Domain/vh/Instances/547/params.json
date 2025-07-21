@@ -1,7 +1,7 @@
 {
   "llm_model": "Meta-Llama-3.1-8B-Instruct",
-  "scene_graph": "TrimmedTestScene1_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_turk_robot",
-  "instance_folder": "split69_2",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\Meta-Llama-3.1-8B-Instruct\\TrimmedTestScene1_graph\\results_text_rebuttal_specialparsed_programs_turk_robot\\split69_2"
+  "scene_graph": "TrimmedTestScene2_graph",
+  "result_folder": "results_text_rebuttal_specialparsed_programs_upwork_july",
+  "instance_folder": "split23_9",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\Meta-Llama-3.1-8B-Instruct\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_upwork_july\\split23_9"
 }

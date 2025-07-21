@@ -1,6 +1,10 @@
 #program step(t).
 
-goal(look_out_window(C), t) :- subtask(look_out_window(C)), subtask(look_out_window(C), walk(O1_1), 1), goal(subtask(look_out_window(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(look_out_window(C), lookat(O2_1), 2), goal(subtask(look_out_window(C), lookat(O2_1), 2), T1), T1 <= t, time(T1).
+goal(greet_guests(C), T0, t, 1) :- subtask(greet_guests(C)), subtask(greet_guests(C), walk(O1_1), 1), goal(subtask(greet_guests(C), walk(O1_1), 1), T0), T0 <= T1, time(T0), subtask(greet_guests(C), lookat(O2_1), 2), goal(subtask(greet_guests(C), lookat(O2_1), 2), T1), T1 <= T2, time(T1), subtask(greet_guests(C), walk(O3_1), 3), goal(subtask(greet_guests(C), walk(O3_1), 3), T2), T2 <= t, time(T2).
+goal(greet_guests(C), T3, t, 2) :- subtask(greet_guests(C), lookat(O4_1), 4), goal(subtask(greet_guests(C), lookat(O4_1), 4), T3), T3 <= t, time(T3).
+goal(greet_guests(C), t) :- goal(greet_guests(C), T0, T2, 1), goal(greet_guests(C), T3, t, 2), time(T0), time(T2), time(T3), T2 <= T3.
 
-goal(subtask(look_out_window(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(look_out_window(C), walk(O), 1).
-goal(subtask(look_out_window(C), lookat(O), 2), t) :- goal(C, lookat(O), t), subtask(look_out_window(C), lookat(O), 2).
+goal(subtask(greet_guests(C), walk(O), 1), t) :- goal(C, walk(O), t), subtask(greet_guests(C), walk(O), 1).
+goal(subtask(greet_guests(C), lookat(O), 2), t) :- goal(C, lookat(O), t), subtask(greet_guests(C), lookat(O), 2).
+goal(subtask(greet_guests(C), walk(O), 3), t) :- goal(C, walk(O), t), subtask(greet_guests(C), walk(O), 3).
+goal(subtask(greet_guests(C), lookat(O), 4), t) :- goal(C, lookat(O), t), subtask(greet_guests(C), lookat(O), 4).

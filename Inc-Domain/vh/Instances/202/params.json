@@ -1,7 +1,7 @@
 {
   "llm_model": "gpt-3.5-turbo-1106",
-  "scene_graph": "TrimmedTestScene2_graph",
-  "result_folder": "results_text_rebuttal_specialparsed_programs_upworknturk_second",
-  "instance_folder": "split83_3",
-  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene2_graph\\results_text_rebuttal_specialparsed_programs_upworknturk_second\\split83_3"
+  "scene_graph": "TrimmedTestScene6_graph",
+  "result_folder": "results_text_rebuttal_specialparsed_programs_upwork_july",
+  "instance_folder": "split2_7",
+  "source_path": "C:\\Users\\YHY\\ustcCloud\\VirtualHome_Preprocess\\vh_instances_step_1\\gpt-3.5-turbo-1106\\TrimmedTestScene6_graph\\results_text_rebuttal_specialparsed_programs_upwork_july\\split2_7"
 }
