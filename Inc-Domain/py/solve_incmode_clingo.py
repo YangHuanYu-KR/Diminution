@@ -32,6 +32,7 @@ from timeout_decorator import TimeoutError as StepTimeout
 
 IS_WINDOWS = platform.system() == "Windows"
 
+
 def find_base_dir(target_dirname: str = "Diminution") -> Path:
     current = Path(__file__).resolve()
     for parent in current.parents:
@@ -82,11 +83,11 @@ def run_step_with_timeout(ctl: Control, aspif_path: str, step: int,
     def _do_ground_and_solve():
         collected_models: List[List[str]] = []
         parts = [("check", [Number(step)])]
-        
+
         # ---------- ground this step --------------------------------------
         g_wall0 = time.perf_counter()
         g_cpu0 = time.process_time()
-        
+
         if step == 0:
             parts.append(("base", []))
         else:
@@ -102,10 +103,10 @@ def run_step_with_timeout(ctl: Control, aspif_path: str, step: int,
 
         g_wall1 = time.perf_counter()
         g_cpu1 = time.process_time()
-        
+
         # ---------- measure ground file size ------------------------------
         aspif_size = os.path.getsize(aspif_path)
-        
+
         # ---------- statistics after ground -------------------------------
 
         stats_lp = ctl.statistics["problem"]["lp"]
@@ -116,15 +117,15 @@ def run_step_with_timeout(ctl: Control, aspif_path: str, step: int,
                         if "related" in a.symbol.name and a.is_fact)
         rel_nfacts = sum(1 for a in ctl.symbolic_atoms
                          if "related" in a.symbol.name and not a.is_fact)
-        
+
         # ---------- solve --------------------------------------------------
         s_wall0 = time.perf_counter()
         s_cpu0 = time.process_time()
-        
-        ret = ctl.solve(on_model=lambda m: collected_models.append(
-                sorted(str(s) for s in m.symbols(shown=True))), on_statistics=None)
 
-        
+        ret = ctl.solve(on_model=lambda m: collected_models.append(
+            sorted(str(s) for s in m.symbols(shown=True))),
+                        on_statistics=None)
+
         mem_s = _rss()
         s_wall1 = time.perf_counter()
         s_cpu1 = time.process_time()
@@ -172,9 +173,10 @@ def _wrap_with_timeout(seconds: int):
 
     return _decorator
 
+
 # ─────────────────────── control & helpers ─────────────────────────────────
 def build_control(args: argparse.Namespace) -> Control:
-        
+
     # ctl = Control(arguments=["--stats=2"])
     ctl = Control(arguments=["--stats=2"])
     ctl.configuration.solve.models = str(args.models)
@@ -200,7 +202,7 @@ def solve_incremental(domain: Path, idx: int,
     step_lp = domain / solver / "solve_step.lp"
     inst_lp = domain / "Instances" / str(idx) / "instance.lp"
 
-    instance_base_lp = domain / "Instances" /str(idx) / "instance_base.lp"
+    instance_base_lp = domain / "Instances" / str(idx) / "instance_base.lp"
     instance_step_lp = domain / "Instances" / str(idx) / "instance_step.lp"
 
     path_list = [
@@ -269,27 +271,27 @@ def solve_incremental(domain: Path, idx: int,
                 ctl=ctl,
                 step=step,
                 time_limit=args.time_limit)
-                 
+
         except StepTimeout:
             print(f"[step {step:3d}]  超时 (> {args.time_limit}s)，跳过后续步骤")
-            
+
             step_stats.append({
-            "step": step,
-            "wall_ground": -1,
-            "cpu_ground": -1,
-            "wall_solve": -1,
-            "cpu_solve": -1,
-            "rules": -1,
-            "atoms": -1,
-            "consts_size": -1,
-            "rel_facts": -1,
-            "rel_nonfacts": -1,
-            "rel_total": -1,
-            "aspif_bytes": -1,
-            "mem_grounding_mb": -1,
-            "mem_solve_mb": -1,
-            "models_cum": -1,
-        })
+                "step": step,
+                "wall_ground": -1,
+                "cpu_ground": -1,
+                "wall_solve": -1,
+                "cpu_solve": -1,
+                "rules": -1,
+                "atoms": -1,
+                "consts_size": -1,
+                "rel_facts": -1,
+                "rel_nonfacts": -1,
+                "rel_total": -1,
+                "aspif_bytes": -1,
+                "mem_grounding_mb": -1,
+                "mem_solve_mb": -1,
+                "models_cum": -1,
+            })
             for key in stats_lists:
                 stats_lists[key].append(step_stats[-1][key])
             break
@@ -358,28 +360,26 @@ def solve_incremental(domain: Path, idx: int,
 # ───────────────────── 批处理 & CSV ────────────────────────────────────────
 def run(args: argparse.Namespace):
     domain = BASE_DIR / "Inc-Domain" / args.domain
-    instances  = domain / "Instances"
+    instances = domain / "Instances"
     if not instances.exists():
         raise FileNotFoundError(instances)
 
     if args.index == -1:
-        args.csv = True  
+        args.csv = True
         indices = sorted(
             int(p.name) for p in instances.iterdir()
             if p.is_dir() and p.name.isdigit())
     else:
         indices = [args.index]
 
-    csv_path = domain / "result_clingo_719_unrelated.csv"
-    
+    csv_path = domain / "../result/gw/result_clingo_related.csv"
+
     for idx in indices:
-        idx = idx
         print(f"Now solving the {idx} instance in {domain}")
         row = solve_incremental(domain, idx, args)
         if args.csv:
             upsert_and_sort_csv(row, csv_path)
 
 
-# ─────────────────────────── entry ─────────────────────────────────────────
 if __name__ == "__main__":
     run(parse_args())

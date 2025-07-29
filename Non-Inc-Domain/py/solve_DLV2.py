@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Dict, List
 
 
-def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+def find_base_dir(target_dirname: str = "Diminution") -> Path:
     current = Path(__file__).resolve()
     for parent in current.parents:
         if parent.name == target_dirname:
@@ -43,7 +43,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--domain", default="hc")
     p.add_argument("--index",
                    type=int,
-                   default=1,
+                   default=-1,
                    help="instance sub-folder；-1⇢run all")
     p.add_argument("--models",
                    type=int,
@@ -59,9 +59,6 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--dlv2-path",
                    default="deps/dlv-2.1.2-win64.exe",
                    help="absolute path to dlv2 binary")
-    # p.add_argument("--dlv2-path",
-    #                default="deps/dlv-2.1.2-arm64",
-    #                help="absolute path to dlv2 binary")
     p.add_argument('--time_limit', type=int, default=300)
     return p.parse_args()
 
@@ -119,7 +116,7 @@ def solve_one(domain: Path, idx: int,
               args: argparse.Namespace) -> Dict[str, object]:
     domain = BASE_DIR / "Non-Inc-Domain" / args.domain
     base_lp = domain / ("solve_related.lp" if args.related else "solve.lp")
-    inst_lp = domain / str(idx) / "instance.lp"
+    inst_lp = domain / "Instances" / str(idx) / "instance.lp"
 
     dlv2_exec = BASE_DIR / args.dlv2_path
     m0 = _rss()
@@ -170,7 +167,8 @@ def solve_one(domain: Path, idx: int,
         "mem_solve_bytes": m1,
         "ground_file_bytes": file_size_bytes
     }
-    stats.update(parse_dlv2_stats(raw))
+
+    stats.update(parse_dlv2_stats(raw)[0])
     return stats
 
 
@@ -179,24 +177,23 @@ def solve_one(domain: Path, idx: int,
 
 def run(args: argparse.Namespace):
     domain_path = BASE_DIR / "Non-Inc-Domain" / args.domain
-    rows: List[Dict[str, object]] = []
+    instance_path = domain_path / "Instances"
 
     indices = (sorted(
-        int(p.name) for p in domain_path.iterdir()
+        int(p.name) for p in instance_path.iterdir()
         if p.is_dir() and p.name.isdigit())
                if args.index == -1 else [args.index])
     if args.index == -1:
-        args.verbose = False
         args.csv = True
 
     for idx in indices:
         row = solve_one(domain_path, idx, args)
-        rows.append(row)
         if args.verbose:
             _print_summary(row)
 
-    if args.csv and rows:
-        _write_csv(domain_path / "result_DLV2.csv", rows)
+        if args.csv and row:
+            _write_csv(domain_path / "../result/hc/result_dlv2_unrelated.csv",
+                       [row])
 
 
 # ───── entry ─────────────────────────────────────────────────────────────

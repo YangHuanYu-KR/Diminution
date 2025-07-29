@@ -11,7 +11,7 @@ from pathlib import Path
 from clingo import Control
 from clingo.control import BackendType
 
-def find_base_dir(target_dirname: str = "AAAI2025") -> Path:
+def find_base_dir(target_dirname: str = "Diminution") -> Path:
     current = Path(__file__).resolve()
     for parent in current.parents:
         if parent.name == target_dirname:
@@ -29,10 +29,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--domain", default="hc")
     p.add_argument("--index",
                    type=int,
-                   default=1,
+                   default=-1,
                    help="instance sub-folder; -1 ⇢ run all")
     p.add_argument("--models", type=int, default=1)
-    p.add_argument("--threads", type=int, default=0)
+    p.add_argument("--threads", type=int, default=1)
     p.add_argument("--verbose", action="store_true")
     p.add_argument("--related",
                    action="store_true",
@@ -59,7 +59,7 @@ def build_control(models: int, threads: int) -> Control:
 def solve_one(domain: Path, idx: int, args) -> dict:
     domain = BASE_DIR / "Non-Inc-Domain" / args.domain
     base_lp = domain / "solve_related.lp" if args.related else domain / "solve.lp"
-    inst_lp = domain / str(idx) / "instance.lp"
+    inst_lp = domain / "Instances" / str(idx) / "instance.lp"
     ctl = build_control(args.models, args.threads)
     ctl.load(str(base_lp))
     ctl.load(str(inst_lp))
@@ -110,25 +110,23 @@ def solve_one(domain: Path, idx: int, args) -> dict:
 
 # ─────────────────────── main runner ────────────────────────────────────────
 def run(args: argparse.Namespace):
-    domain_path = BASE_DIR / "Non-Inc-Domain" / args.domain
-    rows: list[dict] = []
+    domain_path = BASE_DIR / "Non-Inc-Domain" / args.domain 
+    instances_path = domain_path / "Instances"
 
-    if args.index == -1:
-        args.verbose = False  
+    if args.index == -1: 
         args.csv = True  
         indices = sorted(
-            int(p.name) for p in domain_path.iterdir()
+            int(p.name) for p in instances_path.iterdir()
             if p.is_dir() and p.name.isdigit())
+
     else:
         indices = [args.index]
-
     for idx in indices:
         stats = solve_one(domain_path, idx, args)
-        rows.append(stats)
         if args.verbose: _print_summary(stats)
 
-    if args.csv:
-        _write_csv(domain_path / "result_clingo.csv", rows)
+        if args.csv:
+            _write_csv(domain_path /  "../result/hc/result_clingo_unrelated.csv", [stats])
 
 
 # ──────────────────── helpers ───────────────────────────────────────────────

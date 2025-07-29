@@ -16,7 +16,7 @@ def gale_shapley(men_preferences, women_preferences):
 
     # Initialize the current partner for each man and woman
     current_partner = [-1] * N  # -1 means no partner
-    women_partner = [-1] * N     # -1 means no partner
+    women_partner = [-1] * N  # -1 means no partner
 
     # While there are free men
     while free_men:
@@ -66,18 +66,26 @@ def translate_scores_to_preferences(men_scores, women_scores):
 
     # Fill preference lists based on scores
     for score in men_scores:
-        men_preferences[score[0]].append((score[1], score[2]))  # (woman, score)
+        men_preferences[score[0]].append(
+            (score[1], score[2]))  # (woman, score)
     for score in women_scores:
-        women_preferences[score[0]].append((score[1], score[2]))  # (man, score)
+        women_preferences[score[0]].append(
+            (score[1], score[2]))  # (man, score)
 
     # Sort preferences by score (higher score first)
     for man in range(men_count):
-        men_preferences[man].sort(key=lambda x: -x[1])  # Sort by score descending
-        men_preferences[man] = [woman for woman, score in men_preferences[man]]  # Keep only women
+        men_preferences[man].sort(
+            key=lambda x: -x[1])  # Sort by score descending
+        men_preferences[man] = [
+            woman for woman, score in men_preferences[man]
+        ]  # Keep only women
 
     for woman in range(women_count):
-        women_preferences[woman].sort(key=lambda x: -x[1])  # Sort by score descending
-        women_preferences[woman] = [man for man, score in women_preferences[woman]]  # Keep only men
+        women_preferences[woman].sort(
+            key=lambda x: -x[1])  # Sort by score descending
+        women_preferences[woman] = [
+            man for man, score in women_preferences[woman]
+        ]  # Keep only men
 
     return men_preferences, women_preferences
 
@@ -91,14 +99,16 @@ def generate_random_preferences(num):
         # Unique scores for women from 1 to num
         women_scores = random.sample(range(1, num + 1), num)
         for woman in range(num):
-            rand_men_scores.append(manAssignsScore(man, woman, women_scores[woman]))
+            rand_men_scores.append(
+                manAssignsScore(man, woman, women_scores[woman]))
 
     # Generate scores for women
     for woman in range(num):
         # Unique scores for men from 1 to num
         men_scores = random.sample(range(1, num + 1), num)
         for man in range(num):
-            rand_women_scores.append(womanAssignsScore(woman, man, men_scores[man]))
+            rand_women_scores.append(
+                womanAssignsScore(woman, man, men_scores[man]))
 
     return rand_men_scores, rand_women_scores
 
@@ -113,22 +123,23 @@ def create_renaming_mapping(men_partners):
     return women_renaming_mapping
 
 
-def renaming_original_scores(original_men_scores, original_women_scores, women_renaming_mapping):
+def renaming_original_scores(original_men_scores, original_women_scores,
+                             women_renaming_mapping):
     men_count = max(score[0] for score in original_men_scores) + 1
     women_count = men_count
 
     renamed_men_scores = []
     for score in original_men_scores:
         renamed_men_scores.append(
-            manAssignsScore(score[0], women_renaming_mapping[score[1]], score[2])
-        )
+            manAssignsScore(score[0], women_renaming_mapping[score[1]],
+                            score[2]))
     renamed_men_scores.sort(key=lambda s: s[0] * men_count + s[1])
 
     renamed_women_scores = []
     for score in original_women_scores:
         renamed_women_scores.append(
-            womanAssignsScore(women_renaming_mapping[score[0]], score[1], score[2])
-        )
+            womanAssignsScore(women_renaming_mapping[score[0]], score[1],
+                              score[2]))
     renamed_women_scores.sort(key=lambda s: s[0] * women_count + s[1])
 
     return renamed_men_scores, renamed_women_scores
@@ -148,17 +159,17 @@ def generate_instances(scores, mode):
 
     str_score_list = []
     for score in scores:
-        str_score_list.append(
-            f'{prefix}({score[0]}, {score[1]}, {score[2]})'
-        )
+        str_score_list.append(f'{prefix}({score[0]}, {score[1]}, {score[2]})')
 
     return str_score_list
 
 
 def write_instance_file(men_scores, women_scores, instance_index=1):
     meta = f'% number of men/women = {max(score[0] for score in men_scores) + 1}\n'
-    str_men_scores = '.\n'.join(generate_instances(men_scores, mode='m') + ['% end of men'])
-    str_women_score = '.\n'.join(generate_instances(women_scores, mode='w') + ['% end of women'])
+    str_men_scores = '.\n'.join(
+        generate_instances(men_scores, mode='m') + ['% end of men'])
+    str_women_score = '.\n'.join(
+        generate_instances(women_scores, mode='w') + ['% end of women'])
 
     if not os.path.exists(f'./{instance_index}/'):
         os.mkdir(f'./{instance_index}/')
@@ -177,16 +188,12 @@ if __name__ == '__main__':
     def parse_args():
         p = argparse.ArgumentParser(
             description="Generate Stable Marriage instances")
-        p.add_argument("--index",
-                       type=int,
-                       help="instance index, the file will be at sm/<index>/instance.lp")
-        p.add_argument("--num",
-                       type=int,
-                       help="the number of men/women")
-        p.add_argument("--seed",
-                       type=int,
-                       default=0,
-                       help="random seed")
+        p.add_argument(
+            "--index",
+            type=int,
+            help="instance index, the file will be at sm/<index>/instance.lp")
+        p.add_argument("--num", type=int, help="the number of men/women")
+        p.add_argument("--seed", type=int, default=0, help="random seed")
         return p.parse_args()
 
     args = parse_args()
@@ -227,8 +234,7 @@ if __name__ == '__main__':
     # ]
 
     men_preferences, women_preferences = translate_scores_to_preferences(
-        rand_men_scores, rand_women_scores
-    )
+        rand_men_scores, rand_women_scores)
 
     print("\n --- Corresponding preferences, first 20 ---")
     print("Men's preferences:\n", np.array(men_preferences[:20]))
@@ -246,7 +252,8 @@ if __name__ == '__main__':
     #     [2, 1, 0]   # Woman 2 prefers Man 2, then Man 1, then Man 0
     # ]
 
-    men_partners, women_partners = gale_shapley(men_preferences, women_preferences)
+    men_partners, women_partners = gale_shapley(men_preferences,
+                                                women_preferences)
 
     print("\n--- Gale-Shapley matching results ---")
     print("Men's partners:", men_partners)
@@ -254,10 +261,12 @@ if __name__ == '__main__':
     print("Renaming women:", create_renaming_mapping(men_partners))
 
     renamed_men_scores, renamed_women_scores = renaming_original_scores(
-        rand_men_scores, rand_women_scores, create_renaming_mapping(men_partners)
-    )
+        rand_men_scores, rand_women_scores,
+        create_renaming_mapping(men_partners))
 
-    write_instance_file(renamed_men_scores, renamed_women_scores, instance_index=args.index)
+    write_instance_file(renamed_men_scores,
+                        renamed_women_scores,
+                        instance_index=args.index)
 
     print("\n--- Transformed instances (after renaming), first 20 ---")
     print("Men's scores:\n", np.array(renamed_men_scores[:20]))
@@ -265,9 +274,11 @@ if __name__ == '__main__':
 
     print("\n--- Gale-Shapley matching (after renaming) ---")
     men_partners, women_partners = gale_shapley(
-        *translate_scores_to_preferences(renamed_men_scores, renamed_women_scores)
-    )
+        *translate_scores_to_preferences(renamed_men_scores,
+                                         renamed_women_scores))
     print("Men's partners (after):", men_partners)
     print("Women's partners (after):", women_partners)
 
-    print(f'\n *** Instance generated successfully at sm/{args.index}/instance.lp ***')
+    print(
+        f'\n *** Instance generated successfully at sm/{args.index}/instance.lp ***'
+    )

@@ -6,11 +6,13 @@ GW_domain_generate.py  ——  Grid-World ASP instance generator
 
 示例
 =====
+在目录 .\Inc-Domain 下
+
 # 生成 1 份默认实例，自动放到 gw/1/instance.lp
 python py/GW_domain_generate.py
 
 # 批量 10 份，50×50，3 个盒子，index 自动续号
-python py/GW_domain_generate.py -b 10 -W 50 -H 50 -b 3
+python py/GW_domain_generate.py -b 10 -W 50 -H 50 --boxes 3
 
 # 指定 index=5 起步，起点终点固定，可达性不检查
 python py/GW_domain_generate.py -i 5 --start 2 2 --goal 25 25 --ensure-reachability False
@@ -68,7 +70,7 @@ def generate_one(cfg, rng: random.Random) -> Tuple[List[Box], Coord, Coord]:
     W, H = cfg.width, cfg.height
     for _ in range(1000):
         boxes: List[Box] = []
-        # 1) 随机放置障碍
+
         for _ in range(cfg.boxes):
             for _inner in range(50):
                 w = rng.randint(cfg.min_size, cfg.max_size)
@@ -82,16 +84,16 @@ def generate_one(cfg, rng: random.Random) -> Tuple[List[Box], Coord, Coord]:
             else:
                 break
         else:
-            # 2) 起点终点
+
             sx, sy = cfg.start if cfg.start else (rng.randint(1, W),
                                                   rng.randint(1, H))
             gx, gy = cfg.goal if cfg.goal else (rng.randint(1, W),
                                                 rng.randint(1, H))
-
-            # 3) 可达性验证
+            manhattan = abs(sx - gx) + abs(sy - gy)
             if (not cfg.ensure_reachability) or bfs_reachable(
                     W, H, boxes, (sx, sy), (gx, gy)):
-                return boxes, (sx, sy), (gx, gy)
+                if manhattan <= 100:
+                    return boxes, (sx, sy), (gx, gy)
     raise RuntimeError(
         "Failed to generate a valid instance after 1000 attempts")
 
@@ -101,7 +103,7 @@ def parse_args():
     ap = argparse.ArgumentParser("Generate Grid-World ASP instances")
     ap.add_argument("-d",
                     "--domain",
-                    default="gw",
+                    default="gw/Instances",
                     help="root folder for instances")
     ap.add_argument("-i",
                     "--index",

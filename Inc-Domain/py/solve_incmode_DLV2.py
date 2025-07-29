@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# editbin /STACK:8388608,65536 dlv-2.1.2-win64.exe
 
 from __future__ import annotations
 import argparse
@@ -24,6 +25,7 @@ sys.path.append(str(BASE_DIR))
 
 from deps.utils import upsert_and_sort_csv, _mb, _rss, parse_dlv2_stats
 
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="Incremental DLV2 solver with stats")
@@ -41,14 +43,14 @@ def parse_args() -> argparse.Namespace:
                    help="load solve_related.lp instead of solve.lp")
     p.add_argument('--max-steps',
                    type=int,
-                   default=30,
+                   default=1000,
                    help='max incremental steps')
-    p.add_argument('--dlv2-path', default='deps/dlv-2.1.2-linux')
+    p.add_argument('--dlv2-path', default='deps\dlv-2.1.2-win64.exe')
     p.add_argument('--csv',
                    action='store_true',
                    help='path to output CSV file')
     p.add_argument('--verbose', action='store_true')
-    p.add_argument('--time_limit', type=int, default=300)
+    p.add_argument('--time_limit', type=int, default=30)
 
     return p.parse_args()
 
@@ -95,10 +97,10 @@ def incremental_dlv2(domain: Path, idx: int,
     check_lp = domain / solver_dir / 'solve_check.lp'
 
     if args.domain != 'vh':
-        inst_lp = domain/ "Instances" / str(idx) / 'instance.lp'
+        inst_lp = domain / "Instances" / str(idx) / 'instance.lp'
     else:
-        inst_base_lp = domain/ "Instances" / str(idx) / 'instance_base.lp'
-        inst_step_lp = domain/ "Instances" / str(idx) / 'instance_step.lp'
+        inst_base_lp = domain / "Instances" / str(idx) / 'instance_base.lp'
+        inst_step_lp = domain / "Instances" / str(idx) / 'instance_step.lp'
 
     step_stats: List[Dict[str, Any]] = []
     stats_lists = {
@@ -212,20 +214,21 @@ def incremental_dlv2(domain: Path, idx: int,
 
 def run(args: argparse.Namespace):
     domain = BASE_DIR / "Inc-Domain" / args.domain
-    instances  = domain / "Instances"
+    instances = domain / "Instances"
     if not instances.exists():
         raise FileNotFoundError(instances)
 
     if args.index == -1:
-        args.csv = True  
+        args.csv = True
         indices = sorted(
             int(p.name) for p in instances.iterdir()
             if p.is_dir() and p.name.isdigit())
     else:
         indices = [args.index]
-    
-    csv_path = domain / "result_DLV2.csv"
+
+    csv_path = domain / "../result/gw/result_dlv2_unrelated.csv"
     for idx in indices:
+        idx = idx + 30
         print(f"Now solving the {idx} instance in {domain}")
         row = incremental_dlv2(domain, idx, args)
         if args.csv:
