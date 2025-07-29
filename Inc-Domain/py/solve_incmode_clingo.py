@@ -51,11 +51,11 @@ from deps.utils import _mb, _rss, all_constants_size, upsert_and_sort_csv
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser("Incremental ASP solver with rich statistics")
     p.add_argument("--domain",
-                   default="gw",
+                   default="aws",
                    help="e.g. ./gw  (必须包含 <idx>/instance.lp)")
     p.add_argument("--index",
                    type=int,
-                   default=1,
+                   default=-1,
                    help="-1 ⇒ 遍历 domain 下全部数字子目录")
     p.add_argument("--models",
                    type=int,
@@ -225,7 +225,7 @@ def solve_incremental(domain: Path, idx: int,
     istop = istop_c.name if istop_c is not None else "SAT"
 
     # === prepare aspif file (compute the size of grounded program) =========
-    aspif_path = BASE_DIR / "Inc-Domain" / "temp" / "temp_gc_gringo.aspif"
+    aspif_path = BASE_DIR / "Inc-Domain" / "temp" / "temp_gc_gringo_unrelated.aspif"
     ctl.register_backend(BackendType.Aspif, str(aspif_path), replace=False)
 
     # === statistic container ===============================================
@@ -372,7 +372,7 @@ def run(args: argparse.Namespace):
     else:
         indices = [args.index]
 
-    csv_path = domain / "../result/gw/result_clingo_related.csv"
+    csv_path = domain / f"../result/{args.domain}/result_clingo.csv"
 
     for idx in indices:
         print(f"Now solving the {idx} instance in {domain}")

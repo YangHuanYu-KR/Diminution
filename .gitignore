@@ -2,3 +2,4 @@ __pycache__/
 .DS_Store
 Inc-Domain/temp
 Non-Inc-Domain/temp
+*.csv

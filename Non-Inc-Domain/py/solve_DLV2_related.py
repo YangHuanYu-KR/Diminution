@@ -192,8 +192,9 @@ def run(args: argparse.Namespace):
             _print_summary(row)
 
         if args.csv and row:
-            _write_csv(domain_path / "../result/hc/result_dlv2_related.csv",
-                       [row])
+            _write_csv(
+                domain_path /
+                f"../result/{args.domain}/result_dlv2_related.csv", [row])
 
 
 # ───── entry ─────────────────────────────────────────────────────────────

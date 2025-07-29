@@ -126,7 +126,7 @@ def run(args: argparse.Namespace):
         if args.verbose: _print_summary(stats)
 
         if args.csv:
-            _write_csv(domain_path /  "../result/hc/result_clingo_related.csv", [stats])
+            _write_csv(domain_path /  f"../result/{args.domain}/result_clingo_related.csv", [stats])
 
 
 # ──────────────────── helpers ───────────────────────────────────────────────

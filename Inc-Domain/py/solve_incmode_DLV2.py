@@ -29,7 +29,7 @@ from deps.utils import upsert_and_sort_csv, _mb, _rss, parse_dlv2_stats
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="Incremental DLV2 solver with stats")
-    p.add_argument('--domain', default='gw', help='directory of problem')
+    p.add_argument('--domain', default='aws', help='directory of problem')
     p.add_argument('--index',
                    type=int,
                    default=1,
@@ -174,7 +174,7 @@ def incremental_dlv2(domain: Path, idx: int,
                                    stderr=subprocess.STDOUT,
                                    text=True)
         idlv_output = idlv_proc.stdout
-        out_file = BASE_DIR / "Inc-Domain" / "temp" / f"temp_gc_idlv.aspif"
+        out_file = BASE_DIR / "Inc-Domain" / "temp" / f"temp_gc_idlv_unrelated.aspif"
         out_file.write_text(idlv_output, encoding="utf-8")
         file_size_bytes = out_file.stat().st_size
 
@@ -226,7 +226,7 @@ def run(args: argparse.Namespace):
     else:
         indices = [args.index]
 
-    csv_path = domain / "../result/gw/result_dlv2_unrelated.csv"
+    csv_path = domain / f"../result/{args.domain}/result_dlv2_unrelated.csv"
     for idx in indices:
         idx = idx + 30
         print(f"Now solving the {idx} instance in {domain}")
