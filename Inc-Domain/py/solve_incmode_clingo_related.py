@@ -55,7 +55,7 @@ def parse_args() -> argparse.Namespace:
                    help="e.g. ./gw  (必须包含 <idx>/instance.lp)")
     p.add_argument("--index",
                    type=int,
-                   default=1,
+                   default=-1,
                    help="-1 ⇒ 遍历 domain 下全部数字子目录")
     p.add_argument("--models",
                    type=int,
@@ -375,7 +375,7 @@ def run(args: argparse.Namespace):
     csv_path = domain / f"../result/{args.domain}/result_clingo_related.csv"
 
     for idx in indices:
-        idx = idx
+        idx = idx + 141
         print(f"Now solving the {idx} instance in {domain}")
         row = solve_incremental(domain, idx, args)
         if args.csv:

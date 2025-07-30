@@ -1,4 +1,5 @@
 #include<incmode>.
+#const imax = 30.
 
 dir( 1, 0). dir(-1, 0). dir( 0, 1). dir( 0,-1).
 
